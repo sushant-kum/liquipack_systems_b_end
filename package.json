@@ -1,0 +1,19 @@
+{
+  "name": "liquipack_systems_b_end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sushant-kum/liquipack_systems_b_end.git"
+  },
+  "author": "Sushant Kumar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sushant-kum/liquipack_systems_b_end/issues"
+  },
+  "homepage": "https://github.com/sushant-kum/liquipack_systems_b_end#readme"
+}
