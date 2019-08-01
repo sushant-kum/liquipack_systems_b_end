@@ -28,7 +28,7 @@ exports.handler = function (req, res) {
                             Array.isArray(JSON.parse(req.body.app_permissions)) &&
                             req.body.name &&
                             req.body.email &&
-                            (req.body.gender ? (req.body.gender.toLowerCase() == "male" || req.body.gender.toLowerCase() == "female") : true)
+                            (req.body.gender ? (req.body.gender.toLowerCase() == "male" || req.body.gender.toLowerCase() == "female" || req.body.gender.toLowerCase() == "others") : true)
                         )
                             valid_arguments_flag = true;
                     } catch (e) {
@@ -44,7 +44,7 @@ exports.handler = function (req, res) {
                             name: req.body.name,
                             email: req.body.email,
                             phone: req.body.phone ? req.body.phone : null,
-                            gender: (req.body.gender.toLowerCase() == "male" || req.body.gender.toLowerCase() == "female") ? req.body.gender.toLowerCase() : null
+                            gender: (req.body.gender.toLowerCase() == "male" || req.body.gender.toLowerCase() == "female" || req.body.gender.toLowerCase() == "others") ? req.body.gender.toLowerCase() : null
                         };
 
                         UserController.new(new_user, function (error, user = null) {
@@ -69,7 +69,7 @@ exports.handler = function (req, res) {
                     }
                     else {
                         return res.status(400).json({
-                            status: "error",
+                            status: "invalid_request",
                             message: "Invalid arguments.",
                             user_id: req.user._id,
                             token: req.user.token

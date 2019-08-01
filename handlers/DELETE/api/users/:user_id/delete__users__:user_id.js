@@ -73,7 +73,7 @@ exports.handler = function (req, res) {
                     }
                     else {
                         return res.status(400).json({
-                            status: "error",
+                            status: "invalid_request",
                             message: "Invalid arguments.",
                             user_id: req.user._id,
                             token: req.user.token

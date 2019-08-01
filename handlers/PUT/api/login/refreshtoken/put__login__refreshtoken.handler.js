@@ -136,7 +136,7 @@ exports.handler = function (req, res) {
         }
         else {
             return res.status(400).json({
-                status: "error",
+                status: "invalid_request",
                 message: "Invalid arguments"
             });
         }
