@@ -36,16 +36,9 @@ exports.handler = function (req, res) {
 
           if (valid_arguments_flag) {
             if (req.params.user_id == req.user._id) {
-              let update_user = {
-                password_hash: req.body.password_hash,
-                name: req.body.name,
-                email: req.body.email,
-                phone: req.body.phone ? req.body.phone : null,
-                gender: req.body.gender ? req.body.gender.toLowerCase() : null
-              };
-
-              UserController.update(req.params.user_id, update_user, function (error, user = null) {
+              UserController.view(req.user._id, function(error, user) {
                 if (error) {
+                  logger.error(error, { log_to_console: true });
                   return res.status(500).json({
                     status: "error",
                     message: error,
@@ -54,15 +47,37 @@ exports.handler = function (req, res) {
                   });
                 }
                 else {
-                  return res.json({
-                    status: "success",
-                    message: "User profile updated successfully",
-                    data: user,
-                    user_id: req.user._id,
-                    token: req.user.token
+                  let update_user = {
+                    password_hash: req.body.password_hash,
+                    name: req.body.name,
+                    email: req.body.email,
+                    phone: req.body.phone ? req.body.phone : null,
+                    gender: req.body.gender ? req.body.gender.toLowerCase() : null,
+                    app_permissions: user.app_permissions
+                  };
+    
+                  UserController.update(req.params.user_id, update_user, function (error, user = null) {
+                    if (error) {
+                      return res.status(500).json({
+                        status: "error",
+                        message: error,
+                        user_id: req.user._id,
+                        token: req.user.token
+                      });
+                    }
+                    else {
+                      return res.json({
+                        status: "success",
+                        message: "User profile updated successfully",
+                        data: user,
+                        user_id: req.user._id,
+                        token: req.user.token
+                      });
+                    }
                   });
                 }
-              });
+              })
+              
             }
             else {
               return res.status(403).json({
