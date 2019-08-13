@@ -25,7 +25,7 @@ exports.handler = function (req, res) {
                         if (
                             req.body.username &&
                             req.body.password_hash &&
-                            Array.isArray(JSON.parse(req.body.app_permissions)) &&
+                            Array.isArray(req.body.app_permissions) &&
                             req.body.name &&
                             req.body.email &&
                             (req.body.gender ? (req.body.gender.toLowerCase() == "male" || req.body.gender.toLowerCase() == "female" || req.body.gender.toLowerCase() == "others") : true)
@@ -36,7 +36,7 @@ exports.handler = function (req, res) {
                     }
 
                     if (valid_arguments_flag) {
-                        let app_permissions = JSON.parse(req.body.app_permissions);
+                        let app_permissions = req.body.app_permissions;
                         let new_user = {
                             username: req.body.username,
                             password_hash: req.body.password_hash,
