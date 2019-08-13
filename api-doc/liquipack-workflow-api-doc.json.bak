@@ -88,12 +88,9 @@
           {
             "name": "app_permissions",
             "in": "formData",
-            "description": "Identifiers of apps the user has permissions to (in JSON format) <br /> type: {<br /> &nbsp;&nbsp;app: string,<br /> &nbsp;&nbsp;permissions: string[] //enum: ['read', 'write']<br /> }[]<br />",
+            "description": "Identifiers of apps the user has permissions to (in JSON format) <br /> {<br /> &nbsp;&nbsp;type: [{<br /> &nbsp;&nbsp;&nbsp;&nbsp;apps: [String],<br /> &nbsp;&nbsp;&nbsp;&nbsp;permissions: [String] //enum: [read, write]<br /> &nbsp;&nbsp;}]<br /> }",
             "required": true,
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
+            "type": "string"
           },
           {
             "name": "name",
@@ -223,12 +220,9 @@
           {
             "name": "app_permissions",
             "in": "formData",
-            "description": "Identifiers of apps the user has permissions to (in JSON format) <br /> type: {<br /> &nbsp;&nbsp;app: string,<br /> &nbsp;&nbsp;permissions: string[] //enum: ['read', 'write']<br /> }[]<br />",
+            "description": "Identifiers of apps the user has permissions to (in JSON format) <br /> {<br /> &nbsp;&nbsp;type: [{<br /> &nbsp;&nbsp;&nbsp;&nbsp;apps: [String],<br /> &nbsp;&nbsp;&nbsp;&nbsp;permissions: [String] //enum: [read, write]<br /> &nbsp;&nbsp;}]<br /> }",
             "required": true,
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
+            "type": "string"
           },
           {
             "name": "name",
@@ -581,7 +575,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "app": {
+          "apps": {
             "type": "array",
             "items": {
               "type": "string",
