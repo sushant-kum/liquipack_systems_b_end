@@ -23,7 +23,6 @@ class AuthError extends Error {
 // Basic Auth
 passport.use(new BasicStrategy(
     function (username, password_hash, callback) {
-        console.log("BasicStrategy", username, password_hash);
         UserController.findOne({ username: username, password_hash: password_hash, is_active: true }, function (error, user) {
             if (error) {
                 return callback(error);
@@ -68,7 +67,6 @@ jwt_opts.secretOrKey = jwt_config.token_secret;
 jwt_opts.issuer = jwt_config.issuer;
 jwt_opts.audience = jwt_config.audience;
 passport.use(new JwtStrategy(jwt_opts, function (jwt_payload, callback) {
-    console.log("JwtStrategy", jwt_payload);
     UserController.findOne({
         username: jwt_payload.username,
         is_active: true
