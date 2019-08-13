@@ -25,7 +25,7 @@ exports.handler = function (req, res) {
             if (
               req.params.user_id &&
               req.body.password_hash &&
-              Array.isArray(JSON.parse(req.body.app_permissions)) &&
+              Array.isArray(req.body.app_permissions) &&
               req.body.name &&
               req.body.email &&
               (req.body.gender ? (req.body.gender.toLowerCase() == "male" || req.body.gender.toLowerCase() == "female" || req.body.gender.toLowerCase() == "others") : true)
@@ -38,7 +38,7 @@ exports.handler = function (req, res) {
           if (valid_arguments_flag) {
             let update_user = {
               password_hash: req.body.password_hash,
-              app_permissions: JSON.parse(req.body.app_permissions),
+              app_permissions: req.body.app_permissions,
               name: req.body.name,
               email: req.body.email,
               phone: req.body.phone ? req.body.phone : null,
