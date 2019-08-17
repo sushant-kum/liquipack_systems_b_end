@@ -48,6 +48,16 @@ case "$1" in
     fi
     ;;
 
+  remove)
+    IMAGE_ID=$(docker images -a | grep -v Exit | grep $CONTAINER_NAME | awk '{print $3}')
+    if [ -z $IMAGE_ID ] ; then
+      echo 'No Image Found.'
+      exit 1
+    else
+      docker rmi $IMAGE_ID
+    fi
+    ;;
+
   ps)
     CONTAINER_ID=$(docker ps -a | grep -v Exit | grep $CONTAINER_NAME | awk '{print $1}')
     if [ -z $CONTAINER_ID ] ; then
@@ -74,6 +84,7 @@ case "$1" in
     echo "\tbuild\t\t Build docker image"
     echo "\tstart\t\t Start docker image"
     echo "\tstop\t\t Stop running docker image"
+    echo "\tremove\t\t Remove docker image"
     echo "\tstatus\t\t Get container status"
     echo "\tps\t\t Get container ID"
     echo "\tlogs\t\t Show logs in --follow mode"
