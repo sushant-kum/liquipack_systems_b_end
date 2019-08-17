@@ -36,7 +36,7 @@ case "$1" in
 
   stop)
     CONTAINER_ID=$(docker ps -a | grep -v Exit | grep $CONTAINER_NAME | awk '{print $1}')
-    if [[ -n $CONTAINER_ID ]] ; then
+    if [ -n $CONTAINER_ID ] ; then
       SRV=$(docker stop $CONTAINER_ID)
       SRV=$(docker rm $CONTAINER_ID)
       if [ $? -eq 0 ] ; then
@@ -49,7 +49,23 @@ case "$1" in
     ;;
 
   ps)
-    docker ps -a | grep -v Exit | grep $CONTAINER_NAME
+    CONTAINER_ID=$(docker ps -a | grep -v Exit | grep $CONTAINER_NAME | awk '{print $1}')
+    if [ -z $CONTAINER_ID ] ; then
+      echo 'Not Running.'
+      exit 1
+    else
+      docker ps -a | grep -v Exit | grep $CONTAINER_NAME
+    fi
+    ;;
+
+  logs)
+    CONTAINER_ID=$(docker ps -a | grep -v Exit | grep $CONTAINER_NAME | awk '{print $1}')
+    if [ -z $CONTAINER_ID ] ; then
+      echo 'Not Running.'
+      exit 1
+    else
+      docker logs -f $CONTAINER_ID
+    fi
     ;;
 
   *)
@@ -60,6 +76,7 @@ case "$1" in
     echo "\tstop\t\t Stop running docker image"
     echo "\tstatus\t\t Get container status"
     echo "\tps\t\t Get container ID"
+    echo "\tlogs\t\t Show logs in --follow mode"
     exit 1
     ;;
 esac
