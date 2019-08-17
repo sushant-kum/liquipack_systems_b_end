@@ -310,12 +310,12 @@
           },
           {
             "name": "delete_permanently",
-            "in": "formData",
+            "in": "query",
             "description": "flag to delete a user permanently or make it inactive",
             "type": "string",
             "enum": [
-              true,
-              false
+              "true",
+              "false"
             ]
           }
         ],

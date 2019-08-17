@@ -23,12 +23,12 @@ exports.handler = function (req, res) {
                     let valid_arguments_flag = false;
                     if (
                         req.params.user_id &&
-                        (req.body.delete_permanently ? (req.body.delete_permanently == "true" || req.body.delete_permanently == "false") : true)
+                        (req.query.delete_permanently ? (req.query.delete_permanently == "true" || req.query.delete_permanently == "false") : true)
                     )
                         valid_arguments_flag = true;
 
                     if (valid_arguments_flag) {
-                        if (req.body.delete_permanently && req.body.delete_permanently == "true") {
+                        if (req.query.delete_permanently && req.query.delete_permanently == "true") {
                             UserController.delete(req.params.user_id, function (error, user = null) {
                                 if (error) {
                                     return res.status(500).json({
