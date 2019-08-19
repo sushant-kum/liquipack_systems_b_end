@@ -98,6 +98,25 @@ exports.make_inactive = function (user_id, callback) {
     });
 };
 
+exports.make_active = function (user_id, callback) {
+  User.findById(user_id, function (error, user) {
+      if (error) {
+          callback(error);
+      }
+      else {
+          user.is_active = true;
+          user.save(function (error) {
+              if (error) {
+                  callback(error);
+              }
+              else {
+                  callback(null, user);
+              }
+          });
+      }
+  });
+};
+
 exports.delete = function (user_id, callback) {
     User.deleteOne({
         _id: user_id

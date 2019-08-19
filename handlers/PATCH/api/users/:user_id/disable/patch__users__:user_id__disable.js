@@ -27,7 +27,7 @@ exports.handler = function (req, res) {
             valid_arguments_flag = true;
 
           if (valid_arguments_flag) {
-            UserController.delete(req.params.user_id, function (error, user = null) {
+            UserController.make_inactive(req.params.user_id, function (error, user = null) {
               if (error) {
                 return res.status(500).json({
                   status: "error",
@@ -39,7 +39,7 @@ exports.handler = function (req, res) {
               else {
                 return res.json({
                   status: "success",
-                  message: "User deleted permanently",
+                  message: "User made inactive",
                   data: user,
                   user_id: req.user._id,
                   token: req.user.token

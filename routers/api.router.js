@@ -18,6 +18,8 @@ let _post__users = require(base_path + '/handlers/POST/api/users/post__users');
 let _get__users__user_id = require(base_path + '/handlers/GET/api/users/:user_id/get__users__:user_id');
 let _put__users__user_id = require(base_path + '/handlers/PUT/api/users/:user_id/put__users__:user_id');
 let _delete__users__user_id = require(base_path + '/handlers/DELETE/api/users/:user_id/delete__users__:user_id');
+let _patch__users__user_id__disable = require(base_path + '/handlers/PATCH/api/users/:user_id/disable/patch__users__:user_id__disable');
+let _patch__users__user_id__enable = require(base_path + '/handlers/PATCH/api/users/:user_id/enable/patch__users__:user_id__enable');
 
 router.get('/', function (req, res) {
     res.json({
@@ -39,5 +41,7 @@ router.route('/api/users').post(AuthController.isJWTAuthenticated, _post__users.
 router.route('/api/users/:user_id').get(AuthController.isJWTAuthenticated, _get__users__user_id.handler);
 router.route('/api/users/:user_id').put(AuthController.isJWTAuthenticated, _put__users__user_id.handler);
 router.route('/api/users/:user_id').delete(AuthController.isJWTAuthenticated, _delete__users__user_id.handler);
+router.route('/api/users/:user_id/disable').patch(AuthController.isJWTAuthenticated, _patch__users__user_id__disable.handler);
+router.route('/api/users/:user_id/enable').patch(AuthController.isJWTAuthenticated, _patch__users__user_id__enable.handler);
 
 module.exports = router;
