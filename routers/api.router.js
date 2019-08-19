@@ -22,10 +22,10 @@ let _patch__users__user_id__disable = require(base_path + '/handlers/PATCH/api/u
 let _patch__users__user_id__enable = require(base_path + '/handlers/PATCH/api/users/:user_id/enable/patch__users__:user_id__enable');
 
 router.get('/', function (req, res) {
-    res.json({
-        status: 'success',
-        message: 'Welcome to liquipack_systems APIs crafted with love!',
-    });
+  res.json({
+    status: 'success',
+    message: 'Welcome to liquipack_systems APIs crafted with love!',
+  });
 });
 
 router.route('/api/login').get(AuthController.isBasicAuthenticated, _get__login.handler);
