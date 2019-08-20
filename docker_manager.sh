@@ -78,6 +78,16 @@ case "$1" in
     fi
     ;;
 
+  bash)
+    CONTAINER_ID=$(docker ps -a | grep -v Exit | grep $CONTAINER_NAME | awk '{print $1}')
+    if [ -z $CONTAINER_ID ] ; then
+      echo 'Not Running.'
+      exit 1
+    else
+      docker exec -it $CONTAINER_ID /bin/bash
+    fi
+    ;;
+
   *)
     echo "Docker Container Name: $CONTAINER_NAME"
     echo "Options accepted:"
@@ -88,6 +98,7 @@ case "$1" in
     echo "\tstatus\t\t Get container status"
     echo "\tps\t\t Get container ID"
     echo "\tlogs\t\t Show logs in --follow mode"
+    echo "\tbash\t\t Connect to docker bash shell"
     exit 1
     ;;
 esac

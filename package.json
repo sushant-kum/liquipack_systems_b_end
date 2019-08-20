@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "start:prod": "pm2-runtime --name liquipack_systems_b_end --log ./index.log --time  index.js"
   },
   "repository": {
     "type": "git",
