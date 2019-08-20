@@ -36,7 +36,7 @@ exports.handler = function (req, res) {
 
           if (valid_arguments_flag) {
             if (req.params.user_id == req.user._id) {
-              UserController.view(req.user._id, function(error, user) {
+              UserController.view(req.user._id, function (error, user) {
                 if (error) {
                   logger.error(error, { log_to_console: true });
                   return res.status(500).json({
@@ -55,7 +55,7 @@ exports.handler = function (req, res) {
                     gender: req.body.gender ? req.body.gender.toLowerCase() : null,
                     app_permissions: user.app_permissions
                   };
-    
+
                   UserController.update(req.params.user_id, update_user, function (error, user = null) {
                     if (error) {
                       return res.status(500).json({
@@ -77,7 +77,7 @@ exports.handler = function (req, res) {
                   });
                 }
               })
-              
+
             }
             else {
               return res.status(403).json({
