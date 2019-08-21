@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 8080
 
 RUN npm install pm2 -g
-CMD [ "pm2-runtime", "--name", "liquipack_systems_b_end", "--log", "./index.log", "--time", "index.js" ]
+CMD [ "pm2-runtime", "--name", "liquipack_systems_b_end", "index.js" ]
