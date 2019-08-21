@@ -25,7 +25,7 @@ case "$1" in
   start)
     docker ps -a | grep -v Exit | grep -q $CONTAINER_NAME
     if [ $? -ne 0 ]; then
-        CONTAINER_ID=$(docker run -p $CONTAINER_PORT:$HOST_PORT -d $CONTAINER_NAME)
+        CONTAINER_ID=$(docker run --network="host" -p $CONTAINER_PORT:$HOST_PORT -d $CONTAINER_NAME)
     fi
     getStatus
     ;;
