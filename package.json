@@ -1,7 +1,7 @@
 {
   "name": "liquipack_systems_b_end",
   "version": "1.0.0",
-  "description": "",
+  "description": "liquipack_systems_b_end",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

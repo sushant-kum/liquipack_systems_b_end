@@ -1,5 +1,5 @@
 const config = {
-  hostname: 'sushantk.com',
+  hostname: '127.0.0.1',
   port: '27017',
   db_name: 'liquipack_systems',
   username: 'liquipack_systems_user',
