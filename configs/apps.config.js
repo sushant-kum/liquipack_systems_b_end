@@ -2,7 +2,10 @@ let app_names = {
   login: "login",
   token: "token",
   system_users: "system-users",
-  settings_profile: "settings-profile"
+  settings_profile: "settings-profile",
+  apps: "apps",
+  apps_quotation: "apps-quotation",
+  apps_quotation_config: "apps-quotation-config",
 };
 let permissions = {
   read: "read",
