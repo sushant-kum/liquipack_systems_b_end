@@ -3,7 +3,8 @@ let mongoose = require('mongoose');
 let AppQuotationSchema = mongoose.Schema({
   quotation_num: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   speed: {
     type: {

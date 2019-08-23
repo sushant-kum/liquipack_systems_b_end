@@ -3,40 +3,82 @@ let mongoose = require('mongoose');
 let AppQuotationConfigSchema = mongoose.Schema({
   config_name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   speed: {
-    type: [Number]
+    type: [{
+      qty: Number,
+      price: Number
+    }],
+    required: true
   },
   no_of_washes: {
-    type: [Number]
+    type: [{
+      qty: Number,
+      price: Number
+    }],
+    required: true
   },
   industry: {
-    type: [String]
+    type: [{
+      qty: String,
+      price: Number
+    }],
+    required: true
   },
   gmp_requirement: {
-    type: [Boolean]
+    type: [{
+      qty: Boolean,
+      price: Number
+    }],
+    required: true
   },
   bottle_moc: {
-    type: [String]
+    type: [{
+      qty: String,
+      price: Number
+    }],
+    required: true
   },
   water_saving: {
-    type: [Boolean]
+    type: [{
+      qty: Boolean,
+      price: Number
+    }],
+    required: true
   },
   filters_required: {
-    type: [Boolean]
+    type: [{
+      qty: Boolean,
+      price: Number
+    }],
+    required: true
   },
   illumination_required: {
-    type: [Boolean]
+    type: [{
+      qty: Boolean,
+      price: Number
+    }],
+    required: true
   },
   auto_level_tank: {
-    type: [Boolean]
+    type: [{
+      qty: Boolean,
+      price: Number
+    }],
+    required: true
   },
-  extra_cups_set_required: {
-    type: [Boolean]
+  extra_cups_sets: {
+    type: [{
+      qty: String,
+      price: Number
+    }],
+    required: true
   },
   crated_by: {
-    type: String
+    type: String,
+    required: true
   },
   created_date: {
     type: Date,
