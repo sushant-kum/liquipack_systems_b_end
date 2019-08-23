@@ -75,7 +75,7 @@ let AppQuotationSchema = mongoose.Schema({
     },
     required: true
   },
-  oteher_details: {
+  other_details: {
     type: String
   },
   customer_details: {

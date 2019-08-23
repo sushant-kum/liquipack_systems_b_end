@@ -92,7 +92,7 @@ exports.handler = function (req, res) {
               illumination_required: req.body.illumination_required,
               auto_level_tank: req.body.auto_level_tank,
               extra_cups_sets: req.body.extra_cups_sets,
-              oteher_details: req.body.oteher_details ? req.body.oteher_details : null,
+              other_details: req.body.other_details ? req.body.other_details : null,
               customer_details: req.body.customer_details,
               crated_by: req.user._id
             };

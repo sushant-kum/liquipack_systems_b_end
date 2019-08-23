@@ -59,7 +59,7 @@ exports.update = function (quotation_id, update_quotation, callback) {
       quotation.illumination_required = update_quotation.illumination_required;
       quotation.auto_level_tank = update_quotation.auto_level_tank;
       quotation.extra_cups_sets = update_quotation.extra_cups_sets;
-      quotation.oteher_details = update_quotation.oteher_details;
+      quotation.other_details = update_quotation.other_details;
       quotation.customer_details = update_quotation.customer_details;
       quotation.save(function (error) {
         if (error) {

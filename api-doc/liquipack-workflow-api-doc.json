@@ -685,7 +685,7 @@
             "type": "object"
           },
           {
-            "name": "oteher_details",
+            "name": "other_details",
             "in": "formData",
             "description": "Other details/notes",
             "type": "string"
@@ -861,7 +861,7 @@
             "type": "object"
           },
           {
-            "name": "oteher_details",
+            "name": "other_details",
             "in": "formData",
             "description": "Other details/notes",
             "type": "string"
@@ -1670,7 +1670,7 @@
             }
           }
         },
-        "oteher_details": {
+        "other_details": {
           "type": "string"
         },
         "customer_details": {
@@ -1755,7 +1755,7 @@
           "qty": 1,
           "price": 16500
         },
-        "oteher_details": "asd",
+        "other_details": "asd",
         "customer_details": {
           "name": "Sushant Tech",
           "address": "Bangalore",
@@ -1840,7 +1840,7 @@
               "qty": 1,
               "price": 16500
             },
-            "oteher_details": null,
+            "other_details": null,
             "customer_details": {
               "name": "Sushant Tech",
               "address": "Bangalore",
@@ -1925,7 +1925,7 @@
             "qty": 1,
             "price": 16500
           },
-          "oteher_details": null,
+          "other_details": null,
           "customer_details": {
             "name": "Sushant Tech",
             "address": "Bangalore",
@@ -2009,7 +2009,7 @@
             "qty": 1,
             "price": 16500
           },
-          "oteher_details": null,
+          "other_details": null,
           "customer_details": {
             "name": "Sushant Tech",
             "address": "Bangalore",
@@ -2093,7 +2093,7 @@
             "qty": 1,
             "price": 16500
           },
-          "oteher_details": "asd",
+          "other_details": "asd",
           "customer_details": {
             "name": "Sushant Tech",
             "address": "Bangalore",
@@ -2219,7 +2219,7 @@
             "qty": 1,
             "price": 16500
           },
-          "oteher_details": null,
+          "other_details": null,
           "customer_details": {
             "name": "Sushant Tech",
             "address": "Bangalore",
@@ -2303,7 +2303,7 @@
             "qty": 1,
             "price": 16500
           },
-          "oteher_details": null,
+          "other_details": null,
           "customer_details": {
             "name": "Sushant Tech",
             "address": "Bangalore",

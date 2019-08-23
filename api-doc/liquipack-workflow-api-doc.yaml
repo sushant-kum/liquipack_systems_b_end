@@ -512,7 +512,7 @@ paths:
             }
           required: true
           type: object
-        - name: oteher_details
+        - name: other_details
           in: formData
           description: Other details/notes
           type: string
@@ -683,7 +683,7 @@ paths:
             }
           required: true
           type: object
-        - name: oteher_details
+        - name: other_details
           in: formData
           description: Other details/notes
           type: string
@@ -1267,7 +1267,7 @@ definitions:
             type: number
           price:
             type: number
-      oteher_details:
+      other_details:
         type: string
       customer_details:
         type: object
@@ -1327,7 +1327,7 @@ definitions:
       extra_cups_sets:
         qty: 1
         price: 16500
-      oteher_details: asd
+      other_details: asd
       customer_details:
         name: Sushant Tech
         address: Bangalore
@@ -1391,7 +1391,7 @@ definitions:
           extra_cups_sets:
             qty: 1
             price: 16500
-          oteher_details: null
+          other_details: null
           customer_details:
             name: Sushant Tech
             address: Bangalore
@@ -1454,7 +1454,7 @@ definitions:
         extra_cups_sets:
           qty: 1
           price: 16500
-        oteher_details: null
+        other_details: null
         customer_details:
           name: Sushant Tech
           address: Bangalore
@@ -1518,7 +1518,7 @@ definitions:
         extra_cups_sets:
           qty: 1
           price: 16500
-        oteher_details: null
+        other_details: null
         customer_details:
           name: Sushant Tech
           address: Bangalore
@@ -1581,7 +1581,7 @@ definitions:
         extra_cups_sets:
           qty: 1
           price: 16500
-        oteher_details: asd
+        other_details: asd
         customer_details:
           name: Sushant Tech
           address: Bangalore
@@ -1674,7 +1674,7 @@ definitions:
         extra_cups_sets:
           qty: 1
           price: 16500
-        oteher_details: null
+        other_details: null
         customer_details:
           name: Sushant Tech
           address: Bangalore
@@ -1737,7 +1737,7 @@ definitions:
         extra_cups_sets:
           qty: 1
           price: 16500
-        oteher_details: null
+        other_details: null
         customer_details:
           name: Sushant Tech
           address: Bangalore
