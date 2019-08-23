@@ -6,34 +6,74 @@ let AppQuotationSchema = mongoose.Schema({
     required: true
   },
   speed: {
-    type: Number
+    type: {
+      qty: Number,
+      price: Number
+    },
+    required: true
   },
   no_of_washes: {
-    type: Number
+    type: {
+      qty: Number,
+      price: Number
+    },
+    required: true
   },
   industry: {
-    type: String
+    type: {
+      qty: String,
+      price: Number
+    },
+    required: true
   },
   gmp_requirement: {
-    type: Boolean
+    type: {
+      qty: Boolean,
+      price: Number
+    },
+    required: true
   },
   bottle_moc: {
-    type: String
+    type: {
+      qty: String,
+      price: Number
+    },
+    required: true
   },
   water_saving: {
-    type: Boolean
+    type: {
+      qty: Boolean,
+      price: Number
+    },
+    required: true
   },
   filters_required: {
-    type: Boolean
+    type: {
+      qty: Boolean,
+      price: Number
+    },
+    required: true
   },
   illumination_required: {
-    type: Boolean
+    type: {
+      qty: Boolean,
+      price: Number
+    },
+    required: true
   },
   auto_level_tank: {
-    type: Boolean
+    type: {
+      qty: Boolean,
+      price: Number
+    },
+    required: true
   },
-  extra_cups_set_required: {
-    type: Boolean
+  extra_cups_sets: {
+    type: {
+      qty: Number,
+      price: Number
+    },
+    required: true
   },
   oteher_details: {
     type: String
@@ -46,7 +86,7 @@ let AppQuotationSchema = mongoose.Schema({
         title: String,
         name: String,
       },
-      contact_no: Number
+      contact_no: String
     },
     required: true
   },

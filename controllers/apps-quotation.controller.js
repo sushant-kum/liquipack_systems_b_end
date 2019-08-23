@@ -21,21 +21,7 @@ exports.index = function (callback) {
 };
 
 exports.new = function (new_quotation, callback) {
-  let quotation = new AppsQuotation();
-  quotation.quotation_num = new_quotation.quotation_num;
-  quotation.speed = new_quotation.speed;
-  quotation.no_of_washes = new_quotation.no_of_washes;
-  quotation.industry = new_quotation.industry;
-  quotation.gmp_requirement = new_quotation.gmp_requirement;
-  quotation.bottle_moc = new_quotation.bottle_moc;
-  quotation.water_saving = new_quotation.water_saving;
-  quotation.filters_required = new_quotation.filters_required;
-  quotation.illumination_required = new_quotation.illumination_required;
-  quotation.auto_level_tank = new_quotation.auto_level_tank;
-  quotation.extra_cups_set_required = new_quotation.extra_cups_set_required;
-  quotation.oteher_details = new_quotation.oteher_details;
-  quotation.customer_details = new_quotation.customer_details;
-  quotation.crated_by = new_quotation.crated_by;
+  let quotation = new AppsQuotation(new_quotation);
   quotation.save(function (error) {
     if (error) {
       callback(error);
@@ -72,7 +58,7 @@ exports.update = function (quotation_id, update_quotation, callback) {
       quotation.filters_required = new_quotation.filters_required;
       quotation.illumination_required = new_quotation.illumination_required;
       quotation.auto_level_tank = new_quotation.auto_level_tank;
-      quotation.extra_cups_set_required = new_quotation.extra_cups_set_required;
+      quotation.extra_cups_sets = new_quotation.extra_cups_sets;
       quotation.oteher_details = new_quotation.oteher_details;
       quotation.customer_details = new_quotation.customer_details;
       quotation.save(function (error) {
@@ -82,7 +68,6 @@ exports.update = function (quotation_id, update_quotation, callback) {
         else {
           callback(null, quotation);
         }
-
       });
     }
   });
