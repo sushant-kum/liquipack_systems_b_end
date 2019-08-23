@@ -49,18 +49,18 @@ exports.update = function (quotation_id, update_quotation, callback) {
       callback(error);
     }
     else {
-      quotation.speed = new_quotation.speed;
-      quotation.no_of_washes = new_quotation.no_of_washes;
-      quotation.industry = new_quotation.industry;
-      quotation.gmp_requirement = new_quotation.gmp_requirement;
-      quotation.bottle_moc = new_quotation.bottle_moc;
-      quotation.water_saving = new_quotation.water_saving;
-      quotation.filters_required = new_quotation.filters_required;
-      quotation.illumination_required = new_quotation.illumination_required;
-      quotation.auto_level_tank = new_quotation.auto_level_tank;
-      quotation.extra_cups_sets = new_quotation.extra_cups_sets;
-      quotation.oteher_details = new_quotation.oteher_details;
-      quotation.customer_details = new_quotation.customer_details;
+      quotation.speed = update_quotation.speed;
+      quotation.no_of_washes = update_quotation.no_of_washes;
+      quotation.industry = update_quotation.industry;
+      quotation.gmp_requirement = update_quotation.gmp_requirement;
+      quotation.bottle_moc = update_quotation.bottle_moc;
+      quotation.water_saving = update_quotation.water_saving;
+      quotation.filters_required = update_quotation.filters_required;
+      quotation.illumination_required = update_quotation.illumination_required;
+      quotation.auto_level_tank = update_quotation.auto_level_tank;
+      quotation.extra_cups_sets = update_quotation.extra_cups_sets;
+      quotation.oteher_details = update_quotation.oteher_details;
+      quotation.customer_details = update_quotation.customer_details;
       quotation.save(function (error) {
         if (error) {
           callback(error);

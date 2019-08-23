@@ -23,7 +23,7 @@ exports.handler = function (req, res) {
           let valid_arguments_flag = false;
           try {
             if (
-              req.body.quotation_num &&
+              req.params.quotation_id &&
               req.body.speed && (
                 req.body.speed.qty !== undefined &&
                 req.body.speed.price !== undefined
@@ -80,8 +80,7 @@ exports.handler = function (req, res) {
           }
 
           if (valid_arguments_flag) {
-            let new_quotation = {
-              quotation_num: req.body.quotation_num,
+            let update_quotation = {
               speed: req.body.speed,
               no_of_washes: req.body.no_of_washes,
               industry: req.body.industry,
@@ -94,10 +93,9 @@ exports.handler = function (req, res) {
               extra_cups_sets: req.body.extra_cups_sets,
               oteher_details: req.body.oteher_details ? req.body.oteher_details : null,
               customer_details: req.body.customer_details,
-              crated_by: req.user._id
             };
 
-            QuotationController.new(new_quotation, function (error, quotation = null) {
+            QuotationController.update(req.params.quotation_id, update_quotation, function (error, quotation = null) {
               if (error) {
                 return res.status(500).json({
                   status: "error",
@@ -109,7 +107,7 @@ exports.handler = function (req, res) {
               else {
                 return res.json({
                   status: "success",
-                  message: "Quotation created successfully",
+                  message: "Quotation info updated successfully",
                   data: quotation,
                   user_id: req.user._id,
                   token: req.user.token

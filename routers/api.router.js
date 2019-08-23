@@ -24,7 +24,8 @@ let _patch__users__user_id__enable = require(base_path + '/handlers/PATCH/api/us
 let _get__quotations = require(base_path + '/handlers/GET/api/quotations/get__quotations');
 let _post__quotations = require(base_path + '/handlers/POST/api/quotations/post__quotations');
 
-let _get__quotations__quotation_id = require(base_path + '/handlers/GET/api/quotations/:quitation_id/get__quotation__:quotation_id');
+let _get__quotations__quotation_id = require(base_path + '/handlers/GET/api/quotations/:quitation_id/get__quotations__:quotation_id');
+let _put__quotations__quotation_id = require(base_path + '/handlers/PUT/api/quotations/:quotation_id/put__quotations__:quotation_id');
 
 router.get('/', function (req, res) {
   res.json({
@@ -53,5 +54,6 @@ router.route('/api/quotations').get(AuthController.isJWTAuthenticated, _get__quo
 router.route('/api/quotations').post(AuthController.isJWTAuthenticated, _post__quotations.handler);
 
 router.route('/api/quotations/:quotation_id').get(AuthController.isJWTAuthenticated, _get__quotations__quotation_id.handler);
+router.route('/api/quotations/:quotation_id').put(AuthController.isJWTAuthenticated, _put__quotations__quotation_id.handler);
 
 module.exports = router;
