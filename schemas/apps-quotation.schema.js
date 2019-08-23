@@ -82,7 +82,7 @@ let AppQuotationSchema = mongoose.Schema({
     type: {
       name: String,
       address: String,
-      poc: {
+      person_of_contact: {
         title: String,
         name: String,
       },

@@ -67,9 +67,9 @@ exports.handler = function (req, res) {
               req.body.customer_details && (
                 req.body.customer_details.name &&
                 req.body.customer_details.address &&
-                req.body.customer_details.poc && (
-                  req.body.customer_details.poc.title &&
-                  req.body.customer_details.poc.name
+                req.body.customer_details.person_of_contact && (
+                  req.body.customer_details.person_of_contact.title &&
+                  req.body.customer_details.person_of_contact.name
                 ) &&
                 req.body.customer_details.contact_no
               )
