@@ -7,73 +7,103 @@ let AppQuotationConfigSchema = mongoose.Schema({
     unique: true
   },
   speed: {
-    type: [{
-      qty: Number,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Number,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   no_of_washes: {
-    type: [{
-      qty: Number,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Number,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   industry: {
-    type: [{
-      qty: String,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: String,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   gmp_requirement: {
-    type: [{
-      qty: Boolean,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Boolean,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   bottle_moc: {
-    type: [{
-      qty: String,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: String,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   water_saving: {
-    type: [{
-      qty: Boolean,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Boolean,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   filters_required: {
-    type: [{
-      qty: Boolean,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Boolean,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   illumination_required: {
-    type: [{
-      qty: Boolean,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Boolean,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   auto_level_tank: {
-    type: [{
-      qty: Boolean,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Boolean,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   extra_cups_sets: {
-    type: [{
-      qty: String,
-      price: Number
-    }],
+    type: {
+      options: [{
+        qty: Number,
+        price: Number
+      }],
+      default_option_index: Number
+    },
     required: true
   },
   crated_by: {
