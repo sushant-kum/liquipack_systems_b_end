@@ -33,6 +33,8 @@ let _patch__quotations__quotation_id__enable = require(base_path + '/handlers/PA
 let _get__quotations__configs = require(base_path + '/handlers/GET/api/quotations/configs/get__quotations__configs');
 let _post__quotations__configs = require(base_path + '/handlers/POST/api/quotations/configs/post__quotations__configs');
 
+let _get__quotations__configs__active = require(base_path + '/handlers/GET/api/quotations/configs/active/get__quotations__configs__active');
+
 let _get__quotations__configs__config_id = require(base_path + '/handlers/GET/api/quotations/configs/:config_id/get__quotations__configs__:config_id');
 
 router.get('/', function (req, res) {
@@ -60,6 +62,8 @@ router.route('/api/users/:user_id/enable').patch(AuthController.isJWTAuthenticat
 
 router.route('/api/quotations/configs').get(AuthController.isJWTAuthenticated, _get__quotations__configs.handler);
 router.route('/api/quotations/configs').post(AuthController.isJWTAuthenticated, _post__quotations__configs.handler);
+
+router.route('/api/quotations/configs/active').get(AuthController.isJWTAuthenticated, _get__quotations__configs__active.handler);
 
 router.route('/api/quotations/configs/:config_id').get(AuthController.isJWTAuthenticated, _get__quotations__configs__config_id.handler);
 
