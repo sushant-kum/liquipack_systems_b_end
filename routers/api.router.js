@@ -37,6 +37,7 @@ let _get__quotations__configs__active = require(base_path + '/handlers/GET/api/q
 
 let _get__quotations__configs__config_id = require(base_path + '/handlers/GET/api/quotations/configs/:config_id/get__quotations__configs__:config_id');
 let _put__quotations__configs__config_id = require(base_path + '/handlers/PUT/api/quotations/configs/:config_id/put__quotations__configs__:config_id');
+let _delete__quotations__configs__config_id = require(base_path + '/handlers/DELETE/api/quotations/configs/:config_id/delete__quotations__configs__:config_id');
 
 router.get('/', function (req, res) {
   res.json({
@@ -68,6 +69,7 @@ router.route('/api/quotations/configs/active').get(AuthController.isJWTAuthentic
 
 router.route('/api/quotations/configs/:config_id').get(AuthController.isJWTAuthenticated, _get__quotations__configs__config_id.handler);
 router.route('/api/quotations/configs/:config_id').put(AuthController.isJWTAuthenticated, _put__quotations__configs__config_id.handler);
+router.route('/api/quotations/configs/:config_id').delete(AuthController.isJWTAuthenticated, _delete__quotations__configs__config_id.handler);
 
 router.route('/api/quotations').get(AuthController.isJWTAuthenticated, _get__quotations.handler);
 router.route('/api/quotations').post(AuthController.isJWTAuthenticated, _post__quotations.handler);
