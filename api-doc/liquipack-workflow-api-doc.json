@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Liquipack Workflow - APIs",
-    "description": "APIs for Liquipack Workflow <br /> [Download api document (.yaml)](/api-doc/download/yaml) <br /> [Download api document (.json)](/api-doc/download/json)",
+    "description": "APIs for Liquipack Workflow <br /> [Download api document(.yaml)](/api-doc/download/yaml) <br /> [Download api document(.json)](/api-doc/download/json)",
     "contact": {
       "email": "sushant.kum96@gmail.com"
     },
@@ -16,16 +16,17 @@
     "description": "Github Repository",
     "url": "https://github.com/sushant-kum/liquipack_systems_b_end"
   },
-  "servers": [
-    {
-      "url": "https://liquipack.cf/bend"
+  "servers": [{
+      "url": "https://liquipack.cf/api"
     },
     {
-      "url": "http://liquipack.cf/bend"
+      "url": "http://liquipack.cf/api"
     }
   ],
-  "tags": [
-    {
+  "security": [{
+    "bearerAuth": []
+  }],
+  "tags": [{
       "name": "users",
       "description": "User Management"
     },
@@ -47,34 +48,13 @@
         "summary": "Get list of all users",
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__get__users"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__get__users"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       },
@@ -85,7 +65,7 @@
         "summary": "Create new user",
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "required": [
                   "app_permissions",
@@ -154,44 +134,16 @@
         },
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__post__users"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__post__users"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -202,57 +154,27 @@
           "users"
         ],
         "summary": "Get user by user_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "user_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__get__users__user_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__get__users__user_id"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       },
@@ -261,20 +183,18 @@
           "users"
         ],
         "summary": "Modifies user data",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "user_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "required": [
                   "app_permissions",
@@ -289,10 +209,24 @@
                   },
                   "app_permissions": {
                     "type": "array",
-                    "description": "Identifiers of apps the user has permissions to <br /> type: {<br /> &nbsp;&nbsp;app: string,<br /> &nbsp;&nbsp;permissions: string[] //enum: ['read', 'write']<br /> }[]<br />\n",
+                    "description": "Identifiers of apps the user has permissions to",
                     "items": {
                       "type": "object",
-                      "properties": {}
+                      "properties": {
+                        "app": {
+                          "type": "string"
+                        },
+                        "permissions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "read",
+                              "write"
+                            ]
+                          }
+                        }
+                      }
                     }
                   },
                   "name": {
@@ -324,44 +258,16 @@
         },
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__put__users__user_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__put__users__user_id"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       },
@@ -370,57 +276,27 @@
           "users"
         ],
         "summary": "Delete (permanently) user by user_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "user_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__delete__users__user_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__delete__users__user_id"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -431,57 +307,27 @@
           "users"
         ],
         "summary": "Enable (make active) user by user_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "user_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__patch__users__user_id__enable"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__patch__users__user_id__enable"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -492,57 +338,27 @@
           "users"
         ],
         "summary": "Disable (make inactive) user by user_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "user_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__patch__users__user_id__disable"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__patch__users__user_id__disable"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -553,47 +369,24 @@
           "profile"
         ],
         "summary": "Get user by user_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "user_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__get__profile__user_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__get__profile__user_id"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       },
@@ -602,17 +395,15 @@
           "profile"
         ],
         "summary": "Modifies user data",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "user_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -656,44 +447,16 @@
         },
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__put__profile__user_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__put__profile__user_id"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -706,34 +469,13 @@
         "summary": "Get list of all quotations",
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__get__quotations"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__get__quotations"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       },
@@ -744,7 +486,7 @@
         "summary": "Create new quotation",
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
                 "required": [
                   "auto_level_tank",
@@ -767,43 +509,123 @@
                   },
                   "speed": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Number,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Speed and price",
+                    "properties": {
+                      "qty": {
+                        "type": "number"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "no_of_washes": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Number,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Num of washes and price",
+                    "properties": {
+                      "qty": {
+                        "type": "number"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "industry": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: String,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Industry and price",
+                    "properties": {
+                      "qty": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "gmp_requirement": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "GMP requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "bottle_moc": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: String,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Bottle MOC and price",
+                    "properties": {
+                      "qty": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "water_saving": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Water saving and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "filters_required": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Filter requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "illumination_required": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Illumination requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "auto_level_tank": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Auto tank leveling requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "extra_cups_sets": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Number,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Extra Cups Sets and price",
+                    "properties": {
+                      "qty": {
+                        "type": "number"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "oteher_details": {
                     "type": "string",
@@ -811,7 +633,29 @@
                   },
                   "customer_details": {
                     "type": "object",
-                    "description": "Customer name and contact details\n  type: {\n    &nbsp;&nbsp;name: String,\n    &nbsp;&nbsp;address: String,\n    &nbsp;&nbsp;person_of_contact: {\n      &nbsp;&nbsp;&nbsp;&nbsp;title: String,\n      &nbsp;&nbsp;&nbsp;&nbsp;name: String,\n    &nbsp;&nbsp;},\n    &nbsp;&nbsp;contact_no: String\n  }\n"
+                    "description": "Customer name and contact details",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "type": "string"
+                      },
+                      "person_of_contact": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "contact_no": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -821,44 +665,16 @@
         },
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__post__quotations"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__post__quotations"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -869,57 +685,27 @@
           "quotations"
         ],
         "summary": "Get quotation by quotation_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "quotation_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the quotation object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "quotation_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the quotation object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__get__quotations__quotation_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__get__quotations__quotation_id"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       },
@@ -928,17 +714,15 @@
           "quotations"
         ],
         "summary": "Modifies quotation data",
-        "parameters": [
-          {
-            "name": "quotation_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the quotation object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "quotation_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the quotation object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -959,43 +743,123 @@
                 "properties": {
                   "speed": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Number,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Speed and price",
+                    "properties": {
+                      "qty": {
+                        "type": "number"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "no_of_washes": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Number,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Num of washes and price",
+                    "properties": {
+                      "qty": {
+                        "type": "number"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "industry": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: String,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Industry and price",
+                    "properties": {
+                      "qty": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "gmp_requirement": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "GMP requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "bottle_moc": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: String,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Bottle MOC and price",
+                    "properties": {
+                      "qty": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "water_saving": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Water saving and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "filters_required": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Filter requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "illumination_required": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Illumination requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "auto_level_tank": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Boolean,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Auto tank leveling requirement and price",
+                    "properties": {
+                      "qty": {
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "extra_cups_sets": {
                     "type": "object",
-                    "description": "type: {\n  &nbsp;&nbsp;qty: Number,\n  &nbsp;&nbsp;price: Number\n}\n"
+                    "description": "Extra Cups Sets and price",
+                    "properties": {
+                      "qty": {
+                        "type": "number"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
                   },
                   "oteher_details": {
                     "type": "string",
@@ -1003,7 +867,29 @@
                   },
                   "customer_details": {
                     "type": "object",
-                    "description": "Customer name and contact details\n  type: {\n    &nbsp;&nbsp;name: String,\n    &nbsp;&nbsp;address: String,\n    &nbsp;&nbsp;person_of_contact: {\n      &nbsp;&nbsp;&nbsp;&nbsp;title: String,\n      &nbsp;&nbsp;&nbsp;&nbsp;name: String,\n    &nbsp;&nbsp;},\n    &nbsp;&nbsp;contact_no: String\n  }\n"
+                    "description": "Customer name and contact details",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "type": "string"
+                      },
+                      "person_of_contact": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "contact_no": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -1013,44 +899,16 @@
         },
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__put__quotations__quotation_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__put__quotations__quotation_id"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       },
@@ -1059,57 +917,27 @@
           "quotations"
         ],
         "summary": "Delete (permanently) quotation by quotation_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "quotation_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the quotation object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "quotation_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the quotation object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__delete__quotations__quotation_id"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__delete__quotations__quotation_id"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -1120,57 +948,27 @@
           "quotations"
         ],
         "summary": "Enable (make active) quotation by quotation_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "quotation_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "quotation_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__patch__quotations__quotation_id__enable"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__patch__quotations__quotation_id__enable"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -1181,57 +979,27 @@
           "quotations"
         ],
         "summary": "Disable (make inactive) quotation by quotation_id (ObjectId)",
-        "parameters": [
-          {
-            "name": "quotation_id",
-            "in": "path",
-            "description": "_id (ObjectId) of the user object",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "name": "quotation_id",
+          "in": "path",
+          "description": "_id (ObjectId) of the user object",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
-            "description": "status: success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__patch__quotations__quotation_id__disable"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__patch__quotations__quotation_id__disable"
           },
           "400": {
-            "description": "status: invalid_request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__400"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__400"
           },
           "403": {
-            "description": "status: access_denied",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__403"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__403"
           },
           "500": {
-            "description": "status: error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/response__500"
-                }
-              }
-            }
+            "$ref": "#/components/responses/response__500"
           }
         }
       }
@@ -1239,567 +1007,7 @@
   },
   "components": {
     "schemas": {
-      "response__put__users__user_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__user"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "User info updated successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5cb8c5baf318582239f7c8a6",
-            "app_permissions": [],
-            "created_date": "2019-04-18T18:45:14.630Z",
-            "username": "admin",
-            "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-            "name": "Sushant",
-            "gender": "male",
-            "email": "sushant.kum96@gmail.com",
-            "phone": "9740895495",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
-        }
-      },
-      "model_app_permissions": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "app": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "settings-user"
-                ]
-              }
-            },
-            "permissions": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "read",
-                  "write"
-                ]
-              }
-            }
-          }
-        }
-      },
-      "response__post__quotations": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__quotation"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Quotation created successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5d5fa33d38845139d9c33f3a",
-            "quotation_num": "Q0002",
-            "speed": {
-              "qty": 64,
-              "price": 508000
-            },
-            "no_of_washes": {
-              "qty": 64,
-              "price": 24250
-            },
-            "industry": {
-              "qty": "Pharma",
-              "price": 36000
-            },
-            "gmp_requirement": {
-              "qty": false
-            },
-            "bottle_moc": {
-              "qty": "Glass",
-              "price": 30000
-            },
-            "water_saving": {
-              "qty": true,
-              "price": 72000
-            },
-            "filters_required": {
-              "qty": true,
-              "price": 41500
-            },
-            "illumination_required": {
-              "qty": false
-            },
-            "auto_level_tank": {
-              "qty": true,
-              "price": 30000
-            },
-            "extra_cups_sets": {
-              "qty": 1,
-              "price": 16500
-            },
-            "customer_details": {
-              "name": "Sushant Tech",
-              "address": "Bangalore",
-              "poc": {
-                "title": "Mr",
-                "name": "Sushant"
-              },
-              "contact_no": "9740895495"
-            },
-            "crated_by": "5cbb5d71f3cb256e348e9a56",
-            "created_date": "2019-08-23T08:26:37.660Z",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjQ4MjY5ZGFlLTlmYzYtNGI3OS05NTM2LTIwNGI1Njc4OTdjYSIsImlhdCI6MTU2NjU0ODc5NywiZXhwIjoxNTY2ODA3OTk3fQ.Ci3Rqfi0sr2G4Bbw3B4eWDHq1w2fCw14PAbq10iHhOU"
-        }
-      },
-      "response__get__users": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/model__user"
-            }
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Users retrieved successfully",
-          "data": [
-            {
-              "is_active": true,
-              "_id": "5cb8c5baf318582239f7c8a6",
-              "app_permissions": [],
-              "created_date": "2019-04-18T18:45:14.630Z",
-              "username": "admin",
-              "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-              "name": "Sushant Kumar",
-              "gender": "male",
-              "email": "sushant.kum96@gmail.com",
-              "phone": "9740895495",
-              "__v": 0
-            }
-          ],
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
-        }
-      },
-      "response__post__users": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__user"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "User created successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5cb8c5baf318582239f7c8a6",
-            "app_permissions": [],
-            "created_date": "2019-04-18T18:45:14.630Z",
-            "username": "admin",
-            "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-            "name": "Sushant Kumar",
-            "gender": "male",
-            "email": "sushant.kum96@gmail.com",
-            "phone": "9740895495",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
-        }
-      },
-      "response__delete__users__user_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "deletedCount": {
-                "type": "number"
-              },
-              "ok": {
-                "type": "number"
-              },
-              "n": {
-                "type": "number"
-              }
-            }
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "User deleted permanently",
-          "data": {
-            "n": 1,
-            "ok": 1,
-            "deletedCount": 1
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6Ijc0Y2I2NjE1LWRjOWYtNGI4Yi1hMTI0LWIxOWMwNmViZTg4MyIsImlhdCI6MTU2NjU1MDQ3MiwiZXhwIjoxNTY2ODA5NjcyfQ.sXTH_AG5EjvKc6JNLunKJV7puzoElX4OAWTTwSAznsc"
-        }
-      },
-      "response__put__quotations__quotation_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__quotation"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Quotation info updated successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5d5fa33d38845139d9c33f3a",
-            "quotation_num": "Q0002",
-            "speed": {
-              "qty": 64,
-              "price": 508000
-            },
-            "no_of_washes": {
-              "qty": 64,
-              "price": 24250
-            },
-            "industry": {
-              "qty": "Pharma",
-              "price": 36000
-            },
-            "gmp_requirement": {
-              "qty": false
-            },
-            "bottle_moc": {
-              "qty": "Glass",
-              "price": 30000
-            },
-            "water_saving": {
-              "qty": true,
-              "price": 72000
-            },
-            "filters_required": {
-              "qty": true,
-              "price": 41500
-            },
-            "illumination_required": {
-              "qty": false
-            },
-            "auto_level_tank": {
-              "qty": true,
-              "price": 30000
-            },
-            "extra_cups_sets": {
-              "qty": 1,
-              "price": 16500
-            },
-            "oteher_details": "asd",
-            "customer_details": {
-              "name": "Sushant Tech",
-              "address": "Bangalore",
-              "person_of_contact": {
-                "title": "Mr",
-                "name": "Sushant"
-              },
-              "contact_no": "9740895495"
-            },
-            "crated_by": "5cbb5d71f3cb256e348e9a56",
-            "created_date": "2019-08-23T08:26:37.660Z",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjMyZGY1ODI1LTY0MmMtNGQ1ZC04MjcyLTc4OTcwMjA0M2UyMiIsImlhdCI6MTU2NjU1Njk2NywiZXhwIjoxNTY2ODE2MTY3fQ.z2iGQqMjqLwxfxDsH7K3rg3UsZOGYvoACrc9ihABUQg"
-        }
-      },
-      "response__get__users__user_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__user"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "User retrieved successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5cb8c5baf318582239f7c8a6",
-            "app_permissions": [],
-            "created_date": "2019-04-18T18:45:14.630Z",
-            "username": "admin",
-            "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-            "name": "Sushant Kumar",
-            "gender": "male",
-            "email": "sushant.kum96@gmail.com",
-            "phone": "9740895495",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
-        }
-      },
-      "response__get__quotations": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/model__quotation"
-            }
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Quotations retrieved successfully",
-          "data": [
-            {
-              "is_active": true,
-              "_id": "5d5fa33d38845139d9c33f3a",
-              "quotation_num": "Q0002",
-              "speed": {
-                "qty": 64,
-                "price": 508000
-              },
-              "no_of_washes": {
-                "qty": 64,
-                "price": 24250
-              },
-              "industry": {
-                "qty": "Pharma",
-                "price": 36000
-              },
-              "gmp_requirement": {
-                "qty": false
-              },
-              "bottle_moc": {
-                "qty": "Glass",
-                "price": 30000
-              },
-              "water_saving": {
-                "qty": true,
-                "price": 72000
-              },
-              "filters_required": {
-                "qty": true,
-                "price": 41500
-              },
-              "illumination_required": {
-                "qty": false
-              },
-              "auto_level_tank": {
-                "qty": true,
-                "price": 30000
-              },
-              "extra_cups_sets": {
-                "qty": 1,
-                "price": 16500
-              },
-              "customer_details": {
-                "name": "Sushant Tech",
-                "address": "Bangalore",
-                "poc": {
-                  "title": "Mr",
-                  "name": "Sushant"
-                },
-                "contact_no": "9740895495"
-              },
-              "crated_by": "5cbb5d71f3cb256e348e9a56",
-              "created_date": "2019-08-23T08:26:37.660Z",
-              "__v": 0
-            }
-          ],
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjQ4NzY2ODJjLTA3ZTItNDQwMi1iM2FhLWY3ZDNlYTEzOTk3YiIsImlhdCI6MTU2NjU1MjUzMywiZXhwIjoxNTY2ODExNzMzfQ._4d58_eAIrkcVuOhbgnj5Vv68o0ztL7GPmAjvASCVG8"
-        }
-      },
-      "response__delete__quotations__quotation_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "deletedCount": {
-                "type": "number"
-              },
-              "ok": {
-                "type": "number"
-              },
-              "n": {
-                "type": "number"
-              }
-            }
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Quotation deleted permanently",
-          "data": {
-            "n": 1,
-            "ok": 1,
-            "deletedCount": 1
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6Ijc0Y2I2NjE1LWRjOWYtNGI4Yi1hMTI0LWIxOWMwNmViZTg4MyIsImlhdCI6MTU2NjU1MDQ3MiwiZXhwIjoxNTY2ODA5NjcyfQ.sXTH_AG5EjvKc6JNLunKJV7puzoElX4OAWTTwSAznsc"
-        }
-      },
-      "response__patch__users__user_id__disable": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__user"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "User made inactive",
-          "data": {
-            "is_active": false,
-            "_id": "5cb8c5baf318582239f7c8a6",
-            "app_permissions": [],
-            "created_date": "2019-04-18T18:45:14.630Z",
-            "username": "admin",
-            "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-            "name": "Sushant",
-            "gender": "male",
-            "email": "sushant.kum96@gmail.com",
-            "phone": "9740895495",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
-        }
-      },
-      "model__user": {
+      "User": {
         "type": "object",
         "properties": {
           "_id": {
@@ -1812,7 +1020,7 @@
             "type": "string"
           },
           "app_permissions": {
-            "$ref": "#/components/schemas/model_app_permissions"
+            "$ref": "#/components/schemas/AppPermissions"
           },
           "name": {
             "type": "string"
@@ -1855,277 +1063,31 @@
           "__v": 0
         }
       },
-      "response__get__quotations__quotation_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__quotation"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
+      "AppPermissions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "app": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "permissions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "write"
+                ]
+              }
+            }
           }
-        },
-        "example": {
-          "status": "success",
-          "message": "Quotation retrieved successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5d5fa33d38845139d9c33f3a",
-            "quotation_num": "Q0002",
-            "speed": {
-              "qty": 64,
-              "price": 508000
-            },
-            "no_of_washes": {
-              "qty": 64,
-              "price": 24250
-            },
-            "industry": {
-              "qty": "Pharma",
-              "price": 36000
-            },
-            "gmp_requirement": {
-              "qty": false
-            },
-            "bottle_moc": {
-              "qty": "Glass",
-              "price": 30000
-            },
-            "water_saving": {
-              "qty": true,
-              "price": 72000
-            },
-            "filters_required": {
-              "qty": true,
-              "price": 41500
-            },
-            "illumination_required": {
-              "qty": false
-            },
-            "auto_level_tank": {
-              "qty": true,
-              "price": 30000
-            },
-            "extra_cups_sets": {
-              "qty": 1,
-              "price": 16500
-            },
-            "customer_details": {
-              "name": "Sushant Tech",
-              "address": "Bangalore",
-              "poc": {
-                "title": "Mr",
-                "name": "Sushant"
-              },
-              "contact_no": "9740895495"
-            },
-            "crated_by": "5cbb5d71f3cb256e348e9a56",
-            "created_date": "2019-08-23T08:26:37.660Z",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjFlMTI4YjM5LTlhMzQtNGMwZi1iZDgyLTExZmNmMWI2YjlhZCIsImlhdCI6MTU2NjU1NjExNCwiZXhwIjoxNTY2ODE1MzE0fQ.5V-FD5px-KZqzLfgVbWA8qrzg_onDL5ypgehsImGvNs"
         }
       },
-      "response__get__profile__user_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__user"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Profile retrieved successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5cb8c5baf318582239f7c8a6",
-            "app_permissions": [],
-            "created_date": "2019-04-18T18:45:14.630Z",
-            "username": "admin",
-            "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-            "name": "Sushant Kumar",
-            "gender": "male",
-            "email": "sushant.kum96@gmail.com",
-            "phone": "9740895495",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
-        }
-      },
-      "response__403": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "access_denied",
-          "message": "Access to this operation is denied",
-          "user_id": "5cbb5d71f3cb256e348e9a5",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImY1MGU3OGY0LTE4YzctNDNjYS05YjllLTcyNjg4Yzg3YmJmZSIsImlhdCI6MTU2NDY0NDA2NiwiZXhwIjoxNTY0OTAzMjY2fQ.iJezSC_Wg05pWdqqKhsLW4IdVS1qQEfLuc8ymvlfTQY"
-        }
-      },
-      "response__500": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "error",
-          "message": "<System Error>",
-          "user_id": "5cbb5d71f3cb256e348e9a5",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImY1MGU3OGY0LTE4YzctNDNjYS05YjllLTcyNjg4Yzg3YmJmZSIsImlhdCI6MTU2NDY0NDA2NiwiZXhwIjoxNTY0OTAzMjY2fQ.iJezSC_Wg05pWdqqKhsLW4IdVS1qQEfLuc8ymvlfTQY"
-        }
-      },
-      "response__patch__quotations__quotation_id__enable": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__quotation"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Quotation made active",
-          "data": {
-            "is_active": true,
-            "_id": "5d5fa33d38845139d9c33f3a",
-            "quotation_num": "Q0002",
-            "speed": {
-              "qty": 64,
-              "price": 508000
-            },
-            "no_of_washes": {
-              "qty": 64,
-              "price": 24250
-            },
-            "industry": {
-              "qty": "Pharma",
-              "price": 36000
-            },
-            "gmp_requirement": {
-              "qty": false
-            },
-            "bottle_moc": {
-              "qty": "Glass",
-              "price": 30000
-            },
-            "water_saving": {
-              "qty": true,
-              "price": 72000
-            },
-            "filters_required": {
-              "qty": true,
-              "price": 41500
-            },
-            "illumination_required": {
-              "qty": false
-            },
-            "auto_level_tank": {
-              "qty": true,
-              "price": 30000
-            },
-            "extra_cups_sets": {
-              "qty": 1,
-              "price": 16500
-            },
-            "customer_details": {
-              "name": "Sushant Tech",
-              "address": "Bangalore",
-              "poc": {
-                "title": "Mr",
-                "name": "Sushant"
-              },
-              "contact_no": "9740895495"
-            },
-            "crated_by": "5cbb5d71f3cb256e348e9a56",
-            "created_date": "2019-08-23T08:26:37.660Z",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImM2Mzc4MDY5LWM2MWEtNGIxNy1iZTRhLTc3ZTY2MzQzMmZmZCIsImlhdCI6MTU2NjU1MjgxMiwiZXhwIjoxNTY2ODEyMDEyfQ.hFJQhEHEE9bFUo2tv-mKzIPQW2beG7AZCtS8U7X_qgk"
-        }
-      },
-      "response__400": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "invalid_request",
-          "message": "Invalid arguments.",
-          "user_id": "5cbb5d71f3cb256e348e9a5",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImY1MGU3OGY0LTE4YzctNDNjYS05YjllLTcyNjg4Yzg3YmJmZSIsImlhdCI6MTU2NDY0NDA2NiwiZXhwIjoxNTY0OTAzMjY2fQ.iJezSC_Wg05pWdqqKhsLW4IdVS1qQEfLuc8ymvlfTQY"
-        }
-      },
-      "model__quotation": {
+      "Quotation": {
         "type": "object",
         "properties": {
           "_id": {
@@ -2341,165 +1303,1106 @@
           "created_date": "2019-08-23T06:59:31.396Z",
           "__v": 0
         }
-      },
-      "response__patch__quotations__quotation_id__disable": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__quotation"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "status": "success",
-          "message": "Quotation made inactive",
-          "data": {
-            "is_active": false,
-            "_id": "5d5fa33d38845139d9c33f3a",
-            "quotation_num": "Q0002",
-            "speed": {
-              "qty": 64,
-              "price": 508000
-            },
-            "no_of_washes": {
-              "qty": 64,
-              "price": 24250
-            },
-            "industry": {
-              "qty": "Pharma",
-              "price": 36000
-            },
-            "gmp_requirement": {
-              "qty": false
-            },
-            "bottle_moc": {
-              "qty": "Glass",
-              "price": 30000
-            },
-            "water_saving": {
-              "qty": true,
-              "price": 72000
-            },
-            "filters_required": {
-              "qty": true,
-              "price": 41500
-            },
-            "illumination_required": {
-              "qty": false
-            },
-            "auto_level_tank": {
-              "qty": true,
-              "price": 30000
-            },
-            "extra_cups_sets": {
-              "qty": 1,
-              "price": 16500
-            },
-            "customer_details": {
-              "name": "Sushant Tech",
-              "address": "Bangalore",
-              "poc": {
-                "title": "Mr",
-                "name": "Sushant"
+      }
+    },
+    "responses": {
+      "response__get__users": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
               },
-              "contact_no": "9740895495"
-            },
-            "crated_by": "5cbb5d71f3cb256e348e9a56",
-            "created_date": "2019-08-23T08:26:37.660Z",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImM2Mzc4MDY5LWM2MWEtNGIxNy1iZTRhLTc3ZTY2MzQzMmZmZCIsImlhdCI6MTU2NjU1MjgxMiwiZXhwIjoxNTY2ODEyMDEyfQ.hFJQhEHEE9bFUo2tv-mKzIPQW2beG7AZCtS8U7X_qgk"
+              "example": {
+                "status": "success",
+                "message": "Users retrieved successfully",
+                "data": [{
+                  "is_active": true,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant Kumar",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                }],
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
+          }
+        }
+      },
+      "response__post__users": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "User created successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant Kumar",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
+          }
+        }
+      },
+      "response__get__users__user_id": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "User retrieved successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant Kumar",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
+          }
+        }
+      },
+      "response__put__users__user_id": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "User info updated successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
+          }
+        }
+      },
+      "response__delete__users__user_id": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "deletedCount": {
+                      "type": "number"
+                    },
+                    "ok": {
+                      "type": "number"
+                    },
+                    "n": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "User deleted permanently",
+                "data": {
+                  "n": 1,
+                  "ok": 1,
+                  "deletedCount": 1
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6Ijc0Y2I2NjE1LWRjOWYtNGI4Yi1hMTI0LWIxOWMwNmViZTg4MyIsImlhdCI6MTU2NjU1MDQ3MiwiZXhwIjoxNTY2ODA5NjcyfQ.sXTH_AG5EjvKc6JNLunKJV7puzoElX4OAWTTwSAznsc"
+              }
+            }
+          }
+        }
+      },
+      "response__patch__users__user_id__disable": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "User made inactive",
+                "data": {
+                  "is_active": false,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
+          }
         }
       },
       "response__patch__users__user_id__enable": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__user"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "User made active",
+                "data": {
+                  "is_active": true,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
           }
-        },
-        "example": {
-          "status": "success",
-          "message": "User made active",
-          "data": {
-            "is_active": true,
-            "_id": "5cb8c5baf318582239f7c8a6",
-            "app_permissions": [],
-            "created_date": "2019-04-18T18:45:14.630Z",
-            "username": "admin",
-            "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-            "name": "Sushant",
-            "gender": "male",
-            "email": "sushant.kum96@gmail.com",
-            "phone": "9740895495",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+        }
+      },
+      "response__get__profile__user_id": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Profile retrieved successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant Kumar",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
+          }
         }
       },
       "response__put__profile__user_id": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/model__user"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "User profile updated successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5cb8c5baf318582239f7c8a6",
+                  "app_permissions": [],
+                  "created_date": "2019-04-18T18:45:14.630Z",
+                  "username": "admin",
+                  "password_hash": "21232f297a57a5a743894a0e4a801fc3",
+                  "name": "Sushant",
+                  "gender": "male",
+                  "email": "sushant.kum96@gmail.com",
+                  "phone": "9740895495",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
+              }
+            }
           }
-        },
-        "example": {
-          "status": "success",
-          "message": "User profile updated successfully",
-          "data": {
-            "is_active": true,
-            "_id": "5cb8c5baf318582239f7c8a6",
-            "app_permissions": [],
-            "created_date": "2019-04-18T18:45:14.630Z",
-            "username": "admin",
-            "password_hash": "21232f297a57a5a743894a0e4a801fc3",
-            "name": "Sushant",
-            "gender": "male",
-            "email": "sushant.kum96@gmail.com",
-            "phone": "9740895495",
-            "__v": 0
-          },
-          "user_id": "5cbb5d71f3cb256e348e9a56",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjlmYzU1OTdmLWIzODctNGE5ZC1hZTNhLTg5NWU3ZTIzMWU4ZSIsImlhdCI6MTU2NDY1MTE3MCwiZXhwIjoxNTY0OTEwMzcwfQ.RXJBRPyKXWsXQ_CKmPqNBCypyDpD2q8SiF8XSPJk2Z0"
         }
+      },
+      "response__get__quotations": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Quotation"
+                  }
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Quotations retrieved successfully",
+                "data": [{
+                  "is_active": true,
+                  "_id": "5d5fa33d38845139d9c33f3a",
+                  "quotation_num": "Q0002",
+                  "speed": {
+                    "qty": 64,
+                    "price": 508000
+                  },
+                  "no_of_washes": {
+                    "qty": 64,
+                    "price": 24250
+                  },
+                  "industry": {
+                    "qty": "Pharma",
+                    "price": 36000
+                  },
+                  "gmp_requirement": {
+                    "qty": false
+                  },
+                  "bottle_moc": {
+                    "qty": "Glass",
+                    "price": 30000
+                  },
+                  "water_saving": {
+                    "qty": true,
+                    "price": 72000
+                  },
+                  "filters_required": {
+                    "qty": true,
+                    "price": 41500
+                  },
+                  "illumination_required": {
+                    "qty": false
+                  },
+                  "auto_level_tank": {
+                    "qty": true,
+                    "price": 30000
+                  },
+                  "extra_cups_sets": {
+                    "qty": 1,
+                    "price": 16500
+                  },
+                  "customer_details": {
+                    "name": "Sushant Tech",
+                    "address": "Bangalore",
+                    "poc": {
+                      "title": "Mr",
+                      "name": "Sushant"
+                    },
+                    "contact_no": "9740895495"
+                  },
+                  "crated_by": "5cbb5d71f3cb256e348e9a56",
+                  "created_date": "2019-08-23T08:26:37.660Z",
+                  "__v": 0
+                }],
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjQ4NzY2ODJjLTA3ZTItNDQwMi1iM2FhLWY3ZDNlYTEzOTk3YiIsImlhdCI6MTU2NjU1MjUzMywiZXhwIjoxNTY2ODExNzMzfQ._4d58_eAIrkcVuOhbgnj5Vv68o0ztL7GPmAjvASCVG8"
+              }
+            }
+          }
+        }
+      },
+      "response__post__quotations": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/Quotation"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Quotation created successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5d5fa33d38845139d9c33f3a",
+                  "quotation_num": "Q0002",
+                  "speed": {
+                    "qty": 64,
+                    "price": 508000
+                  },
+                  "no_of_washes": {
+                    "qty": 64,
+                    "price": 24250
+                  },
+                  "industry": {
+                    "qty": "Pharma",
+                    "price": 36000
+                  },
+                  "gmp_requirement": {
+                    "qty": false
+                  },
+                  "bottle_moc": {
+                    "qty": "Glass",
+                    "price": 30000
+                  },
+                  "water_saving": {
+                    "qty": true,
+                    "price": 72000
+                  },
+                  "filters_required": {
+                    "qty": true,
+                    "price": 41500
+                  },
+                  "illumination_required": {
+                    "qty": false
+                  },
+                  "auto_level_tank": {
+                    "qty": true,
+                    "price": 30000
+                  },
+                  "extra_cups_sets": {
+                    "qty": 1,
+                    "price": 16500
+                  },
+                  "customer_details": {
+                    "name": "Sushant Tech",
+                    "address": "Bangalore",
+                    "poc": {
+                      "title": "Mr",
+                      "name": "Sushant"
+                    },
+                    "contact_no": "9740895495"
+                  },
+                  "crated_by": "5cbb5d71f3cb256e348e9a56",
+                  "created_date": "2019-08-23T08:26:37.660Z",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjQ4MjY5ZGFlLTlmYzYtNGI3OS05NTM2LTIwNGI1Njc4OTdjYSIsImlhdCI6MTU2NjU0ODc5NywiZXhwIjoxNTY2ODA3OTk3fQ.Ci3Rqfi0sr2G4Bbw3B4eWDHq1w2fCw14PAbq10iHhOU"
+              }
+            }
+          }
+        }
+      },
+      "response__get__quotations__quotation_id": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/Quotation"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Quotation retrieved successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5d5fa33d38845139d9c33f3a",
+                  "quotation_num": "Q0002",
+                  "speed": {
+                    "qty": 64,
+                    "price": 508000
+                  },
+                  "no_of_washes": {
+                    "qty": 64,
+                    "price": 24250
+                  },
+                  "industry": {
+                    "qty": "Pharma",
+                    "price": 36000
+                  },
+                  "gmp_requirement": {
+                    "qty": false
+                  },
+                  "bottle_moc": {
+                    "qty": "Glass",
+                    "price": 30000
+                  },
+                  "water_saving": {
+                    "qty": true,
+                    "price": 72000
+                  },
+                  "filters_required": {
+                    "qty": true,
+                    "price": 41500
+                  },
+                  "illumination_required": {
+                    "qty": false
+                  },
+                  "auto_level_tank": {
+                    "qty": true,
+                    "price": 30000
+                  },
+                  "extra_cups_sets": {
+                    "qty": 1,
+                    "price": 16500
+                  },
+                  "customer_details": {
+                    "name": "Sushant Tech",
+                    "address": "Bangalore",
+                    "poc": {
+                      "title": "Mr",
+                      "name": "Sushant"
+                    },
+                    "contact_no": "9740895495"
+                  },
+                  "crated_by": "5cbb5d71f3cb256e348e9a56",
+                  "created_date": "2019-08-23T08:26:37.660Z",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjFlMTI4YjM5LTlhMzQtNGMwZi1iZDgyLTExZmNmMWI2YjlhZCIsImlhdCI6MTU2NjU1NjExNCwiZXhwIjoxNTY2ODE1MzE0fQ.5V-FD5px-KZqzLfgVbWA8qrzg_onDL5ypgehsImGvNs"
+              }
+            }
+          }
+        }
+      },
+      "response__put__quotations__quotation_id": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/Quotation"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Quotation info updated successfully",
+                "data": {
+                  "is_active": true,
+                  "_id": "5d5fa33d38845139d9c33f3a",
+                  "quotation_num": "Q0002",
+                  "speed": {
+                    "qty": 64,
+                    "price": 508000
+                  },
+                  "no_of_washes": {
+                    "qty": 64,
+                    "price": 24250
+                  },
+                  "industry": {
+                    "qty": "Pharma",
+                    "price": 36000
+                  },
+                  "gmp_requirement": {
+                    "qty": false
+                  },
+                  "bottle_moc": {
+                    "qty": "Glass",
+                    "price": 30000
+                  },
+                  "water_saving": {
+                    "qty": true,
+                    "price": 72000
+                  },
+                  "filters_required": {
+                    "qty": true,
+                    "price": 41500
+                  },
+                  "illumination_required": {
+                    "qty": false
+                  },
+                  "auto_level_tank": {
+                    "qty": true,
+                    "price": 30000
+                  },
+                  "extra_cups_sets": {
+                    "qty": 1,
+                    "price": 16500
+                  },
+                  "oteher_details": "asd",
+                  "customer_details": {
+                    "name": "Sushant Tech",
+                    "address": "Bangalore",
+                    "person_of_contact": {
+                      "title": "Mr",
+                      "name": "Sushant"
+                    },
+                    "contact_no": "9740895495"
+                  },
+                  "crated_by": "5cbb5d71f3cb256e348e9a56",
+                  "created_date": "2019-08-23T08:26:37.660Z",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjMyZGY1ODI1LTY0MmMtNGQ1ZC04MjcyLTc4OTcwMjA0M2UyMiIsImlhdCI6MTU2NjU1Njk2NywiZXhwIjoxNTY2ODE2MTY3fQ.z2iGQqMjqLwxfxDsH7K3rg3UsZOGYvoACrc9ihABUQg"
+              }
+            }
+          }
+        }
+      },
+      "response__delete__quotations__quotation_id": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "deletedCount": {
+                      "type": "number"
+                    },
+                    "ok": {
+                      "type": "number"
+                    },
+                    "n": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Quotation deleted permanently",
+                "data": {
+                  "n": 1,
+                  "ok": 1,
+                  "deletedCount": 1
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6Ijc0Y2I2NjE1LWRjOWYtNGI4Yi1hMTI0LWIxOWMwNmViZTg4MyIsImlhdCI6MTU2NjU1MDQ3MiwiZXhwIjoxNTY2ODA5NjcyfQ.sXTH_AG5EjvKc6JNLunKJV7puzoElX4OAWTTwSAznsc"
+              }
+            }
+          }
+        }
+      },
+      "response__patch__quotations__quotation_id__enable": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/Quotation"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Quotation made active",
+                "data": {
+                  "is_active": true,
+                  "_id": "5d5fa33d38845139d9c33f3a",
+                  "quotation_num": "Q0002",
+                  "speed": {
+                    "qty": 64,
+                    "price": 508000
+                  },
+                  "no_of_washes": {
+                    "qty": 64,
+                    "price": 24250
+                  },
+                  "industry": {
+                    "qty": "Pharma",
+                    "price": 36000
+                  },
+                  "gmp_requirement": {
+                    "qty": false
+                  },
+                  "bottle_moc": {
+                    "qty": "Glass",
+                    "price": 30000
+                  },
+                  "water_saving": {
+                    "qty": true,
+                    "price": 72000
+                  },
+                  "filters_required": {
+                    "qty": true,
+                    "price": 41500
+                  },
+                  "illumination_required": {
+                    "qty": false
+                  },
+                  "auto_level_tank": {
+                    "qty": true,
+                    "price": 30000
+                  },
+                  "extra_cups_sets": {
+                    "qty": 1,
+                    "price": 16500
+                  },
+                  "customer_details": {
+                    "name": "Sushant Tech",
+                    "address": "Bangalore",
+                    "poc": {
+                      "title": "Mr",
+                      "name": "Sushant"
+                    },
+                    "contact_no": "9740895495"
+                  },
+                  "crated_by": "5cbb5d71f3cb256e348e9a56",
+                  "created_date": "2019-08-23T08:26:37.660Z",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImM2Mzc4MDY5LWM2MWEtNGIxNy1iZTRhLTc3ZTY2MzQzMmZmZCIsImlhdCI6MTU2NjU1MjgxMiwiZXhwIjoxNTY2ODEyMDEyfQ.hFJQhEHEE9bFUo2tv-mKzIPQW2beG7AZCtS8U7X_qgk"
+              }
+            }
+          }
+        }
+      },
+      "response__patch__quotations__quotation_id__disable": {
+        "description": "status: success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/components/schemas/Quotation"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "success",
+                "message": "Quotation made inactive",
+                "data": {
+                  "is_active": false,
+                  "_id": "5d5fa33d38845139d9c33f3a",
+                  "quotation_num": "Q0002",
+                  "speed": {
+                    "qty": 64,
+                    "price": 508000
+                  },
+                  "no_of_washes": {
+                    "qty": 64,
+                    "price": 24250
+                  },
+                  "industry": {
+                    "qty": "Pharma",
+                    "price": 36000
+                  },
+                  "gmp_requirement": {
+                    "qty": false
+                  },
+                  "bottle_moc": {
+                    "qty": "Glass",
+                    "price": 30000
+                  },
+                  "water_saving": {
+                    "qty": true,
+                    "price": 72000
+                  },
+                  "filters_required": {
+                    "qty": true,
+                    "price": 41500
+                  },
+                  "illumination_required": {
+                    "qty": false
+                  },
+                  "auto_level_tank": {
+                    "qty": true,
+                    "price": 30000
+                  },
+                  "extra_cups_sets": {
+                    "qty": 1,
+                    "price": 16500
+                  },
+                  "customer_details": {
+                    "name": "Sushant Tech",
+                    "address": "Bangalore",
+                    "poc": {
+                      "title": "Mr",
+                      "name": "Sushant"
+                    },
+                    "contact_no": "9740895495"
+                  },
+                  "crated_by": "5cbb5d71f3cb256e348e9a56",
+                  "created_date": "2019-08-23T08:26:37.660Z",
+                  "__v": 0
+                },
+                "user_id": "5cbb5d71f3cb256e348e9a56",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImM2Mzc4MDY5LWM2MWEtNGIxNy1iZTRhLTc3ZTY2MzQzMmZmZCIsImlhdCI6MTU2NjU1MjgxMiwiZXhwIjoxNTY2ODEyMDEyfQ.hFJQhEHEE9bFUo2tv-mKzIPQW2beG7AZCtS8U7X_qgk"
+              }
+            }
+          }
+        }
+      },
+      "response__400": {
+        "description": "status: invalid_request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "invalid_request",
+                "message": "Invalid arguments.",
+                "user_id": "5cbb5d71f3cb256e348e9a5",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImY1MGU3OGY0LTE4YzctNDNjYS05YjllLTcyNjg4Yzg3YmJmZSIsImlhdCI6MTU2NDY0NDA2NiwiZXhwIjoxNTY0OTAzMjY2fQ.iJezSC_Wg05pWdqqKhsLW4IdVS1qQEfLuc8ymvlfTQY"
+              }
+            }
+          }
+        }
+      },
+      "response__403": {
+        "description": "status: access_denied",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "access_denied",
+                "message": "Access to this operation is denied",
+                "user_id": "5cbb5d71f3cb256e348e9a5",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImY1MGU3OGY0LTE4YzctNDNjYS05YjllLTcyNjg4Yzg3YmJmZSIsImlhdCI6MTU2NDY0NDA2NiwiZXhwIjoxNTY0OTAzMjY2fQ.iJezSC_Wg05pWdqqKhsLW4IdVS1qQEfLuc8ymvlfTQY"
+              }
+            }
+          }
+        }
+      },
+      "response__500": {
+        "description": "status: error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "status": "error",
+                "message": "<System Error>",
+                "user_id": "5cbb5d71f3cb256e348e9a5",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImY1MGU3OGY0LTE4YzctNDNjYS05YjllLTcyNjg4Yzg3YmJmZSIsImlhdCI6MTU2NDY0NDA2NiwiZXhwIjoxNTY0OTAzMjY2fQ.iJezSC_Wg05pWdqqKhsLW4IdVS1qQEfLuc8ymvlfTQY"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
