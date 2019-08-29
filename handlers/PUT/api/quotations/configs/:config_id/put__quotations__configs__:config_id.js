@@ -96,7 +96,7 @@ exports.handler = function (req, res) {
               else {
                 return res.json({
                   status: "success",
-                  message: "Quotation info updated successfully",
+                  message: "Quotation config info updated successfully",
                   data: quotation_config,
                   user_id: req.user._id,
                   token: req.user.token

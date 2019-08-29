@@ -10,7 +10,7 @@ info:
   license:
     name: MIT License
     url: "https://github.com/sushant-kum/liquipack_systems_b_end/blob/master/LICENSE"
-  version: 2.0.0
+  version: 2.1.0
 externalDocs:
   description: Github Repository
   url: "https://github.com/sushant-kum/liquipack_systems_b_end"
@@ -26,6 +26,8 @@ tags:
     description: Profile Management
   - name: quotations
     description: Quotation Management
+  - name: quotations-configs
+    description: Quotation Config Management
 paths:
   /users:
     get:
@@ -696,6 +698,467 @@ paths:
         "500":
           $ref: "#/components/responses/response__500"
 
+  /quotations/configs:
+    get:
+      tags:
+        - quotations-configs
+      summary: Get list of all quotations-configs
+      responses:
+        "200":
+          $ref: "#/components/responses/response__get__quotations__configs"
+        "403":
+          $ref: "#/components/responses/response__403"
+        "500":
+          $ref: "#/components/responses/response__500"
+    post:
+      tags:
+        - quotations-configs
+      summary: Create new quotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - config_name
+                - speed
+                - no_of_washes
+                - industry
+                - gmp_requirement
+                - bottle_moc
+                - water_saving
+                - filters_required
+                - illumination_required
+                - auto_level_tank
+                - extra_cups_sets
+              properties:
+                config_name:
+                  type: string
+                  description: config_name of the quotation (must be unique)
+                speed:
+                  type: object
+                  description: Speed and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: number
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                no_of_washes:
+                  type: object
+                  description: Num of washes and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: number
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                industry:
+                  type: object
+                  description: Industry and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: string
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                gmp_requirement:
+                  type: object
+                  description: GMP requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                bottle_moc:
+                  type: object
+                  description: Bottle MOC and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: string
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                water_saving:
+                  type: object
+                  description: Water saving and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                filters_required:
+                  type: object
+                  description: Filter requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                illumination_required:
+                  type: object
+                  description: Illumination requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                auto_level_tank:
+                  type: object
+                  description: Auto tank leveling requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                extra_cups_sets:
+                  type: object
+                  description: Extra Cups Sets and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: number
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/response__post__quotations__configs"
+        "400":
+          $ref: "#/components/responses/response__400"
+        "403":
+          $ref: "#/components/responses/response__403"
+        "500":
+          $ref: "#/components/responses/response__500"
+
+  /quotations/configs/active:
+    get:
+      tags:
+        - quotations-configs
+      summary: Get active quotations-configs
+      responses:
+        "200":
+          $ref: "#/components/responses/response__get__quotations__configs__active"
+        "403":
+          $ref: "#/components/responses/response__403"
+        "500":
+          $ref: "#/components/responses/response__500"
+
+  /quotations/configs/:config_id:
+    get:
+      tags:
+        - quotations-configs
+      summary: Get quotation-config by config_id (ObjectId)
+      parameters:
+        - name: config_id
+          in: path
+          description: _id (ObjectId) of the quotation-config object
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/response__get__quotations__configs__config_id"
+        "400":
+          $ref: "#/components/responses/response__400"
+        "403":
+          $ref: "#/components/responses/response__403"
+        "500":
+          $ref: "#/components/responses/response__500"
+    put:
+      tags:
+        - quotations-configs
+      summary: Modifies quotation-config data
+      parameters:
+        - name: config_id
+          in: path
+          description: _id (ObjectId) of the quotation-config object
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - speed
+                - no_of_washes
+                - industry
+                - gmp_requirement
+                - bottle_moc
+                - water_saving
+                - filters_required
+                - illumination_required
+                - auto_level_tank
+                - extra_cups_sets
+              properties:
+                speed:
+                  type: object
+                  description: Speed and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: number
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                no_of_washes:
+                  type: object
+                  description: Num of washes and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: number
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                industry:
+                  type: object
+                  description: Industry and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: string
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                gmp_requirement:
+                  type: object
+                  description: GMP requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                bottle_moc:
+                  type: object
+                  description: Bottle MOC and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: string
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                water_saving:
+                  type: object
+                  description: Water saving and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                filters_required:
+                  type: object
+                  description: Filter requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                illumination_required:
+                  type: object
+                  description: Illumination requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                auto_level_tank:
+                  type: object
+                  description: Auto tank leveling requirement and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: boolean
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+                extra_cups_sets:
+                  type: object
+                  description: Extra Cups Sets and price options and default option
+                  properties:
+                    options:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          qty:
+                            type: number
+                          price:
+                            type: number
+                    default_option_index:
+                      type: number
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/response__put__quotations__configs__config_id"
+        "400":
+          $ref: "#/components/responses/response__400"
+        "403":
+          $ref: "#/components/responses/response__403"
+        "500":
+          $ref: "#/components/responses/response__500"
+    delete:
+      tags:
+        - quotations-configs
+      summary: Delete (permanently) quotation-config by config_id (ObjectId)
+      parameters:
+        - name: config_id
+          in: path
+          description: _id (ObjectId) of the quotation-config object
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/response__delete__quotations__configs__config_id"
+        "400":
+          $ref: "#/components/responses/response__400"
+        "403":
+          $ref: "#/components/responses/response__403"
+        "500":
+          $ref: "#/components/responses/response__500"
+
+  /quotations/configs/:config_id/enable:
+    patch:
+      tags:
+        - quotations-configs
+      summary: Enable (make active) quotation-config by config_id (ObjectId) and disable other quotation-configs
+      parameters:
+        - name: config_id
+          in: path
+          description: _id (ObjectId) of the quotations-config object
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/response__patch__quotations__configs__config_id__enable"
+        "400":
+          $ref: "#/components/responses/response__400"
+        "403":
+          $ref: "#/components/responses/response__403"
+        "500":
+          $ref: "#/components/responses/response__500"
+
 components:
   schemas:
     User:
@@ -900,6 +1363,248 @@ components:
           contact_no: "9740895495"
         crated_by: 5cbb5d71f3cb256e348e9a56
         created_date: 2019-08-23T06:59:31.396Z
+        __v: 0
+    QuotationConfig:
+      type: object
+      properties:
+        _id:
+          type: string
+        config_name:
+          type: string
+        speed:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: number
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        no_of_washes:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: number
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        industry:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: string
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        gmp_requirement:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: boolean
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        bottle_moc:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: string
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        water_saving:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: boolean
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        filters_required:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: boolean
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        illumination_required:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: boolean
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        auto_level_tank:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: boolean
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        extra_cups_sets:
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                type: object
+                properties:
+                  qty:
+                    type: number
+                  price:
+                    type: number
+            default_option_index:
+              type: number
+        created_by:
+          type: string
+        created_date:
+          type: string
+        is_active:
+          type: boolean
+        __v:
+          type: number
+      example:
+        is_active: false
+        _id: 5d63851ce53bd469f6c63c86
+        config_name: PC0001
+        speed:
+          options:
+            - qty: 64
+              price: 508000
+            - qty: 96
+              price: 622500
+          default_option_index: 0
+        no_of_washes:
+          options:
+            - qty: 1
+              price: 24250
+            - qty: 2
+              price: 48500
+          default_option_index: 0
+        industry:
+          options:
+            - qty: Pharma
+              price: 36000
+            - qty: Liquor
+              price: 40000
+            - qty: Others
+              price: 40000
+          default_option_index: 0
+        gmp_requirement:
+          options:
+            - qty: true
+              price: null
+            - qty: false
+              price: null
+          default_option_index: 0
+        bottle_moc:
+          options:
+            - qty: Glass
+              price: 30000
+            - qty: PET
+              price: 40000
+          default_option_index: null
+        water_saving:
+          options:
+            - qty: true
+              price: 72000
+            - qty: false
+              price: 0
+          default_option_index: 0
+        filters_required:
+          options:
+            - qty: true
+              price: 41500
+            - qty: false
+              price: 0
+          default_option_index: 1
+        illumination_required:
+          options:
+            - qty: true
+              price: 10000
+            - qty: false
+              price: 0
+          default_option_index: 0
+        auto_level_tank:
+          options:
+            - qty: true
+              price: 30000
+            - qty: false
+              price: 0
+          default_option_index: 0
+        extra_cups_sets:
+          options:
+            - qty: 0
+              price: 0
+            - qty: 1
+              price: 16500
+            - qty: 2
+              price: 33000
+            - qty: 3
+              price: 49500
+            - qty: 4
+              price: 66000
+            - qty: 5
+              price: 82500
+          default_option_index: 0
+        crated_by: 5cbb5d71f3cb256e348e9a56
+        created_date: "2019-08-26T07:07:08.835Z"
         __v: 0
 
   responses:
@@ -1654,6 +2359,872 @@ components:
               user_id: 5cbb5d71f3cb256e348e9a56
               token: >-
                 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImM2Mzc4MDY5LWM2MWEtNGIxNy1iZTRhLTc3ZTY2MzQzMmZmZCIsImlhdCI6MTU2NjU1MjgxMiwiZXhwIjoxNTY2ODEyMDEyfQ.hFJQhEHEE9bFUo2tv-mKzIPQW2beG7AZCtS8U7X_qgk
+
+    response__get__quotations__configs:
+      description: "status: success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data:
+                type: array
+                items:
+                  $ref: "#/components/schemas/QuotationConfig"
+              user_id:
+                type: string
+              token:
+                type: string
+            example:
+              status: success
+              message: Quotation Configs retrieved successfully
+              data:
+                - is_active: false
+                  _id: 5d63851ce53bd469f6c63c86
+                  config_name: PC0001
+                  speed:
+                    options:
+                      - qty: 64
+                        price: 508000
+                      - qty: 96
+                        price: 622500
+                    default_option_index: 0
+                  no_of_washes:
+                    options:
+                      - qty: 1
+                        price: 24250
+                      - qty: 2
+                        price: 48500
+                    default_option_index: 0
+                  industry:
+                    options:
+                      - qty: Pharma
+                        price: 36000
+                      - qty: Liquor
+                        price: 40000
+                      - qty: Others
+                        price: 40000
+                    default_option_index: 0
+                  gmp_requirement:
+                    options:
+                      - qty: true
+                        price: null
+                      - qty: false
+                        price: null
+                    default_option_index: 0
+                  bottle_moc:
+                    options:
+                      - qty: Glass
+                        price: 30000
+                      - qty: PET
+                        price: 40000
+                    default_option_index: null
+                  water_saving:
+                    options:
+                      - qty: true
+                        price: 72000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  filters_required:
+                    options:
+                      - qty: true
+                        price: 41500
+                      - qty: false
+                        price: 0
+                    default_option_index: 1
+                  illumination_required:
+                    options:
+                      - qty: true
+                        price: 10000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  auto_level_tank:
+                    options:
+                      - qty: true
+                        price: 30000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  extra_cups_sets:
+                    options:
+                      - qty: 0
+                        price: 0
+                      - qty: 1
+                        price: 16500
+                      - qty: 2
+                        price: 33000
+                      - qty: 3
+                        price: 49500
+                      - qty: 4
+                        price: 66000
+                      - qty: 5
+                        price: 82500
+                    default_option_index: 0
+                  crated_by: 5cbb5d71f3cb256e348e9a56
+                  created_date: "2019-08-26T07:07:08.835Z"
+                  __v: 0
+                - is_active: false
+                  _id: 5d63d30ec50cde18f7a4fab5
+                  config_name: PC0002
+                  speed:
+                    options:
+                      - qty: 64
+                        price: 508000
+                      - qty: 96
+                        price: 622500
+                    default_option_index: 0
+                  no_of_washes:
+                    options:
+                      - qty: 1
+                        price: 24250
+                      - qty: 2
+                        price: 48500
+                    default_option_index: 0
+                  industry:
+                    options:
+                      - qty: Pharma
+                        price: 36000
+                      - qty: Liquor
+                        price: 40000
+                      - qty: Others
+                        price: 40000
+                    default_option_index: 0
+                  gmp_requirement:
+                    options:
+                      - qty: true
+                        price: null
+                      - qty: false
+                        price: null
+                    default_option_index: 0
+                  bottle_moc:
+                    options:
+                      - qty: Glass
+                        price: 30000
+                      - qty: PET
+                        price: 40000
+                    default_option_index: null
+                  water_saving:
+                    options:
+                      - qty: true
+                        price: 72000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  filters_required:
+                    options:
+                      - qty: true
+                        price: 41500
+                      - qty: false
+                        price: 0
+                    default_option_index: 1
+                  illumination_required:
+                    options:
+                      - qty: true
+                        price: 10000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  auto_level_tank:
+                    options:
+                      - qty: true
+                        price: 30000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  extra_cups_sets:
+                    options:
+                      - qty: 0
+                        price: 0
+                      - qty: 1
+                        price: 16500
+                      - qty: 2
+                        price: 33000
+                      - qty: 3
+                        price: 49500
+                      - qty: 4
+                        price: 66000
+                      - qty: 5
+                        price: 82500
+                    default_option_index: 0
+                  crated_by: 5cbb5d71f3cb256e348e9a56
+                  created_date: "2019-08-26T12:39:42.488Z"
+                  __v: 0
+                - is_active: false
+                  _id: 5d63d35cc50cde18f7a4fab6
+                  config_name: PC0003
+                  speed:
+                    options:
+                      - qty: 64
+                        price: 508000
+                      - qty: 96
+                        price: 622500
+                    default_option_index: 0
+                  no_of_washes:
+                    options:
+                      - qty: 1
+                        price: 24250
+                      - qty: 2
+                        price: 48500
+                    default_option_index: 0
+                  industry:
+                    options:
+                      - qty: Pharma
+                        price: 36000
+                      - qty: Liquor
+                        price: 40000
+                      - qty: Others
+                        price: 40000
+                    default_option_index: 0
+                  gmp_requirement:
+                    options:
+                      - qty: true
+                        price: null
+                      - qty: false
+                        price: null
+                    default_option_index: 0
+                  bottle_moc:
+                    options:
+                      - qty: Glass
+                        price: 30000
+                      - qty: PET
+                        price: 40000
+                    default_option_index: null
+                  water_saving:
+                    options:
+                      - qty: true
+                        price: 72000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  filters_required:
+                    options:
+                      - qty: true
+                        price: 41500
+                      - qty: false
+                        price: 0
+                    default_option_index: 1
+                  illumination_required:
+                    options:
+                      - qty: true
+                        price: 10000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  auto_level_tank:
+                    options:
+                      - qty: true
+                        price: 30000
+                      - qty: false
+                        price: 0
+                    default_option_index: 0
+                  extra_cups_sets:
+                    options:
+                      - qty: 0
+                        price: 0
+                      - qty: 1
+                        price: 16500
+                      - qty: 2
+                        price: 33000
+                      - qty: 3
+                        price: 49500
+                      - qty: 4
+                        price: 66000
+                      - qty: 5
+                        price: 82500
+                    default_option_index: 0
+                  crated_by: 5cbb5d71f3cb256e348e9a56
+                  created_date: "2019-08-26T12:41:00.949Z"
+                  __v: 0
+              user_id: 5cbb5d71f3cb256e348e9a56
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImU1YzA4YzkyLTIyZWYtNGEwNS1iYjU3LThiNjI1MzMyOGNiMyIsImlhdCI6MTU2NzA2ODM5MywiZXhwIjoxNTY3MzI3NTkzfQ.gWG5ZF9VL9pczWsuW6jSGyE5DvnofEywiMpHmdWPXN0
+    response__post__quotations__configs:
+      description: "status: success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data:
+                $ref: "#/components/schemas/QuotationConfig"
+              user_id:
+                type: string
+              token:
+                type: string
+            example:
+              status: success
+              message: Quotation config created successfully
+              data:
+                is_active: false
+                _id: 5d67948e25a4012cffd14cf0
+                config_name: PC0005
+                speed:
+                  options:
+                    - qty: 64
+                      price: 508000
+                    - qty: 96
+                      price: 622500
+                  default_option_index: 0
+                no_of_washes:
+                  options:
+                    - qty: 1
+                      price: 24250
+                    - qty: 2
+                      price: 48500
+                  default_option_index: 0
+                industry:
+                  options:
+                    - qty: Pharma
+                      price: 36000
+                    - qty: Liquor
+                      price: 40000
+                    - qty: Others
+                      price: 40000
+                  default_option_index: 0
+                gmp_requirement:
+                  options:
+                    - qty: true
+                      price: null
+                    - qty: false
+                      price: null
+                  default_option_index: 0
+                bottle_moc:
+                  options:
+                    - qty: Glass
+                      price: 30000
+                    - qty: PET
+                      price: 40000
+                  default_option_index: null
+                water_saving:
+                  options:
+                    - qty: true
+                      price: 72000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                filters_required:
+                  options:
+                    - qty: true
+                      price: 41500
+                    - qty: false
+                      price: 0
+                  default_option_index: 1
+                illumination_required:
+                  options:
+                    - qty: true
+                      price: 10000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                auto_level_tank:
+                  options:
+                    - qty: true
+                      price: 30000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                extra_cups_sets:
+                  options:
+                    - qty: 0
+                      price: 0
+                    - qty: 1
+                      price: 16500
+                    - qty: 2
+                      price: 33000
+                    - qty: 3
+                      price: 49500
+                    - qty: 4
+                      price: 66000
+                    - qty: 5
+                      price: 82500
+                  default_option_index: 0
+                crated_by: 5cbb5d71f3cb256e348e9a56
+                created_date: "2019-08-29T09:02:06.852Z"
+                __v: 0
+              user_id: 5cbb5d71f3cb256e348e9a56
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjE0ZWYyYjgzLWZiNmMtNGIyZi1iZTg5LWU4ZGFkZDI3Y2RiZiIsImlhdCI6MTU2NzA2OTMyNiwiZXhwIjoxNTY3MzI4NTI2fQ.xH6a3VbNMLxTPggcp83BPKYCPHIIoE0DlpchLcQOOnE
+
+    response__get__quotations__configs__active:
+      description: "status: success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data:
+                $ref: "#/components/schemas/QuotationConfig"
+              user_id:
+                type: string
+              token:
+                type: string
+            example:
+              status: success
+              message: Active Quotation Config retrieved successfully
+              data:
+                is_active: true
+                _id: 5d67948e25a4012cffd14cf0
+                config_name: PC0005
+                speed:
+                  options:
+                    - qty: 64
+                      price: 508000
+                    - qty: 96
+                      price: 622500
+                  default_option_index: 0
+                no_of_washes:
+                  options:
+                    - qty: 1
+                      price: 24250
+                    - qty: 2
+                      price: 48500
+                  default_option_index: 0
+                industry:
+                  options:
+                    - qty: Pharma
+                      price: 36000
+                    - qty: Liquor
+                      price: 40000
+                    - qty: Others
+                      price: 40000
+                  default_option_index: 0
+                gmp_requirement:
+                  options:
+                    - qty: true
+                      price: null
+                    - qty: false
+                      price: null
+                  default_option_index: 0
+                bottle_moc:
+                  options:
+                    - qty: Glass
+                      price: 30000
+                    - qty: PET
+                      price: 40000
+                  default_option_index: null
+                water_saving:
+                  options:
+                    - qty: true
+                      price: 72000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                filters_required:
+                  options:
+                    - qty: true
+                      price: 41500
+                    - qty: false
+                      price: 0
+                  default_option_index: 1
+                illumination_required:
+                  options:
+                    - qty: true
+                      price: 10000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                auto_level_tank:
+                  options:
+                    - qty: true
+                      price: 30000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                extra_cups_sets:
+                  options:
+                    - qty: 0
+                      price: 0
+                    - qty: 1
+                      price: 16500
+                    - qty: 2
+                      price: 33000
+                    - qty: 3
+                      price: 49500
+                    - qty: 4
+                      price: 66000
+                    - qty: 5
+                      price: 82500
+                  default_option_index: 0
+                crated_by: 5cbb5d71f3cb256e348e9a56
+                created_date: "2019-08-29T09:02:06.852Z"
+                __v: 0
+              user_id: 5cbb5d71f3cb256e348e9a56
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjE5MzcyNzAxLTI5MjktNDIyOS1hMzBmLTA2ODkwMDJiMjA3OCIsImlhdCI6MTU2NzA3NTUzNCwiZXhwIjoxNTY3MzM0NzM0fQ.8euJ7ZY5PUcrqQGlFY9nK487-MPn4peUNgFhsu5jPQg
+
+    response__get__quotations__configs__config_id:
+      description: "status: success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data:
+                $ref: "#/components/schemas/QuotationConfig"
+              user_id:
+                type: string
+              token:
+                type: string
+            example:
+              status: success
+              message: Quotation config retrieved successfully
+              data:
+                is_active: false
+                _id: 5d67948e25a4012cffd14cf0
+                config_name: PC0005
+                speed:
+                  options:
+                    - qty: 64
+                      price: 508000
+                    - qty: 96
+                      price: 622500
+                  default_option_index: 0
+                no_of_washes:
+                  options:
+                    - qty: 1
+                      price: 24250
+                    - qty: 2
+                      price: 48500
+                  default_option_index: 0
+                industry:
+                  options:
+                    - qty: Pharma
+                      price: 36000
+                    - qty: Liquor
+                      price: 40000
+                    - qty: Others
+                      price: 40000
+                  default_option_index: 0
+                gmp_requirement:
+                  options:
+                    - qty: true
+                      price: null
+                    - qty: false
+                      price: null
+                  default_option_index: 0
+                bottle_moc:
+                  options:
+                    - qty: Glass
+                      price: 30000
+                    - qty: PET
+                      price: 40000
+                  default_option_index: null
+                water_saving:
+                  options:
+                    - qty: true
+                      price: 72000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                filters_required:
+                  options:
+                    - qty: true
+                      price: 41500
+                    - qty: false
+                      price: 0
+                  default_option_index: 1
+                illumination_required:
+                  options:
+                    - qty: true
+                      price: 10000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                auto_level_tank:
+                  options:
+                    - qty: true
+                      price: 30000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                extra_cups_sets:
+                  options:
+                    - qty: 0
+                      price: 0
+                    - qty: 1
+                      price: 16500
+                    - qty: 2
+                      price: 33000
+                    - qty: 3
+                      price: 49500
+                    - qty: 4
+                      price: 66000
+                    - qty: 5
+                      price: 82500
+                  default_option_index: 0
+                crated_by: 5cbb5d71f3cb256e348e9a56
+                created_date: "2019-08-29T09:02:06.852Z"
+                __v: 0
+              user_id: 5cbb5d71f3cb256e348e9a56
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6IjVkZTk4NDFhLTlkY2MtNGY5Zi05MjQxLTlhNWNlODg1YmE5NiIsImlhdCI6MTU2NzA2OTU2MiwiZXhwIjoxNTY3MzI4NzYyfQ.S5Yj6OdaqxylZ3f6RtTh0gidzwWNC13iehkAEkZ3uIk
+    response__put__quotations__configs__config_id:
+      description: "status: success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data:
+                $ref: "#/components/schemas/QuotationConfig"
+              user_id:
+                type: string
+              token:
+                type: string
+            example:
+              status: success
+              message: Quotation config info updated successfully
+              data:
+                is_active: false
+                _id: 5d67948e25a4012cffd14cf0
+                config_name: PC0005
+                speed:
+                  options:
+                    - qty: 64
+                      price: 508000
+                    - qty: 96
+                      price: 622500
+                  default_option_index: 0
+                no_of_washes:
+                  options:
+                    - qty: 1
+                      price: 24250
+                    - qty: 2
+                      price: 48500
+                  default_option_index: 0
+                industry:
+                  options:
+                    - qty: Pharma
+                      price: 36000
+                    - qty: Liquor
+                      price: 40000
+                    - qty: Others
+                      price: 40000
+                  default_option_index: 0
+                gmp_requirement:
+                  options:
+                    - qty: true
+                      price: null
+                    - qty: false
+                      price: null
+                  default_option_index: 0
+                bottle_moc:
+                  options:
+                    - qty: Glass
+                      price: 30000
+                    - qty: PET
+                      price: 40000
+                  default_option_index: null
+                water_saving:
+                  options:
+                    - qty: true
+                      price: 72000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                filters_required:
+                  options:
+                    - qty: true
+                      price: 41500
+                    - qty: false
+                      price: 0
+                  default_option_index: 1
+                illumination_required:
+                  options:
+                    - qty: true
+                      price: 10000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                auto_level_tank:
+                  options:
+                    - qty: true
+                      price: 30000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                extra_cups_sets:
+                  options:
+                    - qty: 0
+                      price: 0
+                    - qty: 1
+                      price: 16500
+                    - qty: 2
+                      price: 33000
+                    - qty: 3
+                      price: 49500
+                    - qty: 4
+                      price: 66000
+                    - qty: 5
+                      price: 82500
+                  default_option_index: 0
+                crated_by: 5cbb5d71f3cb256e348e9a56
+                created_date: "2019-08-29T09:02:06.852Z"
+                __v: 0
+              user_id: 5cbb5d71f3cb256e348e9a56
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImY3ZDZjYWMyLWU4ZTItNDNmMi1iOGI4LWEyNzg1M2UyZDg5MyIsImlhdCI6MTU2NzA3MDA0MSwiZXhwIjoxNTY3MzI5MjQxfQ.mLvQMA_HHNgt3T1Xaf0Dog9RSSaJ7d8LbFSykRFp9X8
+    response__delete__quotations__configs__config_id:
+      description: "status: success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  deletedCount:
+                    type: number
+                  ok:
+                    type: number
+                  "n":
+                    type: number
+              user_id:
+                type: string
+              token:
+                type: string
+            example:
+              status: success
+              message: Quotation config deleted permanently
+              data:
+                "n": 1
+                ok: 1
+                deletedCount: 1
+              user_id: 5cbb5d71f3cb256e348e9a56
+              token: >-
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6Ijc0Y2I2NjE1LWRjOWYtNGI4Yi1hMTI0LWIxOWMwNmViZTg4MyIsImlhdCI6MTU2NjU1MDQ3MiwiZXhwIjoxNTY2ODA5NjcyfQ.sXTH_AG5EjvKc6JNLunKJV7puzoElX4OAWTTwSAznsc
+
+    response__patch__quotations__configs__config_id__enable:
+      description: "status: success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data:
+                $ref: "#/components/schemas/QuotationConfig"
+              user_id:
+                type: string
+              token:
+                type: string
+            example:
+              status: success
+              message: Quotation made active
+              data:
+                is_active: true
+                _id: 5d67948e25a4012cffd14cf0
+                config_name: PC0005
+                speed:
+                  options:
+                    - qty: 64
+                      price: 508000
+                    - qty: 96
+                      price: 622500
+                  default_option_index: 0
+                no_of_washes:
+                  options:
+                    - qty: 1
+                      price: 24250
+                    - qty: 2
+                      price: 48500
+                  default_option_index: 0
+                industry:
+                  options:
+                    - qty: Pharma
+                      price: 36000
+                    - qty: Liquor
+                      price: 40000
+                    - qty: Others
+                      price: 40000
+                  default_option_index: 0
+                gmp_requirement:
+                  options:
+                    - qty: true
+                      price: null
+                    - qty: false
+                      price: null
+                  default_option_index: 0
+                bottle_moc:
+                  options:
+                    - qty: Glass
+                      price: 30000
+                    - qty: PET
+                      price: 40000
+                  default_option_index: null
+                water_saving:
+                  options:
+                    - qty: true
+                      price: 72000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                filters_required:
+                  options:
+                    - qty: true
+                      price: 41500
+                    - qty: false
+                      price: 0
+                  default_option_index: 1
+                illumination_required:
+                  options:
+                    - qty: true
+                      price: 10000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                auto_level_tank:
+                  options:
+                    - qty: true
+                      price: 30000
+                    - qty: false
+                      price: 0
+                  default_option_index: 0
+                extra_cups_sets:
+                  options:
+                    - qty: 0
+                      price: 0
+                    - qty: 1
+                      price: 16500
+                    - qty: 2
+                      price: 33000
+                    - qty: 3
+                      price: 49500
+                    - qty: 4
+                      price: 66000
+                    - qty: 5
+                      price: 82500
+                  default_option_index: 0
+                crated_by: 5cbb5d71f3cb256e348e9a56
+                created_date: "2019-08-29T09:02:06.852Z"
+                __v: 0
+              user_id: 5cbb5d71f3cb256e348e9a56
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidXVpZCI6ImE4MGI2NmFhLTUxN2EtNGI3NC04ODQzLTFlYWIwYTQ3NGQ2MyIsImlhdCI6MTU2NzA3NTM4MiwiZXhwIjoxNTY3MzM0NTgyfQ.puo9hrTsN_1QjXg8it3inBO-EwWkfTl7DCJ2Qs5z6Gc
 
     response__400:
       description: "status: invalid_request"
