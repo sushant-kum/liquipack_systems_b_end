@@ -15,6 +15,8 @@ let _put__profile = require(base_path + '/handlers/PUT/api/profile/:user_id/put_
 let _get__users = require(base_path + '/handlers/GET/api/users/get__users');
 let _post__users = require(base_path + '/handlers/POST/api/users/post__users');
 
+let _get__users__min = require(base_path + '/handlers/GET/api/users/min/get__users__min');
+
 let _get__users__user_id = require(base_path + '/handlers/GET/api/users/:user_id/get__users__:user_id');
 let _put__users__user_id = require(base_path + '/handlers/PUT/api/users/:user_id/put__users__:user_id');
 let _delete__users__user_id = require(base_path + '/handlers/DELETE/api/users/:user_id/delete__users__:user_id');
@@ -56,6 +58,8 @@ router.route('/api/profile/:user_id').put(AuthController.isJWTAuthenticated, _pu
 
 router.route('/api/users').get(AuthController.isJWTAuthenticated, _get__users.handler);
 router.route('/api/users').post(AuthController.isJWTAuthenticated, _post__users.handler);
+
+router.route('/api/users/min').get(AuthController.isJWTAuthenticated, _get__users__min.handler);
 
 router.route('/api/users/:user_id').get(AuthController.isJWTAuthenticated, _get__users__user_id.handler);
 router.route('/api/users/:user_id').put(AuthController.isJWTAuthenticated, _put__users__user_id.handler);
