@@ -106,7 +106,7 @@ let AppQuotationConfigSchema = mongoose.Schema({
     },
     required: true
   },
-  crated_by: {
+  created_by: {
     type: String,
     required: true
   },

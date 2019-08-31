@@ -94,7 +94,7 @@ exports.handler = function (req, res) {
               extra_cups_sets: req.body.extra_cups_sets,
               other_details: req.body.other_details ? req.body.other_details : null,
               customer_details: req.body.customer_details,
-              crated_by: req.user._id
+              created_by: req.user._id
             };
 
             QuotationController.new(new_quotation, function (error, quotation = null) {

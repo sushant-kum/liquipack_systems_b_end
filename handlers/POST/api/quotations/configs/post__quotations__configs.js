@@ -83,7 +83,7 @@ exports.handler = function (req, res) {
               illumination_required: req.body.illumination_required,
               auto_level_tank: req.body.auto_level_tank,
               extra_cups_sets: req.body.extra_cups_sets,
-              crated_by: req.user._id
+              created_by: req.user._id
             };
 
             QuotationConfigController.new(new_quotation_config, function (error, quotation_config = null) {
