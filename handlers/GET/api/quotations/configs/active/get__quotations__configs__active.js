@@ -8,7 +8,7 @@ let QuotationConfigController = require(base_path + "/controllers/apps-quotation
 
 exports.handler = function (req, res) {
   try {
-    check_app_permission(app_config.app_names.apps_quotation_config, app_config.permissions.read, req.user.username, function (error, is_permitted = null) {
+    check_app_permission(app_config.app_names.apps_quotation, app_config.permissions.write, req.user.username, function (error, is_permitted = null) {
       if (error) {
         logger.error(error, { log_to_console: true });
         return res.status(500).json({
