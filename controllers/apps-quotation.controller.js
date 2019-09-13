@@ -1,54 +1,48 @@
-AppsQuotation = require('../models/apps-quotation.model');
+AppsQuotation = require("../models/apps-quotation.model");
 
-exports.findOne = function (query, callback) {
-  AppsQuotation.findOne(query, function (error, quotation) {
+exports.findOne = function(query, callback) {
+  AppsQuotation.findOne(query, function(error, quotation) {
     if (error) {
       callback(error);
-    }
-    else {
+    } else {
       callback(null, quotation);
     }
-  })
-};
-
-exports.index = function (callback) {
-  AppsQuotation.get(function (error, quotations) {
-    if (error)
-      callback(error);
-    else
-      callback(null, quotations);
   });
 };
 
-exports.new = function (new_quotation, callback) {
+exports.index = function(callback) {
+  AppsQuotation.get(function(error, quotations) {
+    if (error) callback(error);
+    else callback(null, quotations);
+  });
+};
+
+exports.new = function(new_quotation, callback) {
   let quotation = new AppsQuotation(new_quotation);
-  quotation.save(function (error) {
+  quotation.save(function(error) {
     if (error) {
       callback(error);
-    }
-    else {
+    } else {
       callback(null, quotation);
     }
   });
 };
 
-exports.view = function (quotation_id, callback) {
-  AppsQuotation.findById(quotation_id, function (error, quotation) {
+exports.view = function(quotation_id, callback) {
+  AppsQuotation.findById(quotation_id, function(error, quotation) {
     if (error) {
       callback(error);
-    }
-    else {
+    } else {
       callback(null, quotation);
     }
   });
 };
 
-exports.update = function (quotation_id, update_quotation, callback) {
-  AppsQuotation.findById(quotation_id, function (error, quotation) {
+exports.update = function(quotation_id, update_quotation, callback) {
+  AppsQuotation.findById(quotation_id, function(error, quotation) {
     if (error) {
       callback(error);
-    }
-    else {
+    } else {
       quotation.speed = update_quotation.speed;
       quotation.no_of_washes = update_quotation.no_of_washes;
       quotation.industry = update_quotation.industry;
@@ -61,11 +55,10 @@ exports.update = function (quotation_id, update_quotation, callback) {
       quotation.extra_cups_sets = update_quotation.extra_cups_sets;
       quotation.other_details = update_quotation.other_details;
       quotation.customer_details = update_quotation.customer_details;
-      quotation.save(function (error) {
+      quotation.save(function(error) {
         if (error) {
           callback(error);
-        }
-        else {
+        } else {
           callback(null, quotation);
         }
       });
@@ -73,18 +66,16 @@ exports.update = function (quotation_id, update_quotation, callback) {
   });
 };
 
-exports.make_inactive = function (quotation_id, callback) {
-  AppsQuotation.findById(quotation_id, function (error, quotation) {
+exports.make_inactive = function(quotation_id, callback) {
+  AppsQuotation.findById(quotation_id, function(error, quotation) {
     if (error) {
       callback(error);
-    }
-    else {
+    } else {
       quotation.is_active = false;
-      quotation.save(function (error) {
+      quotation.save(function(error) {
         if (error) {
           callback(error);
-        }
-        else {
+        } else {
           callback(null, quotation);
         }
       });
@@ -92,18 +83,16 @@ exports.make_inactive = function (quotation_id, callback) {
   });
 };
 
-exports.make_active = function (quotation_id, callback) {
-  AppsQuotation.findById(quotation_id, function (error, quotation) {
+exports.make_active = function(quotation_id, callback) {
+  AppsQuotation.findById(quotation_id, function(error, quotation) {
     if (error) {
       callback(error);
-    }
-    else {
+    } else {
       quotation.is_active = true;
-      quotation.save(function (error) {
+      quotation.save(function(error) {
         if (error) {
           callback(error);
-        }
-        else {
+        } else {
           callback(null, quotation);
         }
       });
@@ -111,15 +100,17 @@ exports.make_active = function (quotation_id, callback) {
   });
 };
 
-exports.delete = function (quotation_id, callback) {
-  AppsQuotation.deleteOne({
-    _id: quotation_id
-  }, function (error, quotation) {
-    if (error) {
-      callback(error);
+exports.delete = function(quotation_id, callback) {
+  AppsQuotation.deleteOne(
+    {
+      _id: quotation_id
+    },
+    function(error, quotation) {
+      if (error) {
+        callback(error);
+      } else {
+        callback(null, quotation);
+      }
     }
-    else {
-      callback(null, quotation);
-    }
-  });
+  );
 };

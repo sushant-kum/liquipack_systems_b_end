@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let UserSchema = mongoose.Schema({
   username: {
@@ -11,10 +11,12 @@ let UserSchema = mongoose.Schema({
     required: true
   },
   app_permissions: {
-    type: [{
-      app: String,
-      permissions: [String]
-    }],
+    type: [
+      {
+        app: String,
+        permissions: [String]
+      }
+    ],
     required: true
   },
   name: {

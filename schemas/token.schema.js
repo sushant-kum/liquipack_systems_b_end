@@ -1,5 +1,5 @@
-let mongoose = require('mongoose');
-let path = require('path');
+let mongoose = require("mongoose");
+let path = require("path");
 
 const base_path = path.dirname(require.main.filename);
 

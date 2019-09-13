@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let AppQuotationSchema = mongoose.Schema({
   quotation_num: {
@@ -85,7 +85,7 @@ let AppQuotationSchema = mongoose.Schema({
       address: String,
       person_of_contact: {
         title: String,
-        name: String,
+        name: String
       },
       contact_no: String
     },
