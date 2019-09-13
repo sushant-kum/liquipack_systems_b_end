@@ -1,9 +1,4 @@
-const mongoose = require("mongoose");
-const path = require("path");
-
-const base_path = path.dirname(require.main.filename);
-
-const jwt_config = require(base_path + "/configs/jwt.config.js");
+const mongoose = require('mongoose');
 
 const TokenSchema = mongoose.Schema({
   username: {

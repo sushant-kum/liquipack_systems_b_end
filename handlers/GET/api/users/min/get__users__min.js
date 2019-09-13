@@ -1,11 +1,11 @@
-const path = require("path");
+const path = require('path');
 const base_path = path.dirname(require.main.filename);
 
-const logger = require(base_path + "/helpers/logger.helper.js");
-const app_config = require(base_path + "/configs/apps.config");
+const logger = require(base_path + '/helpers/logger.helper.js');
+const app_config = require(base_path + '/configs/apps.config');
 const check_app_permission = require(base_path +
-  "/helpers/check_app_permission.helper");
-const UserController = require(base_path + "/controllers/user.controller.js");
+  '/helpers/check_app_permission.helper');
+const UserController = require(base_path + '/controllers/user.controller.js');
 
 exports.handler = function(req, res) {
   try {
@@ -15,9 +15,9 @@ exports.handler = function(req, res) {
       req.user.username,
       function(error, is_permitted = null) {
         if (error) {
-          logger.error(error, { log_to_console: true });
+          logger.error(error, {log_to_console: true});
           return res.status(500).json({
-            status: "error",
+            status: 'error',
             message: error,
             user_id: req.user._id,
             token: req.user.token
@@ -27,7 +27,7 @@ exports.handler = function(req, res) {
             UserController.index(function(error, users = []) {
               if (error) {
                 return res.status(500).json({
-                  status: "error",
+                  status: 'error',
                   message: error,
                   user_id: req.user._id,
                   token: req.user.token
@@ -43,8 +43,8 @@ exports.handler = function(req, res) {
                 }
 
                 return res.json({
-                  status: "success",
-                  message: "Users min data retrieved successfully",
+                  status: 'success',
+                  message: 'Users min data retrieved successfully',
                   data: users_min_data,
                   user_id: req.user._id,
                   token: req.user.token
@@ -53,8 +53,8 @@ exports.handler = function(req, res) {
             });
           } else {
             return res.status(403).json({
-              status: "access_denied",
-              message: "Access to this operation is denied",
+              status: 'access_denied',
+              message: 'Access to this operation is denied',
               user_id: req.user._id,
               token: req.user.token
             });
@@ -63,9 +63,9 @@ exports.handler = function(req, res) {
       }
     );
   } catch (error) {
-    logger.error(error, { log_to_console: true });
+    logger.error(error, {log_to_console: true});
     return res.status(500).json({
-      status: "error",
+      status: 'error',
       message: error,
       user_id: req.user._id,
       token: req.user.token

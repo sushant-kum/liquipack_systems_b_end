@@ -1,8 +1,8 @@
-const path = require("path");
+const path = require('path');
 const base_path = path.dirname(require.main.filename);
 
-const UserController = require(base_path + "/controllers/user.controller.js");
-const app_config = require(base_path + "/configs/apps.config");
+const UserController = require(base_path + '/controllers/user.controller.js');
+const app_config = require(base_path + '/configs/apps.config');
 
 module.exports = function(app_name, permission, username, callback) {
   try {

@@ -1,20 +1,19 @@
-const passport = require("passport");
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
-const BasicStrategy = require("passport-http").BasicStrategy;
-const DigestStrategy = require("passport-http").DigestStrategy;
-const jwt = require("jsonwebtoken");
-const uuidv4 = require("uuid/v4");
-const path = require("path");
+const passport = require('passport');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const BasicStrategy = require('passport-http').BasicStrategy;
+const jwt = require('jsonwebtoken');
+const uuidv4 = require('uuid/v4');
+const path = require('path');
 
 const base_path = path.dirname(require.main.filename);
 
-const UserController = require(base_path + "/controllers/user.controller.js");
-const TokenController = require(base_path + "/controllers/token.controller.js");
-const jwt_config = require(base_path + "/configs/jwt.config");
+const UserController = require(base_path + '/controllers/user.controller.js');
+const TokenController = require(base_path + '/controllers/token.controller.js');
+const jwt_config = require(base_path + '/configs/jwt.config');
 
 class AuthError extends Error {
-  constructor(msg = "Unauthorized", status = 401) {
+  constructor(msg = 'Unauthorized', status = 401) {
     super(msg);
     this.status = status;
   }
@@ -131,8 +130,8 @@ passport.use(
   })
 );
 
-exports.isBasicAuthenticated = passport.authenticate("basic", {
+exports.isBasicAuthenticated = passport.authenticate('basic', {
   session: false
 });
 // exports.isDigestAuthenticated = passport.authenticate('digest', { session: false });
-exports.isJWTAuthenticated = passport.authenticate("jwt", { session: false });
+exports.isJWTAuthenticated = passport.authenticate('jwt', { session: false });

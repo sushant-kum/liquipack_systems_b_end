@@ -1,16 +1,16 @@
 const app_names = {
-  login: "login",
-  token: "token",
-  system_users: "system-users",
-  settings_profile: "settings-profile",
-  users_min: "users-min",
-  apps: "apps",
-  apps_quotation: "apps-quotation",
-  apps_quotation_config: "apps-quotation-config"
+  login: 'login',
+  token: 'token',
+  system_users: 'system-users',
+  settings_profile: 'settings-profile',
+  users_min: 'users-min',
+  apps: 'apps',
+  apps_quotation: 'apps-quotation',
+  apps_quotation_config: 'apps-quotation-config'
 };
 const permissions = {
-  read: "read",
-  write: "write"
+  read: 'read',
+  write: 'write'
 };
 const compulsory_app_permissions = {};
 compulsory_app_permissions[app_names.login] = [

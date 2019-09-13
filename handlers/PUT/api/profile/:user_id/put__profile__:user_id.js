@@ -1,11 +1,11 @@
-const path = require("path");
+const path = require('path');
 const base_path = path.dirname(require.main.filename);
 
-const logger = require(base_path + "/helpers/logger.helper.js");
-const app_config = require(base_path + "/configs/apps.config");
+const logger = require(base_path + '/helpers/logger.helper.js');
+const app_config = require(base_path + '/configs/apps.config');
 const check_app_permission = require(base_path +
-  "/helpers/check_app_permission.helper");
-const UserController = require(base_path + "/controllers/user.controller.js");
+  '/helpers/check_app_permission.helper');
+const UserController = require(base_path + '/controllers/user.controller.js');
 
 exports.handler = function(req, res) {
   try {
@@ -15,9 +15,9 @@ exports.handler = function(req, res) {
       req.user.username,
       function(error, is_permitted = null) {
         if (error) {
-          logger.error(error, { log_to_console: true });
+          logger.error(error, {log_to_console: true});
           return res.status(500).json({
-            status: "error",
+            status: 'error',
             message: error,
             user_id: req.user._id,
             token: req.user.token
@@ -31,11 +31,11 @@ exports.handler = function(req, res) {
                 req.body.password_hash &&
                 req.body.name &&
                 req.body.email &&
-                (req.body.gender
-                  ? req.body.gender.toLowerCase() == "male" ||
-                    req.body.gender.toLowerCase() == "female" ||
-                    req.body.gender.toLowerCase() == "others"
-                  : true)
+                (req.body.gender ?
+                  req.body.gender.toLowerCase() == 'male' ||
+                    req.body.gender.toLowerCase() == 'female' ||
+                    req.body.gender.toLowerCase() == 'others' :
+                  true)
               ) {
                 valid_arguments_flag = true;
               }
@@ -47,9 +47,9 @@ exports.handler = function(req, res) {
               if (req.params.user_id == req.user._id) {
                 UserController.view(req.user._id, function(error, user) {
                   if (error) {
-                    logger.error(error, { log_to_console: true });
+                    logger.error(error, {log_to_console: true});
                     return res.status(500).json({
-                      status: "error",
+                      status: 'error',
                       message: error,
                       user_id: req.user._id,
                       token: req.user.token
@@ -60,9 +60,9 @@ exports.handler = function(req, res) {
                       name: req.body.name,
                       email: req.body.email,
                       phone: req.body.phone ? req.body.phone : null,
-                      gender: req.body.gender
-                        ? req.body.gender.toLowerCase()
-                        : null,
+                      gender: req.body.gender ?
+                        req.body.gender.toLowerCase() :
+                        null,
                       app_permissions: user.app_permissions
                     };
 
@@ -72,15 +72,15 @@ exports.handler = function(req, res) {
                       function(error, user = null) {
                         if (error) {
                           return res.status(500).json({
-                            status: "error",
+                            status: 'error',
                             message: error,
                             user_id: req.user._id,
                             token: req.user.token
                           });
                         } else {
                           return res.json({
-                            status: "success",
-                            message: "User profile updated successfully",
+                            status: 'success',
+                            message: 'User profile updated successfully',
                             data: user,
                             user_id: req.user._id,
                             token: req.user.token
@@ -92,24 +92,24 @@ exports.handler = function(req, res) {
                 });
               } else {
                 return res.status(403).json({
-                  status: "access_denied",
-                  message: "Access to this operation is denied",
+                  status: 'access_denied',
+                  message: 'Access to this operation is denied',
                   user_id: req.user._id,
                   token: req.user.token
                 });
               }
             } else {
               return res.status(400).json({
-                status: "invalid_request",
-                message: "Invalid arguments.",
+                status: 'invalid_request',
+                message: 'Invalid arguments.',
                 user_id: req.user._id,
                 token: req.user.token
               });
             }
           } else {
             return res.status(403).json({
-              status: "access_denied",
-              message: "Access to this operation is denied",
+              status: 'access_denied',
+              message: 'Access to this operation is denied',
               user_id: req.user._id,
               token: req.user.token
             });
@@ -118,9 +118,9 @@ exports.handler = function(req, res) {
       }
     );
   } catch (error) {
-    logger.error(error, { log_to_console: true });
+    logger.error(error, {log_to_console: true});
     return res.status(500).json({
-      status: "error",
+      status: 'error',
       message: error,
       user_id: req.user._id,
       token: req.user.token

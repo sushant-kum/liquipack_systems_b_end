@@ -1,8 +1,7 @@
-const path = require("path");
+const path = require('path');
 const base_path = path.dirname(require.main.filename);
 
-const logger = require(base_path + "/helpers/logger.helper.js");
-const app_config = require(base_path + "/configs/apps.config");
+const app_config = require(base_path + '/configs/apps.config');
 
 module.exports = function(app_permissions) {
   if (app_permissions.length > 0) {

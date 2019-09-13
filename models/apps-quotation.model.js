@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const AppsQuotationSchema = require("../schemas/apps-quotation.schema");
+const AppsQuotationSchema = require('../schemas/apps-quotation.schema');
 
 const AppsQuotation = (module.exports = mongoose.model(
-  "apps-quotation",
+  'apps-quotation',
   AppsQuotationSchema
 ));
 module.exports.get = function(callback, limit) {

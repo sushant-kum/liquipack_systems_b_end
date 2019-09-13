@@ -1,4 +1,4 @@
-AppsQuotation = require("../models/apps-quotation.model");
+AppsQuotation = require('../models/apps-quotation.model');
 
 exports.findOne = function(query, callback) {
   AppsQuotation.findOne(query, function(error, quotation) {

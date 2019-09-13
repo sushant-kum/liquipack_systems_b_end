@@ -1,7 +1,7 @@
-const path = require("path");
+const path = require('path');
 const base_path = path.dirname(require.main.filename);
 
-Token = require(base_path + "/models/token.model");
+Token = require(base_path + '/models/token.model');
 
 exports.findOne = function(query, callback) {
   Token.findOne(query, function(error, token) {
@@ -59,7 +59,7 @@ exports.update = function(token_id, updated_token, callback) {
   Token.findById(token_id, function(error, token) {
     if (error) {
       res.json({
-        status: "error",
+        status: 'error',
         message: error
       });
     } else {

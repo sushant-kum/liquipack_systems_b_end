@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": ["google"],
+  "extends": ["google", "prettier"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -14,6 +14,20 @@
   },
   "rules": {
     "camelcase": 0,
-    "indent": [2, 2, { "SwitchCase": 1 }]
+    "indent": [2, 2, { "SwitchCase": 1 }],
+    "comma-dangle": ["error", "never"],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": false,
+          "MethodDefinition": false,
+          "ClassDeclaration": false,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": false
+        }
+      }
+    ],
+    "new-cap": 0
   }
 }

@@ -1,16 +1,16 @@
-const express = require("express");
-const body_parser = require("body-parser");
-const multer = require("multer")();
-const mongoose = require("mongoose");
-const path = require("path");
-const passport = require("passport");
+const express = require('express');
+const body_parser = require('body-parser');
+const multer = require('multer')();
+const mongoose = require('mongoose');
+const path = require('path');
+const passport = require('passport');
 
 const base_path = path.dirname(require.main.filename);
 
-const api_router = require(base_path + "/routers/api.router");
-const apidoc_router = require(base_path + "/routers/api-doc.router");
-const db_connection = require(base_path + "/configs/db.config");
-const logger = require(base_path + "/helpers/logger.helper");
+const api_router = require(base_path + '/routers/api.router');
+const apidoc_router = require(base_path + '/routers/api-doc.router');
+const db_connection = require(base_path + '/configs/db.config');
+const logger = require(base_path + '/helpers/logger.helper');
 
 const port = process.env.PORT || 8080;
 
@@ -19,17 +19,17 @@ mongoose.connect(db_connection.connection_string, {
   useNewUrlParser: true
 });
 const db = mongoose.connection;
-db.on("error", error => {
+db.on('error', (error) => {
   logger.error(error);
   logger.error(
-    "Error connecting to db_config:",
+    'Error connecting to db_config:',
     db_connection.config,
-    "connection_string: ",
+    'connection_string: ',
     db_connection.connection_string
   );
 });
-db.on("connected", () => {
-  logger.log("Connected to db_config:", db_connection.config, {
+db.on('connected', () => {
+  logger.log('Connected to db_config:', db_connection.config, {
     log_to_console: true
   });
   const app = express();
@@ -47,32 +47,32 @@ db.on("connected", () => {
   // for parsing multipart/form-data
   app.use(multer.array());
 
-  app.use("/assets", express.static("assets"));
+  app.use('/assets', express.static('assets'));
   // app.get('/', (req, res) => res.send('liquipack_systems APIs'));
-  app.use("/", api_router);
-  app.use("/api-doc", apidoc_router);
+  app.use('/', api_router);
+  app.use('/api-doc', apidoc_router);
 
   app.listen(port, function() {
-    logger.log("Started liquipack_systems API service on port " + port, {
+    logger.log('Started liquipack_systems API service on port ' + port, {
       log_to_console: true
     });
   });
 });
-db.on("disconnected", () => {
+db.on('disconnected', () => {
   logger.error(
-    "Disconnected from db_config:",
+    'Disconnected from db_config:',
     db_connection.config,
-    "connection_string: ",
+    'connection_string: ',
     db_connection.connection_string,
-    { log_to_console: true }
+    {log_to_console: true}
   );
 });
 
-process.on("SIGINT", function() {
+process.on('SIGINT', function() {
   db.close(function() {
     logger.error(
-      "Mongoose default connection is disconnected due to application termination",
-      { log_to_console: true }
+      'Mongoose default connection is disconnected due to application termination',
+      {log_to_console: true}
     );
     process.exit(0);
   });

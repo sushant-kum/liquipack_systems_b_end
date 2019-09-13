@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
+// eslint-disable-next-line new-cap
 const UserSchema = mongoose.Schema({
   username: {
     type: String,

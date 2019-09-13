@@ -1,4 +1,4 @@
-User = require("../models/user.model");
+User = require('../models/user.model');
 
 exports.findOne = function(query, callback) {
   User.findOne(query, function(error, user) {
@@ -21,9 +21,9 @@ exports.new = function(new_user, callback) {
   const user = new User();
   user.username = new_user.username;
   user.password_hash = new_user.password_hash;
-  user.app_permissions = new_user.app_permissions
-    ? new_user.app_permissions
-    : [];
+  user.app_permissions = new_user.app_permissions ?
+    new_user.app_permissions :
+    [];
   user.name = new_user.name;
   user.gender = new_user.gender;
   user.email = new_user.email;
@@ -51,7 +51,7 @@ exports.update = function(user_id, update_user, callback) {
   User.findById(user_id, function(error, user) {
     if (error) {
       res.json({
-        status: "error",
+        status: 'error',
         message: error
       });
     } else {
@@ -128,7 +128,7 @@ exports.checkCredentials = function(username, password_hash, callback) {
       password_hash: password_hash,
       is_active: true
     },
-    "app_permissions",
+    'app_permissions',
     function(error, user) {
       if (error) {
         callback(error);

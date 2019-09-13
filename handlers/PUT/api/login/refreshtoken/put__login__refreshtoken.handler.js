@@ -1,13 +1,13 @@
-const jwt = require("jsonwebtoken");
-const path = require("path");
+const jwt = require('jsonwebtoken');
+const path = require('path');
 const base_path = path.dirname(require.main.filename);
 
-const TokenController = require(base_path + "/controllers/token.controller.js");
-const logger = require(base_path + "/helpers/logger.helper.js");
-const jwt_config = require(base_path + "/configs/jwt.config");
-const app_config = require(base_path + "/configs/apps.config");
+const TokenController = require(base_path + '/controllers/token.controller.js');
+const logger = require(base_path + '/helpers/logger.helper.js');
+const jwt_config = require(base_path + '/configs/jwt.config');
+const app_config = require(base_path + '/configs/apps.config');
 const check_app_permission = require(base_path +
-  "/helpers/check_app_permission.helper");
+  '/helpers/check_app_permission.helper');
 
 exports.handler = function(req, res) {
   try {
@@ -22,9 +22,9 @@ exports.handler = function(req, res) {
         req.body.username,
         function(error, is_permitted = null) {
           if (error) {
-            logger.error(error, { log_to_console: true });
+            logger.error(error, {log_to_console: true});
             return res.status(500).json({
-              status: "error",
+              status: 'error',
               message: error
             });
           } else {
@@ -44,15 +44,15 @@ exports.handler = function(req, res) {
                         },
                         function(err, token = null) {
                           if (err) {
-                            logger.error(error, { log_to_console: true });
+                            logger.error(error, {log_to_console: true});
                             return res.status(500).json({
-                              status: "error",
+                              status: 'error',
                               message: error
                             });
                           } else if (token == null) {
                             return res.status(404).json({
-                              status: "not_found",
-                              message: "Refresh token not found."
+                              status: 'not_found',
+                              message: 'Refresh token not found.'
                             });
                           } else {
                             TokenController.delete(token._id, function(
@@ -60,15 +60,15 @@ exports.handler = function(req, res) {
                               token = null
                             ) {
                               if (err) {
-                                logger.error(error, { log_to_console: true });
+                                logger.error(error, {log_to_console: true});
                                 return res.status(500).json({
-                                  status: "error",
+                                  status: 'error',
                                   message: error
                                 });
                               } else {
                                 return res.status(401).json({
-                                  status: "unauthorized",
-                                  message: "Refresh token expired"
+                                  status: 'unauthorized',
+                                  message: 'Refresh token expired'
                                 });
                               }
                             });
@@ -86,21 +86,21 @@ exports.handler = function(req, res) {
                         },
                         function(err, token = null) {
                           if (err) {
-                            logger.error(error, { log_to_console: true });
+                            logger.error(error, {log_to_console: true});
                             return res.status(500).json({
-                              status: "error",
+                              status: 'error',
                               message: error
                             });
                           } else if (token == null) {
                             return res.status(404).json({
-                              status: "not_found",
-                              message: "Refresh token not found."
+                              status: 'not_found',
+                              message: 'Refresh token not found.'
                             });
                           } else {
                             const new_token = jwt.sign(
-                              { username: req.body.username },
+                              {username: req.body.username},
                               jwt_config.token_secret,
-                              { expiresIn: jwt_config.token_life }
+                              {expiresIn: jwt_config.token_life}
                             );
                             const updated_token = token;
                             updated_token.token = new_token;
@@ -109,15 +109,15 @@ exports.handler = function(req, res) {
                               updated_token,
                               function(error, token) {
                                 if (error) {
-                                  logger.error(error, { log_to_console: true });
+                                  logger.error(error, {log_to_console: true});
                                   return res.status(500).json({
-                                    status: "error",
+                                    status: 'error',
                                     message: error
                                   });
                                 } else {
                                   return res.json({
-                                    status: "success",
-                                    message: "Token refreshed",
+                                    status: 'success',
+                                    message: 'Token refreshed',
                                     token: new_token
                                   });
                                 }
@@ -128,8 +128,8 @@ exports.handler = function(req, res) {
                       );
                     } else {
                       return res.status(401).json({
-                        status: "unauthorized",
-                        message: "Refresh token not mapped with username."
+                        status: 'unauthorized',
+                        message: 'Refresh token not mapped with username.'
                       });
                     }
                   }
@@ -137,8 +137,8 @@ exports.handler = function(req, res) {
               );
             } else {
               return res.status(403).json({
-                status: "access_denied",
-                message: "Access to this operation is denied"
+                status: 'access_denied',
+                message: 'Access to this operation is denied'
               });
             }
           }
@@ -146,14 +146,14 @@ exports.handler = function(req, res) {
       );
     } else {
       return res.status(400).json({
-        status: "invalid_request",
-        message: "Invalid arguments"
+        status: 'invalid_request',
+        message: 'Invalid arguments'
       });
     }
   } catch (error) {
-    logger.error(error, { log_to_console: true });
+    logger.error(error, {log_to_console: true});
     return res.status(500).json({
-      status: "error",
+      status: 'error',
       message: error
     });
   }
