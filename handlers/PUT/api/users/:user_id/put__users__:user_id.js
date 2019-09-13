@@ -1,11 +1,11 @@
-let path = require("path");
+const path = require("path");
 const base_path = path.dirname(require.main.filename);
 
-let logger = require(base_path + "/helpers/logger.helper.js");
-let app_config = require(base_path + "/configs/apps.config");
-let check_app_permission = require(base_path +
+const logger = require(base_path + "/helpers/logger.helper.js");
+const app_config = require(base_path + "/configs/apps.config");
+const check_app_permission = require(base_path +
   "/helpers/check_app_permission.helper");
-let UserController = require(base_path + "/controllers/user.controller.js");
+const UserController = require(base_path + "/controllers/user.controller.js");
 
 exports.handler = function(req, res) {
   try {
@@ -37,14 +37,15 @@ exports.handler = function(req, res) {
                     req.body.gender.toLowerCase() == "female" ||
                     req.body.gender.toLowerCase() == "others"
                   : true)
-              )
+              ) {
                 valid_arguments_flag = true;
+              }
             } catch (e) {
               logger.error(e);
             }
 
             if (valid_arguments_flag) {
-              let update_user = {
+              const update_user = {
                 password_hash: req.body.password_hash,
                 app_permissions: req.body.app_permissions,
                 name: req.body.name,

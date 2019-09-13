@@ -1,19 +1,20 @@
-let jwt = require("jsonwebtoken");
-let path = require("path");
+const jwt = require("jsonwebtoken");
+const path = require("path");
 const base_path = path.dirname(require.main.filename);
 
-let TokenController = require(base_path + "/controllers/token.controller.js");
-let logger = require(base_path + "/helpers/logger.helper.js");
-let jwt_config = require(base_path + "/configs/jwt.config");
-let app_config = require(base_path + "/configs/apps.config");
-let check_app_permission = require(base_path +
+const TokenController = require(base_path + "/controllers/token.controller.js");
+const logger = require(base_path + "/helpers/logger.helper.js");
+const jwt_config = require(base_path + "/configs/jwt.config");
+const app_config = require(base_path + "/configs/apps.config");
+const check_app_permission = require(base_path +
   "/helpers/check_app_permission.helper");
 
 exports.handler = function(req, res) {
   try {
     let valid_arguments_flag = false;
-    if (req.body.username && req.body.refresh_token)
+    if (req.body.username && req.body.refresh_token) {
       valid_arguments_flag = true;
+    }
     if (valid_arguments_flag) {
       check_app_permission(
         app_config.app_names.token,
@@ -101,7 +102,7 @@ exports.handler = function(req, res) {
                               jwt_config.token_secret,
                               { expiresIn: jwt_config.token_life }
                             );
-                            let updated_token = token;
+                            const updated_token = token;
                             updated_token.token = new_token;
                             TokenController.update(
                               token._id,

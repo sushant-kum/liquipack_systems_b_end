@@ -1,7 +1,7 @@
-let router = require("express").Router();
-let express = require("express");
-let swagger_ui = require("swagger-ui-express");
-let path = require("path");
+const router = require("express").Router();
+const express = require("express");
+const swagger_ui = require("swagger-ui-express");
+const path = require("path");
 
 const base_path = path.dirname(require.main.filename);
 

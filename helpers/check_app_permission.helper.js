@@ -1,17 +1,17 @@
-let path = require("path");
+const path = require("path");
 const base_path = path.dirname(require.main.filename);
 
-let UserController = require(base_path + "/controllers/user.controller.js");
-let app_config = require(base_path + "/configs/apps.config");
+const UserController = require(base_path + "/controllers/user.controller.js");
+const app_config = require(base_path + "/configs/apps.config");
 
 module.exports = function(app_name, permission, username, callback) {
   try {
     if (
       app_config.compulsory_apps.indexOf(app_name) >= 0 &&
       app_config.compulsory_app_permissions[app_name].indexOf(permission) >= 0
-    )
+    ) {
       return callback(null, true);
-    else {
+    } else {
       UserController.findOne(
         {
           username: username,

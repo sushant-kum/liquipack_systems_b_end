@@ -18,7 +18,7 @@ exports.index = function(callback) {
 };
 
 exports.new = function(new_user, callback) {
-  let user = new User();
+  const user = new User();
   user.username = new_user.username;
   user.password_hash = new_user.password_hash;
   user.app_permissions = new_user.app_permissions

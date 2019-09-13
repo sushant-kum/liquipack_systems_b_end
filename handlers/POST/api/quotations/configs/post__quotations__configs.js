@@ -1,11 +1,11 @@
-let path = require("path");
+const path = require("path");
 const base_path = path.dirname(require.main.filename);
 
-let logger = require(base_path + "/helpers/logger.helper.js");
-let app_config = require(base_path + "/configs/apps.config");
-let check_app_permission = require(base_path +
+const logger = require(base_path + "/helpers/logger.helper.js");
+const app_config = require(base_path + "/configs/apps.config");
+const check_app_permission = require(base_path +
   "/helpers/check_app_permission.helper");
-let QuotationConfigController = require(base_path +
+const QuotationConfigController = require(base_path +
   "/controllers/apps-quotation-config.controller.js");
 
 exports.handler = function(req, res) {
@@ -59,14 +59,15 @@ exports.handler = function(req, res) {
                 req.body.extra_cups_sets &&
                 (req.body.extra_cups_sets.options &&
                   Array.isArray(req.body.extra_cups_sets.options))
-              )
+              ) {
                 valid_arguments_flag = true;
+              }
             } catch (e) {
               logger.error(e);
             }
 
             if (valid_arguments_flag) {
-              let new_quotation_config = {
+              const new_quotation_config = {
                 config_name: req.body.config_name,
                 speed: req.body.speed,
                 no_of_washes: req.body.no_of_washes,

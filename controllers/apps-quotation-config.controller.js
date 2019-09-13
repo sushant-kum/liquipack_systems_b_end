@@ -18,7 +18,7 @@ exports.index = function(callback) {
 };
 
 exports.new = function(new_quotation_config, callback) {
-  let quotation_config = new AppsQuotationConfig(new_quotation_config);
+  const quotation_config = new AppsQuotationConfig(new_quotation_config);
   quotation_config.save(function(error) {
     if (error) {
       callback(error);
@@ -78,25 +78,6 @@ exports.update = function(
     }
   });
 };
-
-// exports.make_inactive = function (quotation_config_id, callback) {
-//   AppsQuotationConfig.findById(quotation_config_id, function (error, quotation_config) {
-//     if (error) {
-//       callback(error);
-//     }
-//     else {
-//       quotation_config.is_active = false;
-//       quotation_config.save(function (error) {
-//         if (error) {
-//           callback(error);
-//         }
-//         else {
-//           callback(null, quotation_config);
-//         }
-//       });
-//     }
-//   });
-// };
 
 exports.make_active = function(quotation_config_id, callback) {
   AppsQuotationConfig.findById(quotation_config_id, function(

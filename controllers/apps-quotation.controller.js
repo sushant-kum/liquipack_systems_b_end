@@ -18,7 +18,7 @@ exports.index = function(callback) {
 };
 
 exports.new = function(new_quotation, callback) {
-  let quotation = new AppsQuotation(new_quotation);
+  const quotation = new AppsQuotation(new_quotation);
   quotation.save(function(error) {
     if (error) {
       callback(error);

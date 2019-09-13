@@ -1,6 +1,6 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-let AppQuotationConfigSchema = mongoose.Schema({
+const AppQuotationConfigSchema = mongoose.Schema({
   config_name: {
     type: String,
     required: true,

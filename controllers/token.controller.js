@@ -1,4 +1,4 @@
-let path = require("path");
+const path = require("path");
 const base_path = path.dirname(require.main.filename);
 
 Token = require(base_path + "/models/token.model");
@@ -31,7 +31,7 @@ exports.index = function(callback) {
 };
 
 exports.new = function(new_token, callback) {
-  let token = new Token();
+  const token = new Token();
   token.username = new_token.username;
   token.token = new_token.token;
   token.uuid = new_token.uuid;

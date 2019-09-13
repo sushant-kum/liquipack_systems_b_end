@@ -1,4 +1,4 @@
-let app_names = {
+const app_names = {
   login: "login",
   token: "token",
   system_users: "system-users",
@@ -8,11 +8,11 @@ let app_names = {
   apps_quotation: "apps-quotation",
   apps_quotation_config: "apps-quotation-config"
 };
-let permissions = {
+const permissions = {
   read: "read",
   write: "write"
 };
-let compulsory_app_permissions = {};
+const compulsory_app_permissions = {};
 compulsory_app_permissions[app_names.login] = [
   permissions.read,
   permissions.write

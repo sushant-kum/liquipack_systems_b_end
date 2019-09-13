@@ -1,16 +1,16 @@
-let express = require("express");
-let body_parser = require("body-parser");
-let multer = require("multer")();
-let mongoose = require("mongoose");
-let path = require("path");
-let passport = require("passport");
+const express = require("express");
+const body_parser = require("body-parser");
+const multer = require("multer")();
+const mongoose = require("mongoose");
+const path = require("path");
+const passport = require("passport");
 
 const base_path = path.dirname(require.main.filename);
 
-let api_router = require(base_path + "/routers/api.router");
-let apidoc_router = require(base_path + "/routers/api-doc.router");
-let db_connection = require(base_path + "/configs/db.config");
-let logger = require(base_path + "/helpers/logger.helper");
+const api_router = require(base_path + "/routers/api.router");
+const apidoc_router = require(base_path + "/routers/api-doc.router");
+const db_connection = require(base_path + "/configs/db.config");
+const logger = require(base_path + "/helpers/logger.helper");
 
 const port = process.env.PORT || 8080;
 
@@ -18,7 +18,7 @@ mongoose.connect(db_connection.connection_string, {
   useCreateIndex: true,
   useNewUrlParser: true
 });
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on("error", error => {
   logger.error(error);
   logger.error(
@@ -32,7 +32,7 @@ db.on("connected", () => {
   logger.log("Connected to db_config:", db_connection.config, {
     log_to_console: true
   });
-  let app = express();
+  const app = express();
 
   app.use(passport.initialize());
 

@@ -1,8 +1,8 @@
-let path = require("path");
+const path = require("path");
 const base_path = path.dirname(require.main.filename);
 
-let logger = require(base_path + "/helpers/logger.helper.js");
-let app_config = require(base_path + "/configs/apps.config");
+const logger = require(base_path + "/helpers/logger.helper.js");
+const app_config = require(base_path + "/configs/apps.config");
 
 module.exports = function(app_permissions) {
   if (app_permissions.length > 0) {
@@ -12,7 +12,7 @@ module.exports = function(app_permissions) {
       }
     }
   }
-  for (let compulsory_app of app_config.compulsory_apps) {
+  for (const compulsory_app of app_config.compulsory_apps) {
     app_permissions.unshift({
       app: compulsory_app,
       permissions: app_config.compulsory_app_permissions[compulsory_app]

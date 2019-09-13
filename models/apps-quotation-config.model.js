@@ -1,8 +1,8 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-let AppsQuotationConfigSchema = require("../schemas/apps-quotation-config.schema");
+const AppsQuotationConfigSchema = require("../schemas/apps-quotation-config.schema");
 
-let AppsQuotationConfig = (module.exports = mongoose.model(
+const AppsQuotationConfig = (module.exports = mongoose.model(
   "apps-quotation-config",
   AppsQuotationConfigSchema
 ));

@@ -1,14 +1,14 @@
-let jwt = require("jsonwebtoken");
-let path = require("path");
-let uuidv4 = require("uuid/v4");
+const jwt = require("jsonwebtoken");
+const path = require("path");
+const uuidv4 = require("uuid/v4");
 const base_path = path.dirname(require.main.filename);
 
-let UserController = require(base_path + "/controllers/user.controller.js");
-let TokenController = require(base_path + "/controllers/token.controller.js");
-let logger = require(base_path + "/helpers/logger.helper.js");
-let jwt_config = require(base_path + "/configs/jwt.config");
-let app_config = require(base_path + "/configs/apps.config");
-let check_app_permission = require(base_path +
+const UserController = require(base_path + "/controllers/user.controller.js");
+const TokenController = require(base_path + "/controllers/token.controller.js");
+const logger = require(base_path + "/helpers/logger.helper.js");
+const jwt_config = require(base_path + "/configs/jwt.config");
+const app_config = require(base_path + "/configs/apps.config");
+const check_app_permission = require(base_path +
   "/helpers/check_app_permission.helper");
 
 exports.handler = function(req, res) {
@@ -36,7 +36,7 @@ exports.handler = function(req, res) {
             const token = jwt.sign(jwt_payload, jwt_config.token_secret, {
               expiresIn: jwt_config.token_life
             });
-            let new_token = {
+            const new_token = {
               username: req.user.username,
               token: token,
               uuid: uuid

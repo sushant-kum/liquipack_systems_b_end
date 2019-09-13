@@ -1,6 +1,6 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-let AppQuotationSchema = mongoose.Schema({
+const AppQuotationSchema = mongoose.Schema({
   quotation_num: {
     type: String,
     required: true,
