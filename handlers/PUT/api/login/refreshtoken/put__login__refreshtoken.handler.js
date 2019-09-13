@@ -22,7 +22,7 @@ exports.handler = function(req, res) {
         req.body.username,
         function(error, is_permitted = null) {
           if (error) {
-            logger.error(error, {log_to_console: true});
+            logger.error(error, { log_to_console: true });
             return res.status(500).json({
               status: 'error',
               message: error
@@ -44,7 +44,7 @@ exports.handler = function(req, res) {
                         },
                         function(err, token = null) {
                           if (err) {
-                            logger.error(error, {log_to_console: true});
+                            logger.error(error, { log_to_console: true });
                             return res.status(500).json({
                               status: 'error',
                               message: error
@@ -60,7 +60,7 @@ exports.handler = function(req, res) {
                               token = null
                             ) {
                               if (err) {
-                                logger.error(error, {log_to_console: true});
+                                logger.error(error, { log_to_console: true });
                                 return res.status(500).json({
                                   status: 'error',
                                   message: error
@@ -86,7 +86,7 @@ exports.handler = function(req, res) {
                         },
                         function(err, token = null) {
                           if (err) {
-                            logger.error(error, {log_to_console: true});
+                            logger.error(error, { log_to_console: true });
                             return res.status(500).json({
                               status: 'error',
                               message: error
@@ -98,9 +98,9 @@ exports.handler = function(req, res) {
                             });
                           } else {
                             const new_token = jwt.sign(
-                              {username: req.body.username},
+                              { username: req.body.username },
                               jwt_config.token_secret,
-                              {expiresIn: jwt_config.token_life}
+                              { expiresIn: jwt_config.token_life }
                             );
                             const updated_token = token;
                             updated_token.token = new_token;
@@ -109,7 +109,7 @@ exports.handler = function(req, res) {
                               updated_token,
                               function(error, token) {
                                 if (error) {
-                                  logger.error(error, {log_to_console: true});
+                                  logger.error(error, { log_to_console: true });
                                   return res.status(500).json({
                                     status: 'error',
                                     message: error
@@ -151,7 +151,7 @@ exports.handler = function(req, res) {
       });
     }
   } catch (error) {
-    logger.error(error, {log_to_console: true});
+    logger.error(error, { log_to_console: true });
     return res.status(500).json({
       status: 'error',
       message: error

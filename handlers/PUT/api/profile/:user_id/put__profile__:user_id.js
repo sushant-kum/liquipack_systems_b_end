@@ -15,7 +15,7 @@ exports.handler = function(req, res) {
       req.user.username,
       function(error, is_permitted = null) {
         if (error) {
-          logger.error(error, {log_to_console: true});
+          logger.error(error, { log_to_console: true });
           return res.status(500).json({
             status: 'error',
             message: error,
@@ -31,11 +31,11 @@ exports.handler = function(req, res) {
                 req.body.password_hash &&
                 req.body.name &&
                 req.body.email &&
-                (req.body.gender ?
-                  req.body.gender.toLowerCase() == 'male' ||
+                (req.body.gender
+                  ? req.body.gender.toLowerCase() == 'male' ||
                     req.body.gender.toLowerCase() == 'female' ||
-                    req.body.gender.toLowerCase() == 'others' :
-                  true)
+                    req.body.gender.toLowerCase() == 'others'
+                  : true)
               ) {
                 valid_arguments_flag = true;
               }
@@ -47,7 +47,7 @@ exports.handler = function(req, res) {
               if (req.params.user_id == req.user._id) {
                 UserController.view(req.user._id, function(error, user) {
                   if (error) {
-                    logger.error(error, {log_to_console: true});
+                    logger.error(error, { log_to_console: true });
                     return res.status(500).json({
                       status: 'error',
                       message: error,
@@ -60,9 +60,9 @@ exports.handler = function(req, res) {
                       name: req.body.name,
                       email: req.body.email,
                       phone: req.body.phone ? req.body.phone : null,
-                      gender: req.body.gender ?
-                        req.body.gender.toLowerCase() :
-                        null,
+                      gender: req.body.gender
+                        ? req.body.gender.toLowerCase()
+                        : null,
                       app_permissions: user.app_permissions
                     };
 
@@ -118,7 +118,7 @@ exports.handler = function(req, res) {
       }
     );
   } catch (error) {
-    logger.error(error, {log_to_console: true});
+    logger.error(error, { log_to_console: true });
     return res.status(500).json({
       status: 'error',
       message: error,

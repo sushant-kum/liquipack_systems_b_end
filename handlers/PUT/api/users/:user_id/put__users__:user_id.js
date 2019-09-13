@@ -15,7 +15,7 @@ exports.handler = function(req, res) {
       req.user.username,
       function(error, is_permitted = null) {
         if (error) {
-          logger.error(error, {log_to_console: true});
+          logger.error(error, { log_to_console: true });
           return res.status(500).json({
             status: 'error',
             message: error,
@@ -32,11 +32,11 @@ exports.handler = function(req, res) {
                 Array.isArray(req.body.app_permissions) &&
                 req.body.name &&
                 req.body.email &&
-                (req.body.gender ?
-                  req.body.gender.toLowerCase() == 'male' ||
+                (req.body.gender
+                  ? req.body.gender.toLowerCase() == 'male' ||
                     req.body.gender.toLowerCase() == 'female' ||
-                    req.body.gender.toLowerCase() == 'others' :
-                  true)
+                    req.body.gender.toLowerCase() == 'others'
+                  : true)
               ) {
                 valid_arguments_flag = true;
               }
@@ -95,7 +95,7 @@ exports.handler = function(req, res) {
       }
     );
   } catch (error) {
-    logger.error(error, {log_to_console: true});
+    logger.error(error, { log_to_console: true });
     return res.status(500).json({
       status: 'error',
       message: error,

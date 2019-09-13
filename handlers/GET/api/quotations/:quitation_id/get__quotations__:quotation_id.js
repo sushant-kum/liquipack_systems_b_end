@@ -16,7 +16,7 @@ exports.handler = function(req, res) {
       req.user.username,
       function(error, is_permitted = null) {
         if (error) {
-          logger.error(error, {log_to_console: true});
+          logger.error(error, { log_to_console: true });
           return res.status(500).json({
             status: 'error',
             message: error,
@@ -70,7 +70,7 @@ exports.handler = function(req, res) {
       }
     );
   } catch (error) {
-    logger.error(error, {log_to_console: true});
+    logger.error(error, { log_to_console: true });
     return res.status(500).json({
       status: 'error',
       message: error,

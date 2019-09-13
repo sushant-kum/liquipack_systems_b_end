@@ -16,7 +16,7 @@ exports.handler = function(req, res) {
       req.user.username,
       function(error, is_permitted = null) {
         if (error) {
-          logger.error(error, {log_to_console: true});
+          logger.error(error, { log_to_console: true });
           return res.status(500).json({
             status: 'error',
             message: error,
@@ -86,9 +86,9 @@ exports.handler = function(req, res) {
                 illumination_required: req.body.illumination_required,
                 auto_level_tank: req.body.auto_level_tank,
                 extra_cups_sets: req.body.extra_cups_sets,
-                other_details: req.body.other_details ?
-                  req.body.other_details :
-                  null,
+                other_details: req.body.other_details
+                  ? req.body.other_details
+                  : null,
                 customer_details: req.body.customer_details,
                 created_by: req.user._id
               };
@@ -134,7 +134,7 @@ exports.handler = function(req, res) {
       }
     );
   } catch (error) {
-    logger.error(error, {log_to_console: true});
+    logger.error(error, { log_to_console: true });
     return res.status(500).json({
       status: 'error',
       message: error,

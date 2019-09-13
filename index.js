@@ -19,7 +19,7 @@ mongoose.connect(db_connection.connection_string, {
   useNewUrlParser: true
 });
 const db = mongoose.connection;
-db.on('error', (error) => {
+db.on('error', error => {
   logger.error(error);
   logger.error(
     'Error connecting to db_config:',
@@ -64,7 +64,7 @@ db.on('disconnected', () => {
     db_connection.config,
     'connection_string: ',
     db_connection.connection_string,
-    {log_to_console: true}
+    { log_to_console: true }
   );
 });
 
@@ -72,7 +72,7 @@ process.on('SIGINT', function() {
   db.close(function() {
     logger.error(
       'Mongoose default connection is disconnected due to application termination',
-      {log_to_console: true}
+      { log_to_console: true }
     );
     process.exit(0);
   });
