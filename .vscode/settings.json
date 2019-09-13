@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "all",
+  "editor.trimAutoWhitespace": true,
+  "files.exclude": {
+    ".coverage/": true,
+    ".coverage.*": true,
+    ".mypy_cache/": true,
+    ".idea/": true,
+    ".pytest_cache/": true,
+    "*/**/__pycache__/": true,
+    ".tests/": true,
+    ".venv/": true,
+    "coverage.xml": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

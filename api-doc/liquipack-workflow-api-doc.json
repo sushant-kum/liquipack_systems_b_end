@@ -50,9 +50,7 @@
   "paths": {
     "/users": {
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Get list of all users",
         "responses": {
           "200": {
@@ -67,9 +65,7 @@
         }
       },
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Create new user",
         "requestBody": {
           "content": {
@@ -104,10 +100,7 @@
                           "type": "array",
                           "items": {
                             "type": "string",
-                            "enum": [
-                              "read",
-                              "write"
-                            ]
+                            "enum": ["read", "write"]
                           }
                         }
                       }
@@ -128,11 +121,7 @@
                   "gender": {
                     "type": "string",
                     "description": "User's gender",
-                    "enum": [
-                      "male",
-                      "female",
-                      "others"
-                    ]
+                    "enum": ["male", "female", "others"]
                   }
                 }
               }
@@ -158,9 +147,7 @@
     },
     "/users/:user_id": {
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Get user by user_id (ObjectId)",
         "parameters": [
           {
@@ -189,9 +176,7 @@
         }
       },
       "put": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Modifies user data",
         "parameters": [
           {
@@ -232,10 +217,7 @@
                           "type": "array",
                           "items": {
                             "type": "string",
-                            "enum": [
-                              "read",
-                              "write"
-                            ]
+                            "enum": ["read", "write"]
                           }
                         }
                       }
@@ -256,11 +238,7 @@
                   "gender": {
                     "type": "string",
                     "description": "User's gender",
-                    "enum": [
-                      "male",
-                      "female",
-                      "others"
-                    ]
+                    "enum": ["male", "female", "others"]
                   }
                 }
               }
@@ -284,9 +262,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Delete (permanently) user by user_id (ObjectId)",
         "parameters": [
           {
@@ -317,9 +293,7 @@
     },
     "/users/:user_id/enable": {
       "patch": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Enable (make active) user by user_id (ObjectId)",
         "parameters": [
           {
@@ -350,9 +324,7 @@
     },
     "/users/:user_id/disable": {
       "patch": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Disable (make inactive) user by user_id (ObjectId)",
         "parameters": [
           {
@@ -383,9 +355,7 @@
     },
     "/profile/:user_id": {
       "get": {
-        "tags": [
-          "profile"
-        ],
+        "tags": ["profile"],
         "summary": "Get user by user_id (ObjectId)",
         "parameters": [
           {
@@ -411,9 +381,7 @@
         }
       },
       "put": {
-        "tags": [
-          "profile"
-        ],
+        "tags": ["profile"],
         "summary": "Modifies user data",
         "parameters": [
           {
@@ -430,11 +398,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "email",
-                  "name",
-                  "password_hash"
-                ],
+                "required": ["email", "name", "password_hash"],
                 "properties": {
                   "password_hash": {
                     "type": "string",
@@ -455,11 +419,7 @@
                   "gender": {
                     "type": "string",
                     "description": "User's gender",
-                    "enum": [
-                      "male",
-                      "female",
-                      "others"
-                    ]
+                    "enum": ["male", "female", "others"]
                   }
                 }
               }
@@ -485,9 +445,7 @@
     },
     "/quotations": {
       "get": {
-        "tags": [
-          "quotations"
-        ],
+        "tags": ["quotations"],
         "summary": "Get list of all quotations",
         "responses": {
           "200": {
@@ -502,9 +460,7 @@
         }
       },
       "post": {
-        "tags": [
-          "quotations"
-        ],
+        "tags": ["quotations"],
         "summary": "Create new quotation",
         "requestBody": {
           "content": {
@@ -703,9 +659,7 @@
     },
     "/quotations/:quotation_id": {
       "get": {
-        "tags": [
-          "quotations"
-        ],
+        "tags": ["quotations"],
         "summary": "Get quotation by quotation_id (ObjectId)",
         "parameters": [
           {
@@ -734,9 +688,7 @@
         }
       },
       "put": {
-        "tags": [
-          "quotations"
-        ],
+        "tags": ["quotations"],
         "summary": "Modifies quotation data",
         "parameters": [
           {
@@ -939,9 +891,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "quotations"
-        ],
+        "tags": ["quotations"],
         "summary": "Delete (permanently) quotation by quotation_id (ObjectId)",
         "parameters": [
           {
@@ -972,9 +922,7 @@
     },
     "/quotations/:quotation_id/enable": {
       "patch": {
-        "tags": [
-          "quotations"
-        ],
+        "tags": ["quotations"],
         "summary": "Enable (make active) quotation by quotation_id (ObjectId)",
         "parameters": [
           {
@@ -1005,9 +953,7 @@
     },
     "/quotations/:quotation_id/disable": {
       "patch": {
-        "tags": [
-          "quotations"
-        ],
+        "tags": ["quotations"],
         "summary": "Disable (make inactive) quotation by quotation_id (ObjectId)",
         "parameters": [
           {
@@ -1038,9 +984,7 @@
     },
     "/quotations/configs": {
       "get": {
-        "tags": [
-          "quotations-configs"
-        ],
+        "tags": ["quotations-configs"],
         "summary": "Get list of all quotations-configs",
         "responses": {
           "200": {
@@ -1055,9 +999,7 @@
         }
       },
       "post": {
-        "tags": [
-          "quotations-configs"
-        ],
+        "tags": ["quotations-configs"],
         "summary": "Create new quotation",
         "requestBody": {
           "content": {
@@ -1335,9 +1277,7 @@
     },
     "/quotations/configs/active": {
       "get": {
-        "tags": [
-          "quotations-configs"
-        ],
+        "tags": ["quotations-configs"],
         "summary": "Get active quotations-configs",
         "responses": {
           "200": {
@@ -1354,9 +1294,7 @@
     },
     "/quotations/configs/:config_id": {
       "get": {
-        "tags": [
-          "quotations-configs"
-        ],
+        "tags": ["quotations-configs"],
         "summary": "Get quotation-config by config_id (ObjectId)",
         "parameters": [
           {
@@ -1385,9 +1323,7 @@
         }
       },
       "put": {
-        "tags": [
-          "quotations-configs"
-        ],
+        "tags": ["quotations-configs"],
         "summary": "Modifies quotation-config data",
         "parameters": [
           {
@@ -1669,9 +1605,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "quotations-configs"
-        ],
+        "tags": ["quotations-configs"],
         "summary": "Delete (permanently) quotation-config by config_id (ObjectId)",
         "parameters": [
           {
@@ -1702,9 +1636,7 @@
     },
     "/quotations/configs/:config_id/enable": {
       "patch": {
-        "tags": [
-          "quotations-configs"
-        ],
+        "tags": ["quotations-configs"],
         "summary": "Enable (make active) quotation-config by config_id (ObjectId) and disable other quotation-configs",
         "parameters": [
           {
@@ -1762,11 +1694,7 @@
           },
           "gender": {
             "type": "string",
-            "enum": [
-              "male",
-              "female",
-              "others"
-            ]
+            "enum": ["male", "female", "others"]
           },
           "created_date": {
             "type": "string"
@@ -1807,10 +1735,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [
-                  "read",
-                  "write"
-                ]
+                "enum": ["read", "write"]
               }
             }
           }
