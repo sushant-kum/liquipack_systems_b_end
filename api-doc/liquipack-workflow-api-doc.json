@@ -605,7 +605,7 @@
                       }
                     }
                   },
-                  "oteher_details": {
+                  "other_details": {
                     "type": "string",
                     "description": "Other details/notes"
                   },
@@ -839,7 +839,7 @@
                       }
                     }
                   },
-                  "oteher_details": {
+                  "other_details": {
                     "type": "string",
                     "description": "Other details/notes"
                   },
@@ -1860,7 +1860,7 @@
               }
             }
           },
-          "oteher_details": {
+          "other_details": {
             "type": "string"
           },
           "customer_details": {
@@ -1943,7 +1943,7 @@
             "qty": 1,
             "price": 16500
           },
-          "oteher_details": "asd",
+          "other_details": "asd",
           "customer_details": {
             "name": "Sushant Tech",
             "address": "Bangalore",
@@ -3120,7 +3120,7 @@
                     "qty": 1,
                     "price": 16500
                   },
-                  "oteher_details": "asd",
+                  "other_details": "asd",
                   "customer_details": {
                     "name": "Sushant Tech",
                     "address": "Bangalore",

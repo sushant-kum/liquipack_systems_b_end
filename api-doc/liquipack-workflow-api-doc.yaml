@@ -442,7 +442,7 @@ paths:
                       type: number
                     price:
                       type: number
-                oteher_details:
+                other_details:
                   type: string
                   description: Other details/notes
                 customer_details:
@@ -603,7 +603,7 @@ paths:
                       type: number
                     price:
                       type: number
-                oteher_details:
+                other_details:
                   type: string
                   description: Other details/notes
                 customer_details:
@@ -1295,7 +1295,7 @@ components:
               type: number
             qty:
               type: number
-        oteher_details:
+        other_details:
           type: string
         customer_details:
           type: object
@@ -1353,7 +1353,7 @@ components:
         extra_cups_sets:
           qty: 1
           price: 16500
-        oteher_details: asd
+        other_details: asd
         customer_details:
           name: Sushant Tech
           address: Bangalore
@@ -2179,7 +2179,7 @@ components:
                 extra_cups_sets:
                   qty: 1
                   price: 16500
-                oteher_details: asd
+                other_details: asd
                 customer_details:
                   name: Sushant Tech
                   address: Bangalore
