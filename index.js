@@ -16,7 +16,9 @@ const port = process.env.PORT || 8080;
 
 mongoose.connect(db_connection.connection_string, {
   useCreateIndex: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
 });
 const db = mongoose.connection;
 db.on('error', error => {
