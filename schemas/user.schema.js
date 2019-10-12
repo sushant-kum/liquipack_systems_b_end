@@ -1,6 +1,7 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-let UserSchema = mongoose.Schema({
+// eslint-disable-next-line new-cap
+const UserSchema = mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -11,10 +12,12 @@ let UserSchema = mongoose.Schema({
     required: true
   },
   app_permissions: {
-    type: [{
-      app: String,
-      permissions: [String]
-    }],
+    type: [
+      {
+        app: String,
+        permissions: [String]
+      }
+    ],
     required: true
   },
   name: {
