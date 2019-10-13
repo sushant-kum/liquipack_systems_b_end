@@ -22,21 +22,21 @@ class AuthError extends Error {
 // Basic Auth
 passport.use(
   new BasicStrategy(function(username, password_hash, callback) {
-    UserController.findOne(
-      { username: username, password_hash: password_hash, is_active: true },
-      function(error, user) {
-        if (error) {
-          return callback(error);
-        }
-
-        // No user found with that username
-        if (!user) {
-          return callback(new AuthError());
-        }
-
-        return callback(null, user);
+    UserController.findOne({ username: username, password_hash: password_hash, is_active: true }, function(
+      error,
+      user
+    ) {
+      if (error) {
+        return callback(error);
       }
-    );
+
+      // No user found with that username
+      if (!user) {
+        return callback(new AuthError());
+      }
+
+      return callback(null, user);
+    });
   })
 );
 
@@ -93,11 +93,9 @@ passport.use(
               if (token_record) {
                 if (token_record.uuid == jwt_payload.uuid) {
                   const uuid = uuidv4();
-                  const new_token = jwt.sign(
-                    { username: user.username, uuid: uuid },
-                    jwt_config.token_secret,
-                    { expiresIn: jwt_config.token_life }
-                  );
+                  const new_token = jwt.sign({ username: user.username, uuid: uuid }, jwt_config.token_secret, {
+                    expiresIn: jwt_config.token_life
+                  });
                   TokenController.update(
                     token_record._id,
                     {

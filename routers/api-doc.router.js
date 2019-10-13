@@ -6,10 +6,8 @@ const path = require('path');
 const base_path = path.dirname(require.main.filename);
 
 const api_doc_renderer_path = base_path + '/api-doc/public';
-const json_swagger_document_path =
-  base_path + '/api-doc/liquipack-workflow-api-doc.json';
-const yaml_swagger_document_path =
-  base_path + '/api-doc/liquipack-workflow-api-doc.yaml';
+const json_swagger_document_path = base_path + '/api-doc/liquipack-workflow-api-doc.json';
+const yaml_swagger_document_path = base_path + '/api-doc/liquipack-workflow-api-doc.yaml';
 const json_swagger_document = require(json_swagger_document_path);
 
 router.use('/view', express.static(api_doc_renderer_path));

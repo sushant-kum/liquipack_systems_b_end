@@ -71,13 +71,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "app_permissions",
-                  "email",
-                  "name",
-                  "password_hash",
-                  "username"
-                ],
+                "required": ["app_permissions", "email", "name", "password_hash", "username"],
                 "properties": {
                   "username": {
                     "type": "string",
@@ -193,12 +187,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "app_permissions",
-                  "email",
-                  "name",
-                  "password_hash"
-                ],
+                "required": ["app_permissions", "email", "name", "password_hash"],
                 "properties": {
                   "password_hash": {
                     "type": "string",

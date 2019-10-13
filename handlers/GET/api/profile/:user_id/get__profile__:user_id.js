@@ -3,8 +3,7 @@ const base_path = path.dirname(require.main.filename);
 
 const logger = require(base_path + '/helpers/logger.helper.js');
 const app_config = require(base_path + '/configs/apps.config');
-const check_app_permission = require(base_path +
-  '/helpers/check_app_permission.helper');
+const check_app_permission = require(base_path + '/helpers/check_app_permission.helper');
 const UserController = require(base_path + '/controllers/user.controller.js');
 
 exports.handler = function(req, res) {
@@ -29,10 +28,7 @@ exports.handler = function(req, res) {
 
             if (valid_arguments_flag) {
               if (req.params.user_id == req.user._id) {
-                UserController.view(req.params.user_id, function(
-                  error,
-                  user = null
-                ) {
+                UserController.view(req.params.user_id, function(error, user = null) {
                   if (error) {
                     return res.status(500).json({
                       status: 'error',

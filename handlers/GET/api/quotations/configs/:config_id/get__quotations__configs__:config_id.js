@@ -3,10 +3,8 @@ const base_path = path.dirname(require.main.filename);
 
 const logger = require(base_path + '/helpers/logger.helper.js');
 const app_config = require(base_path + '/configs/apps.config');
-const check_app_permission = require(base_path +
-  '/helpers/check_app_permission.helper');
-const QuotationConfigController = require(base_path +
-  '/controllers/apps-quotation-config.controller.js');
+const check_app_permission = require(base_path + '/helpers/check_app_permission.helper');
+const QuotationConfigController = require(base_path + '/controllers/apps-quotation-config.controller.js');
 
 exports.handler = function(req, res) {
   try {
@@ -29,10 +27,7 @@ exports.handler = function(req, res) {
             if (req.params.config_id) valid_arguments_flag = true;
 
             if (valid_arguments_flag) {
-              QuotationConfigController.view(req.params.config_id, function(
-                error,
-                quotation_config = null
-              ) {
+              QuotationConfigController.view(req.params.config_id, function(error, quotation_config = null) {
                 if (error) {
                   return res.status(500).json({
                     status: 'error',
