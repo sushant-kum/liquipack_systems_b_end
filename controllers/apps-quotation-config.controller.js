@@ -29,10 +29,7 @@ exports.new = function(new_quotation_config, callback) {
 };
 
 exports.view = function(quotation_config_id, callback) {
-  AppsQuotationConfig.findById(quotation_config_id, function(
-    error,
-    quotation_config
-  ) {
+  AppsQuotationConfig.findById(quotation_config_id, function(error, quotation_config) {
     if (error) {
       callback(error);
     } else {
@@ -41,33 +38,21 @@ exports.view = function(quotation_config_id, callback) {
   });
 };
 
-exports.update = function(
-  quotation_config_id,
-  update_quotation_config,
-  callback
-) {
-  AppsQuotationConfig.findById(quotation_config_id, function(
-    error,
-    quotation_config
-  ) {
+exports.update = function(quotation_config_id, update_quotation_config, callback) {
+  AppsQuotationConfig.findById(quotation_config_id, function(error, quotation_config) {
     if (error) {
       callback(error);
     } else {
       quotation_config.speed = update_quotation_config.speed;
       quotation_config.no_of_washes = update_quotation_config.no_of_washes;
       quotation_config.industry = update_quotation_config.industry;
-      quotation_config.gmp_requirement =
-        update_quotation_config.gmp_requirement;
+      quotation_config.gmp_requirement = update_quotation_config.gmp_requirement;
       quotation_config.bottle_moc = update_quotation_config.bottle_moc;
       quotation_config.water_saving = update_quotation_config.water_saving;
-      quotation_config.filters_required =
-        update_quotation_config.filters_required;
-      quotation_config.illumination_required =
-        update_quotation_config.illumination_required;
-      quotation_config.auto_level_tank =
-        update_quotation_config.auto_level_tank;
-      quotation_config.extra_cups_sets =
-        update_quotation_config.extra_cups_sets;
+      quotation_config.filters_required = update_quotation_config.filters_required;
+      quotation_config.illumination_required = update_quotation_config.illumination_required;
+      quotation_config.auto_level_tank = update_quotation_config.auto_level_tank;
+      quotation_config.extra_cups_sets = update_quotation_config.extra_cups_sets;
       quotation_config.save(function(error) {
         if (error) {
           callback(error);
@@ -80,10 +65,7 @@ exports.update = function(
 };
 
 exports.make_active = function(quotation_config_id, callback) {
-  AppsQuotationConfig.findById(quotation_config_id, function(
-    error,
-    quotation_config
-  ) {
+  AppsQuotationConfig.findById(quotation_config_id, function(error, quotation_config) {
     if (error) {
       callback(error);
     } else {

@@ -72,10 +72,9 @@ db.on('disconnected', () => {
 
 process.on('SIGINT', function() {
   db.close(function() {
-    logger.error(
-      'Mongoose default connection is disconnected due to application termination',
-      { log_to_console: true }
-    );
+    logger.error('Mongoose default connection is disconnected due to application termination', {
+      log_to_console: true
+    });
     process.exit(0);
   });
 });

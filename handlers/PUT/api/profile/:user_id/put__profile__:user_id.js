@@ -3,8 +3,7 @@ const base_path = path.dirname(require.main.filename);
 
 const logger = require(base_path + '/helpers/logger.helper.js');
 const app_config = require(base_path + '/configs/apps.config');
-const check_app_permission = require(base_path +
-  '/helpers/check_app_permission.helper');
+const check_app_permission = require(base_path + '/helpers/check_app_permission.helper');
 const UserController = require(base_path + '/controllers/user.controller.js');
 
 exports.handler = function(req, res) {
@@ -60,34 +59,28 @@ exports.handler = function(req, res) {
                       name: req.body.name,
                       email: req.body.email,
                       phone: req.body.phone ? req.body.phone : null,
-                      gender: req.body.gender
-                        ? req.body.gender.toLowerCase()
-                        : null,
+                      gender: req.body.gender ? req.body.gender.toLowerCase() : null,
                       app_permissions: user.app_permissions
                     };
 
-                    UserController.update(
-                      req.params.user_id,
-                      update_user,
-                      function(error, user = null) {
-                        if (error) {
-                          return res.status(500).json({
-                            status: 'error',
-                            message: error,
-                            user_id: req.user._id,
-                            token: req.user.token
-                          });
-                        } else {
-                          return res.json({
-                            status: 'success',
-                            message: 'User profile updated successfully',
-                            data: user,
-                            user_id: req.user._id,
-                            token: req.user.token
-                          });
-                        }
+                    UserController.update(req.params.user_id, update_user, function(error, user = null) {
+                      if (error) {
+                        return res.status(500).json({
+                          status: 'error',
+                          message: error,
+                          user_id: req.user._id,
+                          token: req.user.token
+                        });
+                      } else {
+                        return res.json({
+                          status: 'success',
+                          message: 'User profile updated successfully',
+                          data: user,
+                          user_id: req.user._id,
+                          token: req.user.token
+                        });
                       }
-                    );
+                    });
                   }
                 });
               } else {

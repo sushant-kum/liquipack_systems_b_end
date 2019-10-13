@@ -3,10 +3,8 @@ const base_path = path.dirname(require.main.filename);
 
 const logger = require(base_path + '/helpers/logger.helper.js');
 const app_config = require(base_path + '/configs/apps.config');
-const check_app_permission = require(base_path +
-  '/helpers/check_app_permission.helper');
-const QuotationConfigController = require(base_path +
-  '/controllers/apps-quotation-config.controller.js');
+const check_app_permission = require(base_path + '/helpers/check_app_permission.helper');
+const QuotationConfigController = require(base_path + '/controllers/apps-quotation-config.controller.js');
 
 exports.handler = function(req, res) {
   try {
@@ -30,35 +28,25 @@ exports.handler = function(req, res) {
               if (
                 req.body.config_name &&
                 req.body.speed &&
-                (req.body.speed.options &&
-                  Array.isArray(req.body.speed.options)) &&
+                (req.body.speed.options && Array.isArray(req.body.speed.options)) &&
                 req.body.no_of_washes &&
-                (req.body.no_of_washes.options &&
-                  Array.isArray(req.body.no_of_washes.options)) &&
+                (req.body.no_of_washes.options && Array.isArray(req.body.no_of_washes.options)) &&
                 req.body.industry &&
-                (req.body.industry.options &&
-                  Array.isArray(req.body.industry.options)) &&
+                (req.body.industry.options && Array.isArray(req.body.industry.options)) &&
                 req.body.gmp_requirement &&
-                (req.body.gmp_requirement.options &&
-                  Array.isArray(req.body.gmp_requirement.options)) &&
+                (req.body.gmp_requirement.options && Array.isArray(req.body.gmp_requirement.options)) &&
                 req.body.bottle_moc &&
-                (req.body.bottle_moc.options &&
-                  Array.isArray(req.body.bottle_moc.options)) &&
+                (req.body.bottle_moc.options && Array.isArray(req.body.bottle_moc.options)) &&
                 req.body.water_saving &&
-                (req.body.water_saving.options &&
-                  Array.isArray(req.body.water_saving.options)) &&
+                (req.body.water_saving.options && Array.isArray(req.body.water_saving.options)) &&
                 req.body.filters_required &&
-                (req.body.filters_required.options &&
-                  Array.isArray(req.body.filters_required.options)) &&
+                (req.body.filters_required.options && Array.isArray(req.body.filters_required.options)) &&
                 req.body.illumination_required &&
-                (req.body.illumination_required.options &&
-                  Array.isArray(req.body.illumination_required.options)) &&
+                (req.body.illumination_required.options && Array.isArray(req.body.illumination_required.options)) &&
                 req.body.auto_level_tank &&
-                (req.body.auto_level_tank.options &&
-                  Array.isArray(req.body.auto_level_tank.options)) &&
+                (req.body.auto_level_tank.options && Array.isArray(req.body.auto_level_tank.options)) &&
                 req.body.extra_cups_sets &&
-                (req.body.extra_cups_sets.options &&
-                  Array.isArray(req.body.extra_cups_sets.options))
+                (req.body.extra_cups_sets.options && Array.isArray(req.body.extra_cups_sets.options))
               ) {
                 valid_arguments_flag = true;
               }
@@ -82,10 +70,7 @@ exports.handler = function(req, res) {
                 created_by: req.user._id
               };
 
-              QuotationConfigController.new(new_quotation_config, function(
-                error,
-                quotation_config = null
-              ) {
+              QuotationConfigController.new(new_quotation_config, function(error, quotation_config = null) {
                 if (error) {
                   return res.status(500).json({
                     status: 'error',

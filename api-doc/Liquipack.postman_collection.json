@@ -55,12 +55,7 @@
                       "raw": "{{hostname}}:{{port}}/api/quotations/configs/5d63a337941012738bd5a52b",
                       "host": ["{{hostname}}"],
                       "port": "{{port}}",
-                      "path": [
-                        "api",
-                        "quotations",
-                        "configs",
-                        "5d63a337941012738bd5a52b"
-                      ]
+                      "path": ["api", "quotations", "configs", "5d63a337941012738bd5a52b"]
                     }
                   },
                   "response": []
@@ -110,12 +105,7 @@
                       "raw": "{{hostname}}:{{port}}/api/quotations/configs/5d63a337941012738bd5a52b",
                       "host": ["{{hostname}}"],
                       "port": "{{port}}",
-                      "path": [
-                        "api",
-                        "quotations",
-                        "configs",
-                        "5d63a337941012738bd5a52b"
-                      ]
+                      "path": ["api", "quotations", "configs", "5d63a337941012738bd5a52b"]
                     }
                   },
                   "response": []
@@ -161,12 +151,7 @@
                       "raw": "{{hostname}}:{{port}}/api/quotations/configs/5d63a337941012738bd5a52b",
                       "host": ["{{hostname}}"],
                       "port": "{{port}}",
-                      "path": [
-                        "api",
-                        "quotations",
-                        "configs",
-                        "5d63a337941012738bd5a52b"
-                      ]
+                      "path": ["api", "quotations", "configs", "5d63a337941012738bd5a52b"]
                     }
                   },
                   "response": []
@@ -212,13 +197,7 @@
                       "raw": "{{hostname}}:{{port}}/api/quotations/configs/5d63d35cc50cde18f7a4fab6/enable",
                       "host": ["{{hostname}}"],
                       "port": "{{port}}",
-                      "path": [
-                        "api",
-                        "quotations",
-                        "configs",
-                        "5d63d35cc50cde18f7a4fab6",
-                        "enable"
-                      ]
+                      "path": ["api", "quotations", "configs", "5d63d35cc50cde18f7a4fab6", "enable"]
                     }
                   },
                   "response": []
@@ -417,12 +396,7 @@
                       "raw": "{{hostname}}:{{port}}/api/quotations/5d5fdf4b0a184451cb901f72/disable",
                       "host": ["{{hostname}}"],
                       "port": "{{port}}",
-                      "path": [
-                        "api",
-                        "quotations",
-                        "5d5fdf4b0a184451cb901f72",
-                        "disable"
-                      ]
+                      "path": ["api", "quotations", "5d5fdf4b0a184451cb901f72", "disable"]
                     }
                   },
                   "response": []
@@ -467,12 +441,7 @@
                       "raw": "{{hostname}}:{{port}}/api/quotations/5d5fdf4b0a184451cb901f72/disable",
                       "host": ["{{hostname}}"],
                       "port": "{{port}}",
-                      "path": [
-                        "api",
-                        "quotations",
-                        "5d5fdf4b0a184451cb901f72",
-                        "disable"
-                      ]
+                      "path": ["api", "quotations", "5d5fdf4b0a184451cb901f72", "disable"]
                     }
                   },
                   "response": []

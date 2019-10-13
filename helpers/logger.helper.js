@@ -21,61 +21,29 @@ if (!fs.existsSync(logs_dir)) {
   fs.mkdirSync(logs_dir);
 }
 
-fs.appendFile(
-  console_log_path,
-  '\n\n[console.log] ' + moment().format(),
-  function(error) {
-    if (error) {
-      console.error(
-        'console log file path: ' + console_log_path,
-        'file creation error:',
-        error
-      );
-    }
-  }
-);
-fs.appendFile(log_log_path, '\n\n[log.log] ' + moment().format(), function(
-  error
-) {
+fs.appendFile(console_log_path, '\n\n[console.log] ' + moment().format(), function(error) {
   if (error) {
-    console.error(
-      'log log file path: ' + log_log_path,
-      'file creation error:',
-      error
-    );
+    console.error('console log file path: ' + console_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(info_log_path, '\n\n[info.log] ' + moment().format(), function(
-  error
-) {
+fs.appendFile(log_log_path, '\n\n[log.log] ' + moment().format(), function(error) {
   if (error) {
-    console.error(
-      'info log file path: ' + info_log_path,
-      'file creation error:',
-      error
-    );
+    console.error('log log file path: ' + log_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(warn_log_path, '\n\n[warn.log] ' + moment().format(), function(
-  error
-) {
+fs.appendFile(info_log_path, '\n\n[info.log] ' + moment().format(), function(error) {
   if (error) {
-    console.error(
-      'warn log file path: ' + warn_log_path,
-      'file creation error:',
-      error
-    );
+    console.error('info log file path: ' + info_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(error_log_path, '\n\n[error.log]' + moment().format(), function(
-  error
-) {
+fs.appendFile(warn_log_path, '\n\n[warn.log] ' + moment().format(), function(error) {
   if (error) {
-    console.error(
-      'error log file path: ' + error_log_path,
-      'file creation error:',
-      error
-    );
+    console.error('warn log file path: ' + warn_log_path, 'file creation error:', error);
+  }
+});
+fs.appendFile(error_log_path, '\n\n[error.log]' + moment().format(), function(error) {
+  if (error) {
+    console.error('error log file path: ' + error_log_path, 'file creation error:', error);
   }
 });
 
@@ -83,15 +51,8 @@ exports.log = function(...args) {
   let log_content = '\n[' + moment().toISOString() + '] [LOG] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
-    if (
-      i == args.length - 1 &&
-      typeof argument == 'object' &&
-      argument.log_to_console != undefined
-    ) {
-      if (
-        argument.log_to_console != undefined &&
-        argument.log_to_console == true
-      ) {
+    if (i == args.length - 1 && typeof argument == 'object' && argument.log_to_console != undefined) {
+      if (argument.log_to_console != undefined && argument.log_to_console == true) {
         for (let j = 0; j < args.length - 1; j++) {
           if (typeof args[j] == 'object') {
             if (argument instanceof Error) console.log(log(args[j].stack));
@@ -111,11 +72,7 @@ exports.log = function(...args) {
   }
   fs.appendFile(log_log_path, log_content, function(error) {
     if (error) {
-      console.error(
-        'log.log file path: ' + log_log_path,
-        'log creation error:',
-        error
-      );
+      console.error('log.log file path: ' + log_log_path, 'log creation error:', error);
     }
   });
 };
@@ -124,15 +81,8 @@ exports.info = function(...args) {
   let log_content = '\n[' + moment().toISOString() + '] [INFO] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
-    if (
-      i == args.length - 1 &&
-      typeof argument == 'object' &&
-      argument.log_to_console != undefined
-    ) {
-      if (
-        argument.log_to_console != undefined &&
-        argument.log_to_console == true
-      ) {
+    if (i == args.length - 1 && typeof argument == 'object' && argument.log_to_console != undefined) {
+      if (argument.log_to_console != undefined && argument.log_to_console == true) {
         for (let j = 0; j < args.length - 1; j++) {
           if (typeof args[j] == 'object') {
             if (argument instanceof Error) {
@@ -153,11 +103,7 @@ exports.info = function(...args) {
   }
   fs.appendFile(info_log_path, log_content, function(error) {
     if (error) {
-      console.error(
-        'info.log file path: ' + info_log_path,
-        'log creation error:',
-        error
-      );
+      console.error('info.log file path: ' + info_log_path, 'log creation error:', error);
     }
   });
 };
@@ -166,15 +112,8 @@ exports.warn = function(...args) {
   let log_content = '\n[' + moment().toISOString() + '] [WARN] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
-    if (
-      i == args.length - 1 &&
-      typeof argument == 'object' &&
-      argument.log_to_console != undefined
-    ) {
-      if (
-        argument.log_to_console != undefined &&
-        argument.log_to_console == true
-      ) {
+    if (i == args.length - 1 && typeof argument == 'object' && argument.log_to_console != undefined) {
+      if (argument.log_to_console != undefined && argument.log_to_console == true) {
         for (let j = 0; j < args.length - 1; j++) {
           if (typeof args[j] == 'object') {
             if (argument instanceof Error) {
@@ -195,11 +134,7 @@ exports.warn = function(...args) {
   }
   fs.appendFile(warn_log_path, log_content, function(error) {
     if (error) {
-      console.error(
-        'warn.log file path: ' + warn_log_path,
-        'log creation error:',
-        error
-      );
+      console.error('warn.log file path: ' + warn_log_path, 'log creation error:', error);
     }
   });
 };
@@ -208,15 +143,8 @@ exports.error = function(...args) {
   let log_content = '\n[' + moment().toISOString() + '] [ERROR] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
-    if (
-      i == args.length - 1 &&
-      typeof argument == 'object' &&
-      argument.log_to_console != undefined
-    ) {
-      if (
-        argument.log_to_console != undefined &&
-        argument.log_to_console == true
-      ) {
+    if (i == args.length - 1 && typeof argument == 'object' && argument.log_to_console != undefined) {
+      if (argument.log_to_console != undefined && argument.log_to_console == true) {
         for (let j = 0; j < args.length - 1; j++) {
           if (typeof args[j] == 'object') {
             if (argument instanceof Error) {
@@ -239,11 +167,7 @@ exports.error = function(...args) {
   }
   fs.appendFile(error_log_path, log_content, function(error) {
     if (error) {
-      console.error(
-        'error.log file path: ' + error_log_path,
-        'log creation error:',
-        error
-      );
+      console.error('error.log file path: ' + error_log_path, 'log creation error:', error);
     }
   });
 };

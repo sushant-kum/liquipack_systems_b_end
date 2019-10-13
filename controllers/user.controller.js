@@ -21,9 +21,7 @@ exports.new = function(new_user, callback) {
   const user = new User();
   user.username = new_user.username;
   user.password_hash = new_user.password_hash;
-  user.app_permissions = new_user.app_permissions
-    ? new_user.app_permissions
-    : [];
+  user.app_permissions = new_user.app_permissions ? new_user.app_permissions : [];
   user.name = new_user.name;
   user.gender = new_user.gender;
   user.email = new_user.email;
