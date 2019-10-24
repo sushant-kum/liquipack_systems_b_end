@@ -1,20 +1,10 @@
 const config = {
-  hostname: 'sushantk.com',
-  port: '27017',
+  hostname: 'liquipack-ta1ux.mongodb.net',
   db_name: 'liquipack_systems',
   username: 'liquipack_systems_user',
-  password: 'NzFne2LMUXmjqad9bcyXcZHyLpHjUp'
+  password: 'NzFne2LMUXmjqad9bcyXcZHyLpHjUp',
+  options: 'retryWrites=true&w=majority'
 };
 
 exports.config = config;
-exports.connection_string =
-  'mongodb://' +
-  config.username +
-  ':' +
-  config.password +
-  '@' +
-  config.hostname +
-  ':' +
-  config.port +
-  '/' +
-  config.db_name;
+exports.connection_string = `mongodb+srv://${config.username}:${config.password}@${config.hostname}/${config.db_name}?${config.options}`;
