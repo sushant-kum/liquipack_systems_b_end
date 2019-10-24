@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const body_parser = require('body-parser');
 const multer = require('multer')();
 const mongoose = require('mongoose');
@@ -35,6 +36,12 @@ db.on('connected', () => {
     log_to_console: true
   });
   const app = express();
+  const cors_options = {
+    origin: 'https://liquipack.sushantk.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
+
+  app.use(cors(cors_options));
 
   app.use(passport.initialize());
 
