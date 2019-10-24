@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
+    "test:CI": "echo \"Error: no test specified\" && exit 1",
     "format:check": "prettier -c \"./**/*.{css,html,js,json,md,scss,ts}\"",
     "format:fix": "prettier --write \"./**/*.{css,html,js,json,md,scss,ts}\"",
     "lint:check": "eslint \"./**/*.js\"",
