@@ -62,65 +62,63 @@ router.get('/', function(req, res) {
   });
 });
 
-router.route('/api/login').get(AuthController.isBasicAuthenticated, _get__login.handler);
-router.route('/api/login/token').get(AuthController.isJWTAuthenticated, _get__login__token.handler);
-// router.route('/api/login/refreshtoken').put(_put__login__refreshtoken.handler);
+router.route('/login').get(AuthController.isBasicAuthenticated, _get__login.handler);
+router.route('/login/token').get(AuthController.isJWTAuthenticated, _get__login__token.handler);
+// router.route('/login/refreshtoken').put(_put__login__refreshtoken.handler);
 
-router.route('/api/profile/:user_id').get(AuthController.isJWTAuthenticated, _get__profile.handler);
-router.route('/api/profile/:user_id').put(AuthController.isJWTAuthenticated, _put__profile.handler);
+router.route('/profile/:user_id').get(AuthController.isJWTAuthenticated, _get__profile.handler);
+router.route('/profile/:user_id').put(AuthController.isJWTAuthenticated, _put__profile.handler);
 
-router.route('/api/users').get(AuthController.isJWTAuthenticated, _get__users.handler);
-router.route('/api/users').post(AuthController.isJWTAuthenticated, _post__users.handler);
+router.route('/users').get(AuthController.isJWTAuthenticated, _get__users.handler);
+router.route('/users').post(AuthController.isJWTAuthenticated, _post__users.handler);
 
-router.route('/api/users/min').get(AuthController.isJWTAuthenticated, _get__users__min.handler);
+router.route('/users/min').get(AuthController.isJWTAuthenticated, _get__users__min.handler);
 
-router.route('/api/users/:user_id').get(AuthController.isJWTAuthenticated, _get__users__user_id.handler);
-router.route('/api/users/:user_id').put(AuthController.isJWTAuthenticated, _put__users__user_id.handler);
-router.route('/api/users/:user_id').delete(AuthController.isJWTAuthenticated, _delete__users__user_id.handler);
+router.route('/users/:user_id').get(AuthController.isJWTAuthenticated, _get__users__user_id.handler);
+router.route('/users/:user_id').put(AuthController.isJWTAuthenticated, _put__users__user_id.handler);
+router.route('/users/:user_id').delete(AuthController.isJWTAuthenticated, _delete__users__user_id.handler);
 router
-  .route('/api/users/:user_id/disable')
+  .route('/users/:user_id/disable')
   .patch(AuthController.isJWTAuthenticated, _patch__users__user_id__disable.handler);
-router
-  .route('/api/users/:user_id/enable')
-  .patch(AuthController.isJWTAuthenticated, _patch__users__user_id__enable.handler);
+router.route('/users/:user_id/enable').patch(AuthController.isJWTAuthenticated, _patch__users__user_id__enable.handler);
 
-router.route('/api/quotations/configs').get(AuthController.isJWTAuthenticated, _get__quotations__configs.handler);
-router.route('/api/quotations/configs').post(AuthController.isJWTAuthenticated, _post__quotations__configs.handler);
+router.route('/quotations/configs').get(AuthController.isJWTAuthenticated, _get__quotations__configs.handler);
+router.route('/quotations/configs').post(AuthController.isJWTAuthenticated, _post__quotations__configs.handler);
 
 router
-  .route('/api/quotations/configs/active')
+  .route('/quotations/configs/active')
   .get(AuthController.isJWTAuthenticated, _get__quotations__configs__active.handler);
 
 router
-  .route('/api/quotations/configs/:config_id')
+  .route('/quotations/configs/:config_id')
   .get(AuthController.isJWTAuthenticated, _get__quotations__configs__config_id.handler);
 router
-  .route('/api/quotations/configs/:config_id')
+  .route('/quotations/configs/:config_id')
   .put(AuthController.isJWTAuthenticated, _put__quotations__configs__config_id.handler);
 router
-  .route('/api/quotations/configs/:config_id')
+  .route('/quotations/configs/:config_id')
   .delete(AuthController.isJWTAuthenticated, _delete__quotations__configs__config_id.handler);
 router
-  .route('/api/quotations/configs/:config_id/enable')
+  .route('/quotations/configs/:config_id/enable')
   .patch(AuthController.isJWTAuthenticated, _patch__quotations__configs__config_id__enable.handler);
 
-router.route('/api/quotations').get(AuthController.isJWTAuthenticated, _get__quotations.handler);
-router.route('/api/quotations').post(AuthController.isJWTAuthenticated, _post__quotations.handler);
+router.route('/quotations').get(AuthController.isJWTAuthenticated, _get__quotations.handler);
+router.route('/quotations').post(AuthController.isJWTAuthenticated, _post__quotations.handler);
 
 router
-  .route('/api/quotations/:quotation_id')
+  .route('/quotations/:quotation_id')
   .get(AuthController.isJWTAuthenticated, _get__quotations__quotation_id.handler);
 router
-  .route('/api/quotations/:quotation_id')
+  .route('/quotations/:quotation_id')
   .put(AuthController.isJWTAuthenticated, _put__quotations__quotation_id.handler);
 router
-  .route('/api/quotations/:quotation_id')
+  .route('/quotations/:quotation_id')
   .delete(AuthController.isJWTAuthenticated, _delete__quotations__quotation_id.handler);
 router
-  .route('/api/quotations/:quotation_id/disable')
+  .route('/quotations/:quotation_id/disable')
   .patch(AuthController.isJWTAuthenticated, _patch__quotations__quotation_id__disable.handler);
 router
-  .route('/api/quotations/:quotation_id/enable')
+  .route('/quotations/:quotation_id/enable')
   .patch(AuthController.isJWTAuthenticated, _patch__quotations__quotation_id__enable.handler);
 
 module.exports = router;

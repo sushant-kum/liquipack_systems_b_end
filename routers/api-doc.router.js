@@ -21,11 +21,12 @@ router.get(
     null,
     null,
     null,
-    '/assets/images/favicon/favicon-96x96.png',
+    '/api-doc/assets/images/favicon/favicon-96x96.png',
     null,
     'Liquipack Workflow - API Documentation'
   )
 );
+
 router.get('/download/yaml', (req, res) => {
   res.download(yaml_swagger_document_path);
 });
