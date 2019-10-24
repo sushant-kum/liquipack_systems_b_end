@@ -1,0 +1,27 @@
+name: '[CI] On Push'
+
+on:
+  push:
+    branches:
+      - '*'
+      - '*/*'
+
+jobs:
+  inspection_and_tests__non_release:
+    name: Inspection and Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Install npm dependencies
+        run: npm install
+      - name: Run format check with prettier
+        run: npm run format:check
+      - name: Run lint check
+        run: npm run lint:check
+      - name: Run unit tests
+        run: npm run test:CI
+        continue-on-error: true
