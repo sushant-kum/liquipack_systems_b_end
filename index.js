@@ -49,10 +49,9 @@ db.on('connected', () => {
   // for parsing multipart/form-data
   app.use(multer.array());
 
-  app.use('/assets', express.static('assets'));
-  // app.get('/', (req, res) => res.send('liquipack_systems APIs'));
-  app.use('/', api_router);
+  app.use('/api', api_router);
   app.use('/api-doc', apidoc_router);
+  app.use('/api-doc/assets', express.static('assets'));
 
   app.listen(port, function() {
     logger.log('Started liquipack_systems API service on port ' + port, {
