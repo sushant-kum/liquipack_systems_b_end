@@ -35,4 +35,4 @@ jobs:
           args: app deploy app.yaml
         env:
           PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
-          GCLOUD_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_TOKEN }}
