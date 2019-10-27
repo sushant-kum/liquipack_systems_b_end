@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
+        uses: actions/checkout@master
       - name: Create and Copy to ./dist
         run: mkdir dist && cp -r ./!(dist) ./dist/
       - name: Archive Production Artifact
@@ -33,6 +34,5 @@ jobs:
         with:
           args: app deploy app.yaml
         env:
-          PROJECT_VERSION:
           PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
           GCLOUD_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
