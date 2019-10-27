@@ -13,7 +13,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Create and Copy to ./dist
-        run: mkdir dist && cp -r ./* ./dist/
+        run: mkdir ~/dist && cp -r ./* ~/dist/ && mv ~/dist ./
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
@@ -36,6 +36,5 @@ jobs:
         with:
           args: app deploy app.yaml
         env:
-          PROJECT_VERSION:
           PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
           GCLOUD_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
