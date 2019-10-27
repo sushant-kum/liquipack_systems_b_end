@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Install Dependencies
-        run: npm install
       - name: Create and Copy to ./dist
         run: mkdir ~/dist && cp -r ./* ~/dist/ && mv ~/dist ./
       - name: Archive Production Artifact
