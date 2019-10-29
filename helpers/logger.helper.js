@@ -2,8 +2,9 @@ const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const randomstring = require('randomstring');
 
-const logs_dir = path.dirname(require.main.filename) + '/logs/';
+const logs_dir = path.join(path.dirname(require.main.filename), 'logs');
 console.log('logging into ' + logs_dir);
 
 const log = chalk.bold.white;
@@ -11,43 +12,64 @@ const info = chalk.bold.cyan;
 const warn = chalk.bold.yellow;
 const error = chalk.bold.red;
 
-const console_log_path = logs_dir + 'console.log';
-const log_log_path = logs_dir + 'log.log';
-const info_log_path = logs_dir + 'info.log';
-const warn_log_path = logs_dir + 'warn.log';
-const error_log_path = logs_dir + 'error.log';
+const log_log_path = path.join(logs_dir, 'log.log');
+const info_log_path = path.join(logs_dir, 'info.log');
+const warn_log_path = path.join(logs_dir, 'warn.log');
+const error_log_path = path.join(logs_dir, 'error.log');
 
 if (!fs.existsSync(logs_dir)) {
   fs.mkdirSync(logs_dir);
 }
 
-fs.appendFile(console_log_path, '\n\n[console.log] ' + moment().format(), function(error) {
-  if (error) {
-    console.error('console log file path: ' + console_log_path, 'file creation error:', error);
-  }
-});
-fs.appendFile(log_log_path, '\n\n[log.log] ' + moment().format(), function(error) {
+fs.appendFile(log_log_path, '\n\n[log.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('log log file path: ' + log_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(info_log_path, '\n\n[info.log] ' + moment().format(), function(error) {
+fs.appendFile(info_log_path, '\n\n[info.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('info log file path: ' + info_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(warn_log_path, '\n\n[warn.log] ' + moment().format(), function(error) {
+fs.appendFile(warn_log_path, '\n\n[warn.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('warn log file path: ' + warn_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(error_log_path, '\n\n[error.log]' + moment().format(), function(error) {
+fs.appendFile(error_log_path, '\n\n[error.log]' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('error log file path: ' + error_log_path, 'file creation error:', error);
   }
 });
 
+function sanitize(...log_items) {
+  log_items = log_items[0];
+  const STRS_TO_ERADICATE = ['NzFne2LMUXmjqad9bcyXcZHyLpHjUp', 'liquipack_systems_user'];
+
+  for (const log_item of log_items) {
+    let str_log_item;
+    if (typeof log_item == 'object') {
+      str_log_item = JSON.stringify(log_item, null, '\t');
+    } else {
+      str_log_item = log_item;
+    }
+
+    for (const to_be_eradicated of STRS_TO_ERADICATE) {
+      str_log_item = str_log_item.replace(to_be_eradicated, randomstring.generate({ charset: 'alphanumeric' }));
+    }
+
+    if (typeof log_item == 'object') {
+      log_items[log_items.indexOf(log_item)] = JSON.parse(str_log_item);
+    } else {
+      log_items[log_items.indexOf(log_item)] = str_log_item;
+    }
+  }
+
+  return log_items;
+}
+
 exports.log = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [LOG] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
@@ -78,6 +100,7 @@ exports.log = function(...args) {
 };
 
 exports.info = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [INFO] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
@@ -109,6 +132,7 @@ exports.info = function(...args) {
 };
 
 exports.warn = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [WARN] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
@@ -140,6 +164,7 @@ exports.warn = function(...args) {
 };
 
 exports.error = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [ERROR] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
