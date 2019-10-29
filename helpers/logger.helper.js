@@ -4,7 +4,7 @@ const path = require('path');
 const chalk = require('chalk');
 const randomstring = require('randomstring');
 
-const logs_dir = path.dirname(require.main.filename) + '/logs/';
+const logs_dir = path.join(path.dirname(require.main.filename), 'logs');
 console.log('logging into ' + logs_dir);
 
 const log = chalk.bold.white;
@@ -12,21 +12,15 @@ const info = chalk.bold.cyan;
 const warn = chalk.bold.yellow;
 const error = chalk.bold.red;
 
-const console_log_path = logs_dir + 'console.log';
-const log_log_path = logs_dir + 'log.log';
-const info_log_path = logs_dir + 'info.log';
-const warn_log_path = logs_dir + 'warn.log';
-const error_log_path = logs_dir + 'error.log';
+const log_log_path = path.join(logs_dir, 'log.log');
+const info_log_path = path.join(logs_dir, 'info.log');
+const warn_log_path = path.join(logs_dir, 'warn.log');
+const error_log_path = path.join(logs_dir, 'error.log');
 
 if (!fs.existsSync(logs_dir)) {
   fs.mkdirSync(logs_dir);
 }
 
-fs.appendFile(console_log_path, '\n\n[console.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
-  if (error) {
-    console.error('console log file path: ' + console_log_path, 'file creation error:', error);
-  }
-});
 fs.appendFile(log_log_path, '\n\n[log.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('log log file path: ' + log_log_path, 'file creation error:', error);
@@ -50,36 +44,27 @@ fs.appendFile(error_log_path, '\n\n[error.log]' + `${moment().format()} NEW SESS
 
 function sanitize(...log_items) {
   log_items = log_items[0];
-  console.log('pre sanitize log_items', log_items);
-  const STRS_TO_ERADICATE = ['NzFne2LMUXmjqad9bcyXcZHyLpHjUp'];
+  const STRS_TO_ERADICATE = ['NzFne2LMUXmjqad9bcyXcZHyLpHjUp', 'liquipack_systems_user'];
 
   for (let log_item of log_items) {
     let str_log_item;
     if (typeof log_item == 'object') {
-      if (log_item instanceof Error) {
-        str_log_item = log_item.stack;
-      } else {
-        str_log_item = JSON.stringify(log_item, null, '\t');
-      }
+      str_log_item = JSON.stringify(log_item, null, '\t');
     } else {
       str_log_item = log_item;
     }
 
     for (const to_be_eradicated of STRS_TO_ERADICATE) {
       str_log_item = str_log_item.replace(to_be_eradicated, randomstring.generate({ charset: 'alphanumeric' }));
-      if (typeof log_item == 'object') {
-        if (log_item instanceof Error) {
-          log_item = str_log_item;
-        } else {
-          log_item = JSON.parse(str_log_item);
-        }
-      } else {
-        log_item = str_log_item;
-      }
+    }
+
+    if (typeof log_item == 'object') {
+      log_items[log_items.indexOf(log_item)] = JSON.parse(str_log_item);
+    } else {
+      log_items[log_items.indexOf(log_item)] = str_log_item;
     }
   }
 
-  console.log('post sanitize log_items', log_items);
   return log_items;
 }
 
@@ -115,6 +100,7 @@ exports.log = function(...args) {
 };
 
 exports.info = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [INFO] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
@@ -146,6 +132,7 @@ exports.info = function(...args) {
 };
 
 exports.warn = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [WARN] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
@@ -177,6 +164,7 @@ exports.warn = function(...args) {
 };
 
 exports.error = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [ERROR] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];

@@ -67,13 +67,7 @@ db.on('connected', () => {
   });
 });
 db.on('disconnected', () => {
-  logger.error(
-    'Disconnected from db_config:',
-    db_connection.config,
-    'connection_string: ',
-    db_connection.connection_string,
-    { log_to_console: true }
-  );
+  logger.error('Disconnected from db_config:', db_connection.config, { log_to_console: true });
 });
 
 process.on('SIGINT', function() {
