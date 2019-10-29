@@ -46,7 +46,7 @@ function sanitize(...log_items) {
   log_items = log_items[0];
   const STRS_TO_ERADICATE = ['NzFne2LMUXmjqad9bcyXcZHyLpHjUp', 'liquipack_systems_user'];
 
-  for (let log_item of log_items) {
+  for (const log_item of log_items) {
     let str_log_item;
     if (typeof log_item == 'object') {
       str_log_item = JSON.stringify(log_item, null, '\t');
