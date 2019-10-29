@@ -2,6 +2,7 @@ const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const randomstring = require('randomstring');
 
 const logs_dir = path.dirname(require.main.filename) + '/logs/';
 console.log('logging into ' + logs_dir);
@@ -21,33 +22,69 @@ if (!fs.existsSync(logs_dir)) {
   fs.mkdirSync(logs_dir);
 }
 
-fs.appendFile(console_log_path, '\n\n[console.log] ' + moment().format(), function(error) {
+fs.appendFile(console_log_path, '\n\n[console.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('console log file path: ' + console_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(log_log_path, '\n\n[log.log] ' + moment().format(), function(error) {
+fs.appendFile(log_log_path, '\n\n[log.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('log log file path: ' + log_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(info_log_path, '\n\n[info.log] ' + moment().format(), function(error) {
+fs.appendFile(info_log_path, '\n\n[info.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('info log file path: ' + info_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(warn_log_path, '\n\n[warn.log] ' + moment().format(), function(error) {
+fs.appendFile(warn_log_path, '\n\n[warn.log] ' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('warn log file path: ' + warn_log_path, 'file creation error:', error);
   }
 });
-fs.appendFile(error_log_path, '\n\n[error.log]' + moment().format(), function(error) {
+fs.appendFile(error_log_path, '\n\n[error.log]' + `${moment().format()} NEW SESSION STARTED`, function(error) {
   if (error) {
     console.error('error log file path: ' + error_log_path, 'file creation error:', error);
   }
 });
 
+function sanitize(...log_items) {
+  log_items = log_items[0];
+  console.log('pre sanitize log_items', log_items);
+  const STRS_TO_ERADICATE = ['NzFne2LMUXmjqad9bcyXcZHyLpHjUp'];
+
+  for (let log_item of log_items) {
+    let str_log_item;
+    if (typeof log_item == 'object') {
+      if (log_item instanceof Error) {
+        str_log_item = log_item.stack;
+      } else {
+        str_log_item = JSON.stringify(log_item, null, '\t');
+      }
+    } else {
+      str_log_item = log_item;
+    }
+
+    for (const to_be_eradicated of STRS_TO_ERADICATE) {
+      str_log_item = str_log_item.replace(to_be_eradicated, randomstring.generate({ charset: 'alphanumeric' }));
+      if (typeof log_item == 'object') {
+        if (log_item instanceof Error) {
+          log_item = str_log_item;
+        } else {
+          log_item = JSON.parse(str_log_item);
+        }
+      } else {
+        log_item = str_log_item;
+      }
+    }
+  }
+
+  console.log('post sanitize log_items', log_items);
+  return log_items;
+}
+
 exports.log = function(...args) {
+  args = sanitize(args);
   let log_content = '\n[' + moment().toISOString() + '] [LOG] ';
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
