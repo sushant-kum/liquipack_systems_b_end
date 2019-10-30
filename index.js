@@ -11,6 +11,7 @@ const base_path = path.dirname(require.main.filename);
 const api_router = require(base_path + '/routers/api.router');
 const apidoc_router = require(base_path + '/routers/api-doc.router');
 const db_connection = require(base_path + '/configs/db.config');
+const cors_config = require(base_path + '/configs/cors.config');
 const logger = require(base_path + '/helpers/logger.helper');
 
 const port = process.env.PORT || 8080;
@@ -35,13 +36,11 @@ db.on('connected', () => {
   logger.log('Connected to db_config:', db_connection.config, {
     log_to_console: true
   });
-  const app = express();
-  const cors_options = {
-    origin: 'https://liquipack.sushantk.com',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  };
 
-  app.use(cors(cors_options));
+  const app = express();
+
+  // Add CORS headers
+  app.use(cors(cors_config.options));
 
   app.use(passport.initialize());
 
