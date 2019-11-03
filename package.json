@@ -1,6 +1,6 @@
 {
   "name": "liquipack_systems_b_end",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "liquipack_systems_b_end",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "fs-extra": "^8.1.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.7.6",
+    "mongoose": "^5.7.7",
     "multer": "^1.4.2",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
@@ -45,11 +45,11 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^6.4.0",
+    "eslint-config-prettier": "^6.5.0",
     "husky": "^3.0.9",
     "install": "0.13.0",
     "nodemon": "^1.19.4",
-    "npm": "^6.12.0",
+    "npm": "^6.12.1",
     "prettier": "1.18.2",
     "prettier-eslint": "^9.0.0",
     "pretty-quick": "^1.11.1"
