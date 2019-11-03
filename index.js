@@ -14,9 +14,11 @@ const db_connection = require(base_path + '/configs/db.config');
 const cors_config = require(base_path + '/configs/cors.config');
 const logger = require(base_path + '/helpers/logger.helper');
 
-const version_info = require('./version-info.json');
+require(base_path + '/helpers/version-info-gen.helper').generate();
 
 const port = process.env.PORT || 8080;
+
+const version_info = require('./version-info.json');
 
 mongoose.connect(db_connection.connection_string, {
   useCreateIndex: true,
@@ -69,8 +71,7 @@ db.on('connected', () => {
   app.get('/version', function(req, res) {
     res.json({
       status: 'success',
-      version_info,
-      env: process.env.NODE_ENV !== undefined ? process.env.NODE_ENV : 'undefined'
+      version_info
     });
   });
 
