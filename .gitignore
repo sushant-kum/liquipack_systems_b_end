@@ -62,3 +62,6 @@ typings/
 
 # Backup files
 .bak/
+
+# Others
+version-info.json

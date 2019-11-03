@@ -14,6 +14,8 @@ const db_connection = require(base_path + '/configs/db.config');
 const cors_config = require(base_path + '/configs/cors.config');
 const logger = require(base_path + '/helpers/logger.helper');
 
+const version_info = require('./version-info.json');
+
 const port = process.env.PORT || 8080;
 
 mongoose.connect(db_connection.connection_string, {
@@ -54,6 +56,23 @@ db.on('connected', () => {
   app.use(body_parser.json());
   // for parsing multipart/form-data
   app.use(multer.array());
+
+  app.get('/', function(req, res) {
+    res.json({
+      status: 'success',
+      message: 'Welcome to liquipack_systems APIs crafted with love!',
+      version: version_info.version,
+      deploy_date: version_info.release_date_time
+    });
+  });
+
+  app.get('/version', function(req, res) {
+    res.json({
+      status: 'success',
+      version_info,
+      env: process.env.NODE_ENV !== undefined ? process.env.NODE_ENV : 'undefined'
+    });
+  });
 
   app.use('/api', api_router);
   app.use('/api-doc', apidoc_router);
