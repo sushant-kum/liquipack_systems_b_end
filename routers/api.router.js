@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const path = require('path');
+const mongoose = require('mongoose');
 
 const base_path = path.dirname(require.main.filename);
 
@@ -60,6 +61,21 @@ router.get('/', function(req, res) {
     status: 'success',
     message: 'Welcome to liquipack_systems APIs crafted with love!'
   });
+});
+
+router.get('/db-ping', function(req, res) {
+  const mongoose_state = mongoose.connection.readyState;
+  if (mongoose_state === 1) {
+    res.json({
+      status: mongoose.connection.readyState,
+      message: 'DB Connected'
+    });
+  } else {
+    res.status(500).json({
+      status: mongoose.connection.readyState,
+      message: 'DB Not Connected'
+    });
+  }
 });
 
 router.route('/login').get(AuthController.isBasicAuthenticated, _get__login.handler);
