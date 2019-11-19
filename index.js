@@ -12,6 +12,7 @@ const api_router = require(base_path + '/routers/api.router');
 const apidoc_router = require(base_path + '/routers/api-doc.router');
 const db_connection = require(base_path + '/configs/db.config');
 const cors_config = require(base_path + '/configs/cors.config');
+const status_monitoring_config = require(base_path + '/configs/status-monitoring.config');
 const logger = require(base_path + '/helpers/logger.helper');
 
 require(base_path + '/helpers/version-info-gen.helper').generate();
@@ -42,6 +43,9 @@ db.on('connected', () => {
   });
 
   const app = express();
+
+  // Status monitoring
+  app.use(require('express-status-monitor')(status_monitoring_config.options));
 
   // Add CORS headers
   app.use(cors(cors_config.options));
