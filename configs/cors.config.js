@@ -1,4 +1,4 @@
-const whitelist = ['https://liquipack.sushantk.com', 'https://liquipack.cf'];
+const whitelist = ['https://liquipack.sushantk.com', 'https://liquipack.cf', 'https://testbed.liquipack.cf'];
 
 exports.options = {
   // origin: function(origin, callback) {
