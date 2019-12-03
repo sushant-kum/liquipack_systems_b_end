@@ -8,7 +8,7 @@
     "sourceMap": true,
     "baseUrl": "./",
     "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "./build",
     "removeComments": true,
     // "experimentalDecorators": true,
     "target": "es6",
