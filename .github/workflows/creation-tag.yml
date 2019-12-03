@@ -33,6 +33,7 @@ jobs:
 
   create_release:
     name: Create Release
+    needs: [inspection_and_tests_creation_release]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
