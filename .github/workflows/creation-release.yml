@@ -14,6 +14,8 @@ jobs:
         run: npm install
       - name: Create Build
         run: npm run build
+      - name: Removing ./node_modules
+        run: rm -r ./node_modules
       - name: Copy to ./dist
         run: mkdir ~/dist && cp -r ./* ~/dist/ && mv ~/dist ./
       - name: Archive Production Artifact
