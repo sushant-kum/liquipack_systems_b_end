@@ -36,7 +36,7 @@ jobs:
         with:
           name: dist
       - name: Move content out of dist
-        run: cp -r ./dist/* ./ && mv -r ./dist
+        run: cp -r ./dist/* ./ && rm -r ./dist
       - name: Install tree
         run: sudo apt install tree
       - name: List directory
