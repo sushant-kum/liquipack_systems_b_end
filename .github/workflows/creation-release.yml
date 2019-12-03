@@ -16,13 +16,13 @@ jobs:
         run: npm run build
       - name: Removing ./node_modules
         run: rm -r ./node_modules
-      - name: Copy to ./dist
-        run: mkdir ~/dist && cp -r ./* ~/dist/ && mv ~/dist ./
+      # - name: Copy to ./dist
+      #   run: mkdir ~/dist && cp -r ./* ~/dist/ && mv ~/dist ./
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v1.0.0
         with:
           name: dist
-          path: dist
+          path: ./*
 
   deploy:
     name: Deploy
