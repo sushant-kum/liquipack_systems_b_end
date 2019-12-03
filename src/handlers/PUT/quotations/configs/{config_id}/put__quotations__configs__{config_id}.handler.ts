@@ -26,25 +26,35 @@ export function handler(req: any, res: Response): Response {
               if (
                 req.params.config_id &&
                 req.body.speed &&
-                (req.body.speed.options && Array.isArray(req.body.speed.options)) &&
+                req.body.speed.options &&
+                Array.isArray(req.body.speed.options) &&
                 req.body.no_of_washes &&
-                (req.body.no_of_washes.options && Array.isArray(req.body.no_of_washes.options)) &&
+                req.body.no_of_washes.options &&
+                Array.isArray(req.body.no_of_washes.options) &&
                 req.body.industry &&
-                (req.body.industry.options && Array.isArray(req.body.industry.options)) &&
+                req.body.industry.options &&
+                Array.isArray(req.body.industry.options) &&
                 req.body.gmp_requirement &&
-                (req.body.gmp_requirement.options && Array.isArray(req.body.gmp_requirement.options)) &&
+                req.body.gmp_requirement.options &&
+                Array.isArray(req.body.gmp_requirement.options) &&
                 req.body.bottle_moc &&
-                (req.body.bottle_moc.options && Array.isArray(req.body.bottle_moc.options)) &&
+                req.body.bottle_moc.options &&
+                Array.isArray(req.body.bottle_moc.options) &&
                 req.body.water_saving &&
-                (req.body.water_saving.options && Array.isArray(req.body.water_saving.options)) &&
+                req.body.water_saving.options &&
+                Array.isArray(req.body.water_saving.options) &&
                 req.body.filters_required &&
-                (req.body.filters_required.options && Array.isArray(req.body.filters_required.options)) &&
+                req.body.filters_required.options &&
+                Array.isArray(req.body.filters_required.options) &&
                 req.body.illumination_required &&
-                (req.body.illumination_required.options && Array.isArray(req.body.illumination_required.options)) &&
+                req.body.illumination_required.options &&
+                Array.isArray(req.body.illumination_required.options) &&
                 req.body.auto_level_tank &&
-                (req.body.auto_level_tank.options && Array.isArray(req.body.auto_level_tank.options)) &&
+                req.body.auto_level_tank.options &&
+                Array.isArray(req.body.auto_level_tank.options) &&
                 req.body.extra_cups_sets &&
-                (req.body.extra_cups_sets.options && Array.isArray(req.body.extra_cups_sets.options))
+                req.body.extra_cups_sets.options &&
+                Array.isArray(req.body.extra_cups_sets.options)
               ) {
                 valid_arguments_flag = true;
               }

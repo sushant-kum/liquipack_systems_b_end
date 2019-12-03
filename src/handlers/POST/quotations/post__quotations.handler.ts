@@ -23,33 +23,42 @@ export function handler(req: any, res: Response): Response {
             if (
               req.body.quotation_num &&
               req.body.speed &&
-              (req.body.speed.qty !== undefined && req.body.speed.price !== undefined) &&
+              req.body.speed.qty !== undefined &&
+              req.body.speed.price !== undefined &&
               req.body.no_of_washes &&
-              (req.body.no_of_washes.qty !== undefined && req.body.no_of_washes.price !== undefined) &&
+              req.body.no_of_washes.qty !== undefined &&
+              req.body.no_of_washes.price !== undefined &&
               req.body.industry &&
-              (req.body.industry.qty !== undefined && req.body.industry.price !== undefined) &&
+              req.body.industry.qty !== undefined &&
+              req.body.industry.price !== undefined &&
               req.body.gmp_requirement &&
-              (req.body.gmp_requirement.qty !== undefined && req.body.gmp_requirement.price !== undefined) &&
+              req.body.gmp_requirement.qty !== undefined &&
+              req.body.gmp_requirement.price !== undefined &&
               req.body.bottle_moc &&
-              (req.body.bottle_moc.qty !== undefined && req.body.bottle_moc.price !== undefined) &&
+              req.body.bottle_moc.qty !== undefined &&
+              req.body.bottle_moc.price !== undefined &&
               req.body.water_saving &&
-              (req.body.water_saving.qty !== undefined && req.body.water_saving.price !== undefined) &&
+              req.body.water_saving.qty !== undefined &&
+              req.body.water_saving.price !== undefined &&
               req.body.filters_required &&
-              (req.body.filters_required.qty !== undefined && req.body.filters_required.price !== undefined) &&
+              req.body.filters_required.qty !== undefined &&
+              req.body.filters_required.price !== undefined &&
               req.body.illumination_required &&
-              (req.body.illumination_required.qty !== undefined &&
-                req.body.illumination_required.price !== undefined) &&
+              req.body.illumination_required.qty !== undefined &&
+              req.body.illumination_required.price !== undefined &&
               req.body.auto_level_tank &&
-              (req.body.auto_level_tank.qty !== undefined && req.body.auto_level_tank.price !== undefined) &&
+              req.body.auto_level_tank.qty !== undefined &&
+              req.body.auto_level_tank.price !== undefined &&
               req.body.extra_cups_sets &&
-              (req.body.extra_cups_sets.qty !== undefined && req.body.extra_cups_sets.price !== undefined) &&
+              req.body.extra_cups_sets.qty !== undefined &&
+              req.body.extra_cups_sets.price !== undefined &&
               req.body.customer_details &&
-              (req.body.customer_details.name &&
-                req.body.customer_details.address &&
-                req.body.customer_details.person_of_contact &&
-                (req.body.customer_details.person_of_contact.title &&
-                  req.body.customer_details.person_of_contact.name) &&
-                req.body.customer_details.contact_no)
+              req.body.customer_details.name &&
+              req.body.customer_details.address &&
+              req.body.customer_details.person_of_contact &&
+              req.body.customer_details.person_of_contact.title &&
+              req.body.customer_details.person_of_contact.name &&
+              req.body.customer_details.contact_no
             ) {
               valid_arguments_flag = true;
             }
