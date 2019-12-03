@@ -35,6 +35,10 @@ jobs:
         uses: actions/download-artifact@v1.0.0
         with:
           name: dist
+      - name: Install tree
+        run: sudo apt tree
+      - name: List directory
+        run: tree -d
       - name: Deploy to GCloud
         uses: actions-hub/gcloud@272.0.0
         with:
