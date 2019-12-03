@@ -6,6 +6,31 @@ on:
       - 'dist/*'
 
 jobs:
+  inspection_and_tests_creation_release:
+    name: Inspection and Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['10', '12']
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node.js v${{ matrix.node }} on ${{ matrix.os }}
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install npm dependencies
+        run: npm install
+      - name: Run format check with prettier
+        run: npm run format:check
+      - name: Run lint check
+        run: npm run lint:check
+      - name: Run unit tests
+        run: npm run test:CI
+        continue-on-error: true
+      - name: Run build to check that it succeeds
+        run: npm run build
+
   create_release:
     name: Create Release
     runs-on: ubuntu-latest
@@ -14,11 +39,10 @@ jobs:
         uses: actions/checkout@master
       - name: Create Release
         id: create_release
-        uses: actions/create-release@master
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           draft: true
-          prerelease: false

@@ -1,0 +1,1265 @@
+{
+  "info": {
+    "_postman_id": "ad899351-ed2e-407a-840f-73900b9b8007",
+    "name": "Liquipack",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "quotations",
+      "item": [
+        {
+          "name": "configs",
+          "item": [
+            {
+              "name": ":config_id",
+              "item": [
+                {
+                  "name": "enable",
+                  "item": [
+                    {
+                      "name": "/api/quotations/configs/:config_id/enable",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "e19c3aab-553c-4ea4-9738-04db6e495308",
+                            "exec": [
+                              "pm.test(\"[OP] set_token\", function () {",
+                              "    var jsonData = pm.response.json();",
+                              "    pm.environment.set(\"token\", jsonData.token);",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{token}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "name": "Content-Type",
+                            "type": "text",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{hostname}}:{{port}}/api/quotations/configs/5de0de81f545c27424283d32/enable",
+                          "host": ["{{hostname}}"],
+                          "port": "{{port}}",
+                          "path": ["api", "quotations", "configs", "5de0de81f545c27424283d32", "enable"]
+                        }
+                      },
+                      "response": []
+                    }
+                  ],
+                  "protocolProfileBehavior": {},
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "name": "/api/quotations/configs/:config_id",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "e19c3aab-553c-4ea4-9738-04db6e495308",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "type": "text",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/quotations/configs/5de0de81f545c27424283d32",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "quotations", "configs", "5de0de81f545c27424283d32"]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "/api/quotations/configs/:config_id",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "e19c3aab-553c-4ea4-9738-04db6e495308",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "type": "text",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n\t\"speed\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": 32,\r\n                \"price\": 508000\r\n            },\r\n            {\r\n                \"qty\": 96,\r\n                \"price\": 622500\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    },\r\n    \"no_of_washes\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": 1,\r\n                \"price\": 24250\r\n            },\r\n            {\r\n                \"qty\": 2,\r\n                \"price\": 48500\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    },\r\n    \"industry\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": \"Pharma\",\r\n                \"price\": 36000\r\n            },\r\n            {\r\n                \"qty\": \"Liquor\",\r\n                \"price\": 40000\r\n            },\r\n            {\r\n                \"qty\": \"Others\",\r\n                \"price\": 40000\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    },\r\n    \"gmp_requirement\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": true,\r\n                \"price\": null\r\n            },\r\n            {\r\n                \"qty\": false,\r\n                \"price\": null\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    },\r\n    \"bottle_moc\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": \"Glass\",\r\n                \"price\": 30000\r\n            },\r\n            {\r\n                \"qty\": \"30000\",\r\n                \"price\": 40000\r\n            }\r\n        ],\r\n        \"default_option_index\": null\r\n    },\r\n    \"water_saving\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": true,\r\n                \"price\": 72000\r\n            },\r\n            {\r\n                \"qty\": false,\r\n                \"price\": 0\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    },\r\n    \"filters_required\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": true,\r\n                \"price\": 41500\r\n            },\r\n            {\r\n                \"qty\": false,\r\n                \"price\": 0\r\n            }\r\n        ],\r\n        \"default_option_index\": 1\r\n    },\r\n    \"illumination_required\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": true,\r\n                \"price\": 10000\r\n            },\r\n            {\r\n                \"qty\": false,\r\n                \"price\": 0\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    },\r\n    \"auto_level_tank\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": true,\r\n                \"price\": 30000\r\n            },\r\n            {\r\n                \"qty\": false,\r\n                \"price\": 0\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    },\r\n    \"extra_cups_sets\": {\r\n        \"options\": [\r\n            {\r\n                \"qty\": 0,\r\n                \"price\": 0\r\n            },\r\n            {\r\n                \"qty\": 1,\r\n                \"price\": 16500\r\n            },\r\n            {\r\n                \"qty\": 2,\r\n                \"price\": 33000\r\n            },\r\n            {\r\n                \"qty\": 3,\r\n                \"price\": 49500\r\n            },\r\n            {\r\n                \"qty\": 4,\r\n                \"price\": 66000\r\n            },\r\n            {\r\n                \"qty\": 5,\r\n                \"price\": 82500\r\n            }\r\n        ],\r\n        \"default_option_index\": 0\r\n    }\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/quotations/configs/5de0de81f545c27424283d32",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "quotations", "configs", "5de0de81f545c27424283d32"]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "/api/quotations/configs/:config_id",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "dd2f94cf-a057-4a7c-b502-49b3a0a91cf0",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/quotations/configs/5de0de81f545c27424283d32",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "quotations", "configs", "5de0de81f545c27424283d32"]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "name": "active",
+              "item": [
+                {
+                  "name": "/api/quotations/configs/active",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "e19c3aab-553c-4ea4-9738-04db6e495308",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "type": "text",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/quotations/configs/active",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "quotations", "configs", "active"]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "name": "/api/quotations/configs",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e19c3aab-553c-4ea4-9738-04db6e495308",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/quotations/configs",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "quotations", "configs"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/api/quotations/configs",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "77e45307-b1e9-445d-a50f-7a1a1e4faf91",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"config_name\": \"QCTEST\",\n\t\"speed\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": 64,\n\t\t\t\t\"price\": 508000\n\t\t\t}, {\n\t\t\t\t\"qty\": 96,\n\t\t\t\t\"price\": 622500\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t},\n\t\"no_of_washes\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": 1,\n\t\t\t\t\"price\": 24250\n\t\t\t}, {\n\t\t\t\t\"qty\": 2,\n\t\t\t\t\"price\": 48500\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t},\n\t\"industry\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": \"Pharma\",\n\t\t\t\t\"price\": 36000\n\t\t\t}, {\n\t\t\t\t\"qty\": \"Liquor\",\n\t\t\t\t\"price\": 40000\n\t\t\t}, {\n\t\t\t\t\"qty\": \"Others\",\n\t\t\t\t\"price\": 40000\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t},\n\t\"gmp_requirement\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": true,\n\t\t\t\t\"price\": null\n\t\t\t}, {\n\t\t\t\t\"qty\": false,\n\t\t\t\t\"price\": null\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t},\n\t\"bottle_moc\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": \"Glass\",\n\t\t\t\t\"price\": 30000\n\t\t\t}, {\n\t\t\t\t\"qty\": \"30000\",\n\t\t\t\t\"price\": 40000\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": null\n\t},\n\t\"water_saving\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": true,\n\t\t\t\t\"price\": 72000\n\t\t\t}, {\n\t\t\t\t\"qty\": false,\n\t\t\t\t\"price\": 0\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t},\n\t\"filters_required\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": true,\n\t\t\t\t\"price\": 41500\n\t\t\t}, {\n\t\t\t\t\"qty\": false,\n\t\t\t\t\"price\": 0\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 1\n\t},\n\t\"illumination_required\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": true,\n\t\t\t\t\"price\": 10000\n\t\t\t}, {\n\t\t\t\t\"qty\": false,\n\t\t\t\t\"price\": 0\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t},\n\t\"auto_level_tank\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": true,\n\t\t\t\t\"price\": 30000\n\t\t\t}, {\n\t\t\t\t\"qty\": false,\n\t\t\t\t\"price\": 0\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t},\n\t\"extra_cups_sets\": {\n\t\t\"options\": [\n\t\t\t{\n\t\t\t\t\"qty\": 0,\n\t\t\t\t\"price\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"qty\": 1,\n\t\t\t\t\"price\": 16500\n\t\t\t}, {\n\t\t\t\t\"qty\": 2,\n\t\t\t\t\"price\": 33000\n\t\t\t}, {\n\t\t\t\t\"qty\": 3,\n\t\t\t\t\"price\": 49500\n\t\t\t}, {\n\t\t\t\t\"qty\": 4,\n\t\t\t\t\"price\": 66000\n\t\t\t}, {\n\t\t\t\t\"qty\": 5,\n\t\t\t\t\"price\": 82500\n\t\t\t}\n\t\t],\n\t\t\"default_option_index\": 0\n\t}\n}"
+                },
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/quotations/configs",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "quotations", "configs"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": ":quotation_id",
+          "item": [
+            {
+              "name": "enable",
+              "item": [
+                {
+                  "name": "/api/quotations/5d5fdf4b0a184451cb901f72/enable",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "42db5dab-1816-4a70-871f-25da64723be6",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [],
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/quotations/5ddfbd6add401d5b7e287464/enable",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "quotations", "5ddfbd6add401d5b7e287464", "enable"]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "name": "disable",
+              "item": [
+                {
+                  "name": "/api/quotations/5d5fdf4b0a184451cb901f72/disable",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "42db5dab-1816-4a70-871f-25da64723be6",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [],
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/quotations/5ddfbd6add401d5b7e287464/disable",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "quotations", "5ddfbd6add401d5b7e287464", "disable"]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "name": "/api/quotations/5d5fa33d38845139d9c33f3a",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1199b5e6-5b0b-4cec-9ef0-7e3df94aa7e8",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/quotations/5ddfbd6add401d5b7e287464",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "quotations", "5ddfbd6add401d5b7e287464"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/api/quotations/5d5fa33d38845139d9c33f3a",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "248414e2-832b-4dbb-acb0-4cdedb239450",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"speed\": {\n        \"qty\": 32,\n        \"price\": 508000\n    },\n    \"no_of_washes\": {\n        \"qty\": 64,\n        \"price\": 24250\n    },\n    \"industry\": {\n        \"qty\": \"Pharma\",\n        \"price\": 36000\n    },\n    \"gmp_requirement\": {\n        \"qty\": false,\n        \"price\": null\n    },\n    \"bottle_moc\": {\n        \"qty\": \"Glass\",\n        \"price\": 30000\n    },\n    \"water_saving\": {\n        \"qty\": true,\n        \"price\": 72000\n    },\n    \"filters_required\": {\n        \"qty\": true,\n        \"price\": 41500\n    },\n    \"illumination_required\": {\n        \"qty\": false,\n        \"price\": null\n    },\n    \"auto_level_tank\": {\n        \"qty\": true,\n        \"price\": 30000\n    },\n    \"extra_cups_sets\": {\n        \"qty\": 1,\n        \"price\": 16500\n    },\n    \"oteher_details\": \"asd\",\n    \"customer_details\": {\n        \"name\": \"Sushant Tech\",\n        \"address\": \"Bangalore\",\n        \"person_of_contact\": {\n            \"title\": \"Mr\",\n            \"name\": \"Sushant\"\n        },\n        \"contact_no\": \"9740895495\"\n    }\n}"
+                },
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/quotations/5ddfb50aa935af551dedd65a",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "quotations", "5ddfb50aa935af551dedd65a"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/api/quotations/5d5f8ed35255a031a7ee960c",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c9839dea-a95c-40fe-b47b-c12db3cbd2d9",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/quotations/5ddfb50aa935af551dedd65a",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "quotations", "5ddfb50aa935af551dedd65a"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "/api/quotations",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b3daa40a-983d-4069-b15e-e68b49cdeb2d",
+                "exec": [
+                  "pm.test(\"[OP] set_token\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set(\"token\", jsonData.token);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"quotation_num\": \"QTEST\",\n\t\"speed\": {\n\t\t\"qty\": 64,\n\t\t\"price\": 508000\n\t},\n\t\"no_of_washes\": {\n\t\t\"qty\": 64,\n\t\t\"price\": 24250\n\t},\n\t\"industry\": {\n\t\t\"qty\": \"Pharma\",\n\t\t\"price\": 36000\n\t},\n\t\"gmp_requirement\": {\n\t\t\"qty\": false,\n\t\t\"price\": null\n\t},\n\t\"bottle_moc\": {\n\t\t\"qty\": \"Glass\",\n\t\t\"price\": 30000\n\t},\n\t\"water_saving\": {\n\t\t\"qty\": true,\n\t\t\"price\": 72000\n\t},\n\t\"filters_required\": {\n\t\t\"qty\": true,\n\t\t\"price\": 41500\n\t},\n\t\"illumination_required\": {\n\t\t\"qty\": false,\n\t\t\"price\": null\n\t},\n\t\"auto_level_tank\": {\n\t\t\"qty\": true,\n\t\t\"price\": 30000\n\t},\n\t\"extra_cups_sets\": {\n\t\t\"qty\": 1,\n\t\t\"price\": 16500\n\t},\n\t\"customer_details\": {\n\t\t\"name\": \"Sushant Tech\",\n\t\t\"address\": \"Bangalore\",\n\t\t\"person_of_contact\": {\n\t\t\t\"title\": \"Mr\",\n\t\t\t\"name\": \"Sushant\"\n\t\t},\n\t\t\"contact_no\": \"9740895495\"\n\t} \n}"
+            },
+            "url": {
+              "raw": "{{hostname}}:{{port}}/api/quotations",
+              "host": ["{{hostname}}"],
+              "port": "{{port}}",
+              "path": ["api", "quotations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/api/quotations",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e19c3aab-553c-4ea4-9738-04db6e495308",
+                "exec": [
+                  "pm.test(\"[OP] set_token\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set(\"token\", jsonData.token);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{hostname}}:{{port}}/api/quotations",
+              "host": ["{{hostname}}"],
+              "port": "{{port}}",
+              "path": ["api", "quotations"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "profile",
+      "item": [
+        {
+          "name": ":user_id",
+          "item": [
+            {
+              "name": "/profile/:user_id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "46de9c98-1319-4b0e-aefa-331959af6373",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/profile/5cbb5d71f3cb256e348e9a56",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "profile", "5cbb5d71f3cb256e348e9a56"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/profile/:user_id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "07d94b33-57c0-4454-9c82-789e7ff3695f",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"password_hash\": \"21232f297a57a5a743894a0e4a801fc3\",\n    \"name\": \"Admin\",\n    \"gender\": \"male\",\n    \"email\": \"sushant.kum96@gmail.com\",\n    \"phone\": \"9876543210\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/profile/5cbb5d71f3cb256e348e9a56",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "profile", "5cbb5d71f3cb256e348e9a56"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "min",
+          "item": [
+            {
+              "name": "/users/min",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "916e1d7e-234e-4d5e-807a-4abdc6a31254",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/users/min",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "users", "min"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": ":user_id",
+          "item": [
+            {
+              "name": "disable",
+              "item": [
+                {
+                  "name": "/users/:user_id/disable",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "c59d8a7a-3f90-40d3-8dc9-237214b72d35",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [],
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/users/5ddf7a309fdd3b3ee8d26464/disable",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "users", "5ddf7a309fdd3b3ee8d26464", "disable"]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "protocolProfileBehavior": {},
+              "_postman_isSubFolder": true
+            },
+            {
+              "name": "enable",
+              "item": [
+                {
+                  "name": "/users/:user_id/enable",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "c59d8a7a-3f90-40d3-8dc9-237214b72d35",
+                        "exec": [
+                          "pm.test(\"[OP] set_token\", function () {",
+                          "    var jsonData = pm.response.json();",
+                          "    pm.environment.set(\"token\", jsonData.token);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [],
+                    "url": {
+                      "raw": "{{hostname}}:{{port}}/api/users/5ddf7a309fdd3b3ee8d26464/enable",
+                      "host": ["{{hostname}}"],
+                      "port": "{{port}}",
+                      "path": ["api", "users", "5ddf7a309fdd3b3ee8d26464", "enable"]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "protocolProfileBehavior": {},
+              "_postman_isSubFolder": true
+            },
+            {
+              "name": "/users/:user_id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c59d8a7a-3f90-40d3-8dc9-237214b72d35",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/users/5ddf7a309fdd3b3ee8d26464",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "users", "5ddf7a309fdd3b3ee8d26464"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/users/:user_id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c59d8a7a-3f90-40d3-8dc9-237214b72d35",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n\t\"password_hash\": \"21232f297a57a5a743894a0e4a801fc3\",\r\n    \"app_permissions\": [\r\n        {\r\n            \"permissions\": [\r\n                \"read\",\r\n                \"write\"\r\n            ],\r\n            \"_id\": \"5d8b439997e14223e6cb5cce\",\r\n            \"app\": \"apps\"\r\n        },\r\n        {\r\n            \"permissions\": [\r\n                \"read\",\r\n                \"write\"\r\n            ],\r\n            \"_id\": \"5d8b439997e14223e6cb5ccd\",\r\n            \"app\": \"apps-quotation-config\"\r\n        }\r\n    ],\r\n    \"name\": \"Test User\",\r\n    \"gender\": \"others\",\r\n    \"email\": \"abc@xyz.com\",\r\n    \"phone\": \"9876543210\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/users/5ddf75ab3211bc39f8204eda",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "users", "5ddf75ab3211bc39f8204eda"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/users/:user_id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c59d8a7a-3f90-40d3-8dc9-237214b72d35",
+                    "exec": [
+                      "pm.test(\"[OP] set_token\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"token\", jsonData.token);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{hostname}}:{{port}}/api/users/5ddf75ab3211bc39f8204eda",
+                  "host": ["{{hostname}}"],
+                  "port": "{{port}}",
+                  "path": ["api", "users", "5ddf75ab3211bc39f8204eda"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "/users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "03fb158f-cdbf-4ee1-a772-6b6af805a75d",
+                "exec": [
+                  "pm.test(\"[OP] set_token\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set(\"token\", jsonData.token);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{hostname}}:{{port}}/api/users",
+              "host": ["{{hostname}}"],
+              "port": "{{port}}",
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9d29c24a-43bb-4119-a90d-f019620a5596",
+                "exec": [
+                  "pm.test(\"[OP] set_token\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set(\"token\", jsonData.token);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"app_permissions\": [\r\n        {\r\n            \"permissions\": [\r\n                \"read\",\r\n                \"write\"\r\n            ],\r\n            \"_id\": \"5d8b439997e14223e6cb5cce\",\r\n            \"app\": \"apps\"\r\n        },\r\n        {\r\n            \"permissions\": [\r\n                \"read\",\r\n                \"write\"\r\n            ],\r\n            \"_id\": \"5d8b439997e14223e6cb5ccd\",\r\n            \"app\": \"apps-quotation-config\"\r\n        }\r\n    ],\r\n    \"username\": \"test-user\",\r\n    \"password_hash\": \"21232f297a57a5a743894a0e4a801fc3\",\r\n    \"name\": \"Test User\",\r\n    \"gender\": \"others\",\r\n    \"email\": \"abc@xyz.com\",\r\n    \"phone\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{hostname}}:{{port}}/api/users",
+              "host": ["{{hostname}}"],
+              "port": "{{port}}",
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "/api/login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "f4fcb800-5c65-4de3-a0c7-cecdc7f2c1fc",
+            "exec": [
+              "pm.test(\"[OP] set_token\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set(\"token\", jsonData.token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "{{password_hash}}",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "{{username}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{hostname}}:{{port}}/api/login",
+          "host": ["{{hostname}}"],
+          "port": "{{port}}",
+          "path": ["api", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/login/token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "8ba02004-b4d1-4d6a-9cf6-5e367bef2c87",
+            "exec": [
+              "pm.test(\"[OP] set_token\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.environment.set(\"token\", jsonData.token);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{hostname}}:{{port}}/api/login/token",
+          "host": ["{{hostname}}"],
+          "port": "{{port}}",
+          "path": ["api", "login", "token"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "esModuleInterop": false,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "outDir": "./build",
+    "removeComments": true,
+    // "experimentalDecorators": true,
+    "target": "es6",
+    // "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    // "importHelpers": true,
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@app/*": ["./src/*"],
+      "@project-root/*": ["./*"]
+    }
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./src/public/"]
+}
