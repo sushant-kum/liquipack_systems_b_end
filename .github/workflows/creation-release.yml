@@ -35,6 +35,8 @@ jobs:
         uses: actions/download-artifact@v1.0.0
         with:
           name: dist
+      - name: Move content out of dist
+        run: cp -r ./dist/* ./ && mv -r ./dist
       - name: Install tree
         run: sudo apt install tree
       - name: List directory
