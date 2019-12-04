@@ -3,7 +3,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { default as chalk } from 'chalk';
 
-const logs_dir = path.join(require.main ? path.dirname(require.main.filename) : '', 'logs');
+let logs_dir: string;
+
+if (process.env && process.env.NODE_ENV === 'production') {
+  logs_dir = path.join('/tmp', 'liquipack_systems_b_end', 'logs');
+} else {
+  logs_dir = path.join(require.main ? path.dirname(require.main.filename) : '', 'logs');
+}
 console.log('logging into ' + logs_dir);
 
 const chalk_log = chalk.bold.white;

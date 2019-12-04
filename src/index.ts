@@ -9,6 +9,7 @@ import * as cors from 'cors';
 import * as body_parser from 'body-parser';
 import * as mongoose from 'mongoose';
 import * as passport from 'passport';
+import * as path from 'path';
 
 import { router as api_router } from '@app/routers/api.router';
 import { router as apidoc_router } from '@app/routers/api-doc.router';
@@ -19,7 +20,16 @@ import * as logger from '@app/helpers/logger.helper';
 
 // Do not change to import format, as files are not in rootDir
 require('@project-root/tools/version-info-gen/version-info-gen.js').generate();
-const version_info = require('@project-root/version-info.json');
+let version_info: {
+  version: string;
+  release_date_time: Date | string;
+  env: string;
+};
+if (process.env && process.env.NODE_ENV === 'production') {
+  version_info = require(path.join('/tmp', 'liquipack_systems_b_end', 'version-info.json'));
+} else {
+  version_info = require('@project-root/version-info.json');
+}
 
 const port = process.env.PORT || 8080;
 

@@ -1,5 +1,5 @@
 const { version } = require('../..//package.json');
-const { resolve, relative } = require('path');
+const { join, resolve, relative } = require('path');
 const { writeFileSync } = require('fs-extra');
 
 exports.generate = () => {
@@ -10,7 +10,12 @@ exports.generate = () => {
     env: process.env.NODE_ENV !== undefined ? process.env.NODE_ENV : 'undefined'
   };
 
-  const file = resolve(__dirname, '..', '..', 'version-info.json');
+  let file;
+  if (prod) {
+    file = join('/tmp', 'liquipack_systems_b_end', 'version-info.json');
+  } else {
+    file = resolve(__dirname, '..', '..', 'version-info.json');
+  }
   writeFileSync(
     file,
     `${JSON.stringify(version_info, null, 2)}
@@ -18,5 +23,5 @@ exports.generate = () => {
     { encoding: 'utf-8' }
   );
 
-  console.log(`Wrote version info ${version_info.version} to ${relative(resolve(__dirname, '..', '..'), file)}`);
+  console.log(`Wrote version info ${version_info.version} to ${relative(resolve('/'), file)}`);
 };
