@@ -1,3 +1,14 @@
-runtime: custom
-env: flex
+runtime: nodejs10
+env: standard
 service: testbed
+handlers:
+  - url: .*
+    secure: always
+    script: auto
+automatic_scaling:
+  min_instances: 0
+  max_instances: 5
+  target_cpu_utilization: 0.9
+network:
+  session_affinity: true
+entrypoint: npm run start:prod
