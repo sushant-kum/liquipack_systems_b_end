@@ -1,6 +1,6 @@
 {
   "name": "liquipack_systems_b_end",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "liquipack_systems_b_end",
   "main": "build/index.js",
   "scripts": {
@@ -8,8 +8,10 @@
     "test:CI": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf ./build/",
     "build": "tsc",
-    "start:prod": "node build/index.js",
-    "start": "nodemon --config \"./nodemon.json\"/",
+    "start": "npm run start:dev",
+    "prestart:prod": "mkdir -p /tmp/liquipack_systems_b_end",
+    "start:prod": "NODE_ENV=production node build/index.js",
+    "start:dev": "nodemon --config \"./nodemon.json\"/",
     "format:check": "prettier -c \"./**/*.{css,html,js,json,md,scss,ts}\"",
     "format:fix": "prettier --write \"./**/*.{css,html,js,json,md,scss,ts}\"",
     "tslint:check": "tslint --project tsconfig.json --config tslint.json \"src/**/*.ts\"",
@@ -18,7 +20,9 @@
     "eslint:fix": "eslint --fix \"./tools/**/*.js\"",
     "lint:check": "npm run tslint:check && npm run eslint:check",
     "lint:fix": "npm run tslint:fix && npm run eslint:fix",
-    "tool:version:info": "node tools/version-info-gen/index.js"
+    "tool:version:info": "node tools/version-info-gen/index.js",
+    "deploy:testbed": "gcloud app deploy testbed.yaml --quiet",
+    "deploy:prod": "gcloud app deploy app.yaml --quiet"
   },
   "repository": {
     "type": "git",
