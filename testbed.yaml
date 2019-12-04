@@ -1,3 +1,5 @@
 runtime: custom
 env: flex
 service: testbed
+manual_scaling:
+  instances: 1
