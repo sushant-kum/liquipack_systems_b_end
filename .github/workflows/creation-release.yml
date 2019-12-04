@@ -16,8 +16,6 @@ jobs:
         run: npm run build
       - name: Removing ./node_modules
         run: rm -r ./node_modules
-      # - name: Copy to ./dist
-      #   run: mkdir ~/dist && cp -r ./* ~/dist/ && mv ~/dist ./
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v1.0.0
         with:
@@ -37,10 +35,6 @@ jobs:
           name: dist
       - name: Move content out of dist
         run: cp -r ./dist/* ./ && rm -r ./dist
-      - name: Install tree
-        run: sudo apt install tree
-      - name: List directory
-        run: tree -d
       - name: Deploy to GCloud
         uses: actions-hub/gcloud@272.0.0
         with:
