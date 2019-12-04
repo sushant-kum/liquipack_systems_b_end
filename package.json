@@ -1,6 +1,6 @@
 {
   "name": "liquipack_systems_b_end",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "liquipack_systems_b_end",
   "main": "build/index.js",
   "scripts": {
