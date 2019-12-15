@@ -5,6 +5,7 @@ handlers:
   - url: .*
     secure: always
     script: auto
+    redirect_http_response_code: 301
 automatic_scaling:
   min_instances: 0
   max_instances: 5
