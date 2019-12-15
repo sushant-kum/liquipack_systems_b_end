@@ -11,4 +11,18 @@ automatic_scaling:
   target_cpu_utilization: 0.9
 network:
   session_affinity: true
+liveness_check:
+  path: '/api/db-ping'
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  initial_delay_sec: 30
+readiness_check:
+  path: '/'
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 30
 entrypoint: npm run start:prod
